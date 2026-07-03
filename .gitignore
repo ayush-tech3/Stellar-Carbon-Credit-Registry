@@ -1,0 +1,68 @@
+# =========================
+# Rust / Soroban
+# =========================
+contracts/target/
+contracts/**/target/
+**/*.rs.bk
+*.pdb
+
+# =========================
+# Node / Next.js
+# =========================
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env.*.local
+
+# =========================
+# Environment
+# =========================
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Stellar
+# =========================
+.soroban/
+.stellar/
+*.wasm
+!contracts/**/target/wasm32-unknown-unknown/release/*.wasm
+
+# =========================
+# Build artifacts
+# =========================
+dist/
+build/
+*.log
+npm-debug.log*
+
+# =========================
+# Testing
+# =========================
+coverage/
+frontend/coverage/
+.nyc_output/
+
+# =========================
+# Vercel
+# =========================
+.vercel/

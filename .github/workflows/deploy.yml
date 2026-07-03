@@ -1,0 +1,107 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # ─────────────────────────────────────────────
+  # Build Contracts
+  # ─────────────────────────────────────────────
+  build-contracts:
+    name: Build Contract WASMs
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            contracts/target
+          key: ${{ runner.os }}-cargo-deploy-${{ hashFiles('contracts/**/Cargo.lock') }}
+
+      - name: Build retirement-manager WASM
+        run: cargo build --release --target wasm32-unknown-unknown -p retirement-manager
+
+      - name: Build carbon-credit-registry WASM
+        run: cargo build --release --target wasm32-unknown-unknown -p carbon-credit-registry
+
+      - name: Upload WASM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-wasm
+          path: |
+            contracts/target/wasm32-unknown-unknown/release/retirement_manager.wasm
+            contracts/target/wasm32-unknown-unknown/release/carbon_credit_registry.wasm
+
+  # ─────────────────────────────────────────────
+  # Deploy Frontend to Vercel
+  # ─────────────────────────────────────────────
+  deploy-frontend:
+    name: Deploy Frontend (Vercel)
+    runs-on: ubuntu-latest
+    needs: build-contracts
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_STELLAR_NETWORK: testnet
+          NEXT_PUBLIC_SOROBAN_RPC_URL: https://soroban-testnet.stellar.org
+          NEXT_PUBLIC_NETWORK_PASSPHRASE: "Test SDF Network ; September 2015"
+          NEXT_PUBLIC_STELLAR_EXPLORER_URL: https://stellar.expert/explorer/testnet
+          NEXT_PUBLIC_REGISTRY_CONTRACT_ID: ${{ vars.REGISTRY_CONTRACT_ID }}
+          NEXT_PUBLIC_RETIREMENT_CONTRACT_ID: ${{ vars.RETIREMENT_CONTRACT_ID }}
+          NEXT_PUBLIC_EVENT_POLL_INTERVAL_MS: "5000"
+
+      # ── Vercel Deployment ──
+      # To enable automated Vercel deploys:
+      # 1. Install Vercel CLI: npm i -g vercel
+      # 2. Link your project: vercel link
+      # 3. Add secrets to GitHub repo:
+      #    - VERCEL_TOKEN
+      #    - VERCEL_ORG_ID
+      #    - VERCEL_PROJECT_ID
+      #
+      # Then uncomment the step below:
+      #
+      # - name: Deploy to Vercel
+      #   run: |
+      #     npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} \
+      #       --scope=${{ secrets.VERCEL_ORG_ID }}
+      #   env:
+      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      #     VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      #     VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy summary
+        run: echo "✅ Frontend build successful. Deploy via Vercel dashboard or uncomment the deploy step above."
