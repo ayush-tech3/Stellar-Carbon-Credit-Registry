@@ -1,11 +1,11 @@
 "use client";
 
-import { WalletProvider } from "@/lib/wallet/provider";
+
 import { ImpactCounter } from "@/features/retirement/components/ImpactCounter";
 
 export default function AnalyticsPage() {
   return (
-    <WalletProvider>
+
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold text-white">Global Analytics</h1>
@@ -73,6 +73,6 @@ export default function AnalyticsPage() {
           </div>
         </div>
       </div>
-    </WalletProvider>
+
   );
 }

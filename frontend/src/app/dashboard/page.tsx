@@ -3,7 +3,7 @@
 import { useWalletStore } from "@/stores/wallet-store";
 import { StatCard } from "@/components/shared/StatCard";
 import { formatAddress } from "@/lib/utils/format";
-import { WalletProvider } from "@/lib/wallet/provider";
+
 import { Leaf, Award, ArrowRightLeft, Flame } from "lucide-react";
 import { IssueForm } from "@/features/credits/components/IssueForm";
 import { TransferForm } from "@/features/credits/components/TransferForm";
@@ -16,7 +16,7 @@ export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<'issue' | 'transfer' | 'retire'>('issue');
 
   return (
-    <WalletProvider>
+
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-white">Dashboard</h1>
@@ -117,6 +117,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-    </WalletProvider>
+
   );
 }

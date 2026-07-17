@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { isConnected, requestAccess, getPublicKey, signTransaction as freighterSignTx } from '@stellar/freighter-api';
+import { isConnected, requestAccess, getAddress, signTransaction as freighterSignTx } from '@stellar/freighter-api';
 import { NETWORK_CONFIG } from '../stellar/network';
 import { useWalletStore } from '@/stores/wallet-store';
 
@@ -22,7 +22,8 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     setIsMounted(true);
     const checkConnection = async () => {
       if (address && await isConnected()) {
-        const pubKey = await getPublicKey();
+        const res: any = await getAddress();
+        const pubKey = res?.address || (typeof res === 'string' ? res : null);
         if (pubKey) {
           setAddress(pubKey);
           setIsConnected(true);
@@ -40,7 +41,8 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   const connect = async () => {
     if (await isConnected()) {
       try {
-        const pubKey = await requestAccess();
+        const res: any = await requestAccess();
+        const pubKey = res?.address || (typeof res === 'string' ? res : null);
         if (pubKey) {
           setAddress(pubKey);
           setIsConnected(true);
@@ -62,7 +64,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
 
   const signTransaction = async (xdr: string): Promise<string> => {
     if (!address) throw new Error("Wallet not connected");
-    const result = await freighterSignTx(xdr, { network: NETWORK_CONFIG.network === 'testnet' ? 'TESTNET' : 'PUBLIC' });
+    const result = await freighterSignTx(xdr, { networkPassphrase: NETWORK_CONFIG.networkPassphrase });
     if (result.error) {
       throw new Error(result.error);
     }

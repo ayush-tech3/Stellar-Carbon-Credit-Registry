@@ -1,6 +1,6 @@
 "use client";
 
-import { WalletProvider } from "@/lib/wallet/provider";
+
 import { useSettingsStore } from "@/stores/settings-store";
 import { NETWORK_CONFIG } from "@/lib/stellar/network";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,7 @@ export default function SettingsPage() {
   const { network, explorerUrl } = useSettingsStore();
 
   return (
-    <WalletProvider>
+
       <div className="max-w-3xl mx-auto space-y-8">
         <div>
           <h1 className="text-3xl font-bold text-white">Settings</h1>
@@ -59,6 +59,6 @@ export default function SettingsPage() {
           </div>
         </div>
       </div>
-    </WalletProvider>
+
   );
 }

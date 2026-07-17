@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { QueryProvider } from '@/components/shared/QueryProvider';
 
+import { WalletProvider } from '@/lib/wallet/provider';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -18,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <WalletProvider>
+            {children}
+          </WalletProvider>
+        </QueryProvider>
       </body>
     </html>
   );

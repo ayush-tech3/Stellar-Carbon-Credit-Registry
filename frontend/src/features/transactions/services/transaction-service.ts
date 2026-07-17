@@ -22,7 +22,8 @@ export class TransactionService {
     const response = await rpcServer.sendTransaction(tx as StellarSdk.Transaction);
     
     if (response.status === 'ERROR') {
-      throw new AppError('Retry Failed', (response as Record<string, unknown>).errorResult as string || (response as Record<string, unknown>).errorResultXdr as string || 'Unknown error');
+      const respRecord = response as unknown as Record<string, unknown>;
+      throw new AppError('Retry Failed', (respRecord.errorResult as string) || (respRecord.errorResultXdr as string) || 'Unknown error');
     }
     
     return response.hash;

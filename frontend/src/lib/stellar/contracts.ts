@@ -31,7 +31,7 @@ export async function simulateAndAssemble(tx: StellarSdk.Transaction) {
     throw new AppError('Simulation Failed', simulation.error);
   }
   
-  return assembleTransaction(tx, NETWORK_CONFIG.networkPassphrase, simulation as StellarSdk.rpc.Api.SimulateTransactionSuccessResponse).build();
+  return assembleTransaction(tx, simulation as StellarSdk.rpc.Api.SimulateTransactionSuccessResponse).build();
 }
 
 export async function submitTransaction(signedXdr: string) {
@@ -39,7 +39,8 @@ export async function submitTransaction(signedXdr: string) {
   const response = await rpcServer.sendTransaction(tx as StellarSdk.Transaction);
   
   if (response.status === 'ERROR') {
-    throw new AppError('Submission Failed', response.errorResultXdr || 'Unknown error');
+    const respRecord = response as unknown as Record<string, unknown>;
+    throw new AppError('Submission Failed', (respRecord.errorResult as string) || (respRecord.errorResultXdr as string) || 'Unknown error');
   }
   
   return response;
