@@ -69,11 +69,9 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     return result.signedTxXdr;
   };
 
-  if (!isMounted) return <>{children}</>;
-
   return (
     <WalletContext.Provider value={{ connect, disconnect, signTransaction }}>
-      {children}
+      {isMounted ? children : null}
     </WalletContext.Provider>
   );
 }

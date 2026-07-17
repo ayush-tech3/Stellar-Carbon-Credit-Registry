@@ -1,6 +1,6 @@
 import { TrackedTransaction } from "../types";
-import { formatTxHash, getExplorerUrl } from "@/lib/stellar/contracts";
-import { formatDate } from "@/lib/utils/format";
+import { getExplorerUrl } from "@/lib/stellar/contracts";
+import { formatDate, formatTxHash } from "@/lib/utils/format";
 import { CheckCircle2, Clock, XCircle, ExternalLink, RefreshCw } from "lucide-react";
 
 export function TransactionCard({ transaction }: { transaction: TrackedTransaction }) {

@@ -49,14 +49,16 @@ export class CreditService {
 
   // View functions wouldn't require a signature, but in Soroban currently we simulate
   // to get the return value of view functions for free.
-  async getCredit(_creditId: string): Promise<CreditBatch> {
+  async getCredit(creditId: string): Promise<CreditBatch> {
+      console.debug(creditId);
       // NOTE: A real implementation would parse the contract storage or simulate a read
       // Since this is a view we can simulate
       // For this hackathon scope we might mock or actually implement the simulation read
       throw new Error("Not implemented yet");
   }
 
-  async getBalance(_owner: string, _creditId: string): Promise<bigint> {
+  async getBalance(owner: string, creditId: string): Promise<bigint> {
+      console.debug(owner, creditId);
       throw new Error("Not implemented yet");
   }
 }

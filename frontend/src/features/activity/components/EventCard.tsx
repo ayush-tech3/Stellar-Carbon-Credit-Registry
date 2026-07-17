@@ -1,5 +1,6 @@
 import { ActivityEvent } from "../types";
-import { formatTxHash, getExplorerUrl } from "@/lib/stellar/contracts";
+import { getExplorerUrl } from "@/lib/stellar/contracts";
+import { formatTxHash } from "@/lib/utils/format";
 import { motion } from "framer-motion";
 import { ArrowRightLeft, Flame, Leaf, UserPlus, UserMinus, ExternalLink } from "lucide-react";
 

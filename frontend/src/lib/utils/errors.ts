@@ -13,10 +13,11 @@ export class AppError extends Error {
 export function handleContractError(error: unknown): string {
   console.error("Contract error:", error);
   if (error instanceof AppError) return error.userMessage;
-  if (error && typeof error === 'object' && 'message' in error) return (error as any).message;
+  if (error && typeof error === 'object' && 'message' in error) return (error as Record<string, unknown>).message as string;
   return "An unexpected error occurred while interacting with the smart contract.";
 }
 
 export function isUserRejection(error: unknown): boolean {
-  return (error as any)?.message?.includes('User declined') || (error as any)?.message?.includes('User rejected');
+  const msg = (error as Record<string, unknown>)?.message as string | undefined;
+  return msg?.includes('User declined') || msg?.includes('User rejected') || false;
 }

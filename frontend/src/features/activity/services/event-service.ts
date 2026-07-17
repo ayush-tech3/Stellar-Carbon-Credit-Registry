@@ -37,7 +37,7 @@ export class EventService {
     // A robust implementation would decode the XDR to check the topic symbol
     const topicXdr = rawEvent.topic[0];
     try {
-      const parsedTopic = StellarSdk.xdr.ScVal.fromXDR(topicXdr, 'base64');
+      const parsedTopic = topicXdr;
       if (parsedTopic.switch() === StellarSdk.xdr.ScValType.scvSymbol()) {
         const symbolStr = parsedTopic.sym().toString();
         if (symbolStr === 'issued') type = 'issued';
@@ -46,7 +46,8 @@ export class EventService {
         else if (symbolStr === 'issuer_added') type = 'issuer_added';
         else if (symbolStr === 'issuer_rm') type = 'issuer_removed';
       }
-    } catch (_) {
+    } catch (e) {
+      console.debug(e);
       // Fallback or ignore
     }
 
@@ -58,7 +59,7 @@ export class EventService {
         const valXdr = rawEvent.value;
         // Mock data structure decoding for UI demo purposes
         data = { raw: valXdr }; 
-    } catch(_) {}
+    } catch(e) { console.debug(e); }
 
     return {
       id: rawEvent.id,
