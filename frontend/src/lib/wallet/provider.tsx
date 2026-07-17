@@ -22,8 +22,8 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     setIsMounted(true);
     const checkConnection = async () => {
       if (address && await isConnected()) {
-        const res: any = await getAddress();
-        const pubKey = res?.address || (typeof res === 'string' ? res : null);
+        const res = (await getAddress()) as unknown as { address?: string } | string | null;
+        const pubKey = typeof res === 'object' && res !== null ? res.address : (typeof res === 'string' ? res : null);
         if (pubKey) {
           setAddress(pubKey);
           setIsConnected(true);
@@ -41,8 +41,8 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   const connect = async () => {
     if (await isConnected()) {
       try {
-        const res: any = await requestAccess();
-        const pubKey = res?.address || (typeof res === 'string' ? res : null);
+        const res = (await requestAccess()) as unknown as { address?: string } | string | null;
+        const pubKey = typeof res === 'object' && res !== null ? res.address : (typeof res === 'string' ? res : null);
         if (pubKey) {
           setAddress(pubKey);
           setIsConnected(true);
