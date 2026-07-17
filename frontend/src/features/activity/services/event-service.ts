@@ -1,7 +1,6 @@
 import { rpcServer } from '@/lib/stellar/client';
 import { ActivityEvent, EventType } from '../types';
 import * as StellarSdk from '@stellar/stellar-sdk';
-import { NETWORK_CONFIG } from '@/lib/stellar/network';
 
 export class EventService {
   async fetchEvents(startLedger: number, contractIds: string[]): Promise<ActivityEvent[]> {
@@ -47,19 +46,19 @@ export class EventService {
         else if (symbolStr === 'issuer_added') type = 'issuer_added';
         else if (symbolStr === 'issuer_rm') type = 'issuer_removed';
       }
-    } catch (e) {
+    } catch (_) {
       // Fallback or ignore
     }
 
     if (!type) return null;
 
     // Decode value
-    let data: any = {};
+    let data: unknown = {};
     try {
         const valXdr = rawEvent.value;
         // Mock data structure decoding for UI demo purposes
         data = { raw: valXdr }; 
-    } catch(e) {}
+    } catch(_) {}
 
     return {
       id: rawEvent.id,

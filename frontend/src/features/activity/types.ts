@@ -5,7 +5,7 @@ export interface ActivityEvent {
   type: EventType;
   ledger: number;
   timestamp: number;
-  data: any;
+  data: unknown;
   contractId: string;
   txHash: string;
 }

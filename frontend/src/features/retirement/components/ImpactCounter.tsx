@@ -13,7 +13,7 @@ export function ImpactCounter() {
   useEffect(() => {
     if (totalRetired !== undefined) {
       const target = Number(totalRetired);
-      let start = displayValue;
+      const start = displayValue;
       const duration = 2000; // 2 seconds
       const startTime = performance.now();
 
@@ -36,7 +36,7 @@ export function ImpactCounter() {
 
       requestAnimationFrame(animate);
     }
-  }, [totalRetired]);
+  }, [totalRetired, displayValue]);
 
   return (
     <div className="flex flex-col items-center justify-center p-8 rounded-2xl glass-card relative overflow-hidden">

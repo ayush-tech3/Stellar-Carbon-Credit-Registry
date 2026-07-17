@@ -1,8 +1,7 @@
-import { nativeToScVal, scValToNative, Address } from '@stellar/stellar-sdk';
+import { nativeToScVal, Address } from '@stellar/stellar-sdk';
 import { NETWORK_CONFIG } from '@/lib/stellar/network';
 import { buildTransaction, simulateAndAssemble, submitTransaction } from '@/lib/stellar/contracts';
 import { IssueCreditsParams, TransferParams, CreditBatch } from '../types';
-import { rpcServer } from '@/lib/stellar/client';
 
 export class CreditService {
   private contractId = NETWORK_CONFIG.registryContractId;
@@ -50,14 +49,14 @@ export class CreditService {
 
   // View functions wouldn't require a signature, but in Soroban currently we simulate
   // to get the return value of view functions for free.
-  async getCredit(creditId: string): Promise<CreditBatch> {
+  async getCredit(_creditId: string): Promise<CreditBatch> {
       // NOTE: A real implementation would parse the contract storage or simulate a read
       // Since this is a view we can simulate
       // For this hackathon scope we might mock or actually implement the simulation read
       throw new Error("Not implemented yet");
   }
 
-  async getBalance(owner: string, creditId: string): Promise<bigint> {
+  async getBalance(_owner: string, _creditId: string): Promise<bigint> {
       throw new Error("Not implemented yet");
   }
 }

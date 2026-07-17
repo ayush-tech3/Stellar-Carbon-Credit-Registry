@@ -27,7 +27,7 @@ export class RetirementService {
     return await submitTransaction(signedXdr);
   }
 
-  async getRetirement(retirementId: string): Promise<RetirementRecord> {
+  async getRetirement(_retirementId: string): Promise<RetirementRecord> {
     throw new Error("Not implemented yet");
   }
 
@@ -36,7 +36,7 @@ export class RetirementService {
     return BigInt(1250000); 
   }
 
-  async getRetirementsByOwner(owner: string): Promise<RetirementRecord[]> {
+  async getRetirementsByOwner(_owner: string): Promise<RetirementRecord[]> {
     throw new Error("Not implemented yet");
   }
 }

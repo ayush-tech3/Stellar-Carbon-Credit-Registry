@@ -26,7 +26,7 @@ export function TransactionCenter() {
         <select 
           className="bg-black/40 border border-white/10 rounded-lg px-4 py-2 text-sm text-gray-300 focus:outline-none focus:border-emerald-500"
           value={filter}
-          onChange={(e) => setFilter(e.target.value as any)}
+          onChange={(e) => setFilter(e.target.value as TransactionStatus | 'all')}
         >
           <option value="all">All Statuses</option>
           <option value="pending">Pending</option>

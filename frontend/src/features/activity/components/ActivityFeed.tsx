@@ -2,14 +2,14 @@
 
 import { useEventStream } from "../hooks/use-event-stream";
 import { EventCard } from "./EventCard";
-import { ActivityEvent, EventType } from "../types";
+import { EventType } from "../types";
 import { useState } from "react";
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Activity } from "lucide-react";
 
 export function ActivityFeed() {
-  const { data: events, isLoading, isError } = useEventStream();
+  const { data: events, isLoading } = useEventStream();
   const [filter, setFilter] = useState<EventType | 'all'>('all');
 
   const filteredEvents = events?.filter(e => filter === 'all' || e.type === filter) || [];
@@ -26,7 +26,7 @@ export function ActivityFeed() {
         <select 
           className="bg-black/40 border border-white/10 rounded-lg px-3 py-1 text-sm text-gray-300 focus:outline-none focus:border-emerald-500"
           value={filter}
-          onChange={(e) => setFilter(e.target.value as any)}
+          onChange={(e) => setFilter(e.target.value as EventType | 'all')}
         >
           <option value="all">All Events</option>
           <option value="issued">Issuance</option>
