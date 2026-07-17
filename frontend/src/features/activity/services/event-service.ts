@@ -67,7 +67,7 @@ export class EventService {
       ledger: rawEvent.ledger,
       timestamp: Date.now() / 1000, // Approximate timestamp for UI, actual ledger timestamp requires fetching the ledger
       data,
-      contractId: rawEvent.contractId,
+      contractId: rawEvent.contractId?.contractId() || '',
       txHash: rawEvent.txHash,
     };
   }
