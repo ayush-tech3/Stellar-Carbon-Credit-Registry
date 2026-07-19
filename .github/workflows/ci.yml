@@ -8,7 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  NODE_VERSION: '22'
+  NODE_VERSION: '24'
 
 jobs:
   # ─────────────────────────────────────────────
@@ -42,6 +42,11 @@ jobs:
       - name: Check formatting
         run: cargo fmt --all -- --check
 
+      # Build retirement-manager WASM first — the carbon-credit-registry
+      # crate uses contractimport! to embed this WASM at compile time.
+      - name: Build retirement-manager WASM (dependency)
+        run: cargo build --release --target wasm32-unknown-unknown -p retirement-manager
+
       - name: Run Clippy
         run: cargo clippy --all-targets -- -D warnings
 
@@ -49,9 +54,7 @@ jobs:
         run: cargo test --workspace
 
       - name: Build WASM (release)
-        run: |
-          cargo build --release --target wasm32-unknown-unknown -p retirement-manager
-          cargo build --release --target wasm32-unknown-unknown -p carbon-credit-registry
+        run: cargo build --release --target wasm32-unknown-unknown -p carbon-credit-registry
 
       - name: Upload WASM artifacts
         uses: actions/upload-artifact@v4
