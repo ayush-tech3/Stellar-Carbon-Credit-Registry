@@ -90,7 +90,7 @@ fn test_issue_credits() {
     assert_eq!(credit.amount, 1_000i128);
     assert_eq!(credit.retired, 0i128);
     assert_eq!(credit.vintage, 2024);
-    assert_eq!(credit.active, true);
+    assert!(credit.active);
 
     // Issuer should hold the full balance
     let bal = client.get_balance(&issuer, &credit_id);
