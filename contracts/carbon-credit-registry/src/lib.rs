@@ -19,7 +19,7 @@ use types::CreditInfo;
 #[cfg(not(test))]
 mod retirement {
     soroban_sdk::contractimport!(
-        file = "../../target/wasm32-unknown-unknown/release/retirement_manager.wasm"
+        file = "../target/wasm32-unknown-unknown/release/retirement_manager.wasm"
     );
 }
 

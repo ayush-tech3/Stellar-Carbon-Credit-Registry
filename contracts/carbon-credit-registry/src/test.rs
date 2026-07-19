@@ -7,7 +7,7 @@ use crate::{CarbonCreditRegistry, CarbonCreditRegistryClient};
 // Re-export the retirement manager so lib.rs can use it in cfg(test) blocks.
 pub(crate) mod retirement_manager {
     soroban_sdk::contractimport!(
-        file = "../../target/wasm32-unknown-unknown/release/retirement_manager.wasm"
+        file = "../target/wasm32-unknown-unknown/release/retirement_manager.wasm"
     );
 }
 
