@@ -6,9 +6,9 @@ mod access;
 mod errors;
 mod events;
 mod storage;
-mod types;
 #[cfg(test)]
 mod test;
+mod types;
 
 use errors::RegistryError;
 use types::CreditInfo;
@@ -18,7 +18,9 @@ use types::CreditInfo;
 // In tests, we register the retirement contract directly instead.
 #[cfg(not(test))]
 mod retirement {
-    soroban_sdk::contractimport!(file = "../target/wasm32-unknown-unknown/release/retirement_manager.wasm");
+    soroban_sdk::contractimport!(
+        file = "../target/wasm32-unknown-unknown/release/retirement_manager.wasm"
+    );
 }
 
 #[contract]

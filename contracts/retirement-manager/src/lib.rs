@@ -5,9 +5,9 @@ use soroban_sdk::{contract, contractimpl, Address, BytesN, Env, String, Vec};
 mod errors;
 mod events;
 mod storage;
-mod types;
 #[cfg(test)]
 mod test;
+mod types;
 
 use errors::RetireError;
 use types::RetRecord;
