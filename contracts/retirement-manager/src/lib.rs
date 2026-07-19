@@ -19,11 +19,7 @@ pub struct RetirementManager;
 impl RetirementManager {
     /// Initialize the contract with an admin and the registry contract address.
     /// Can only be called once.
-    pub fn initialize(
-        env: Env,
-        admin: Address,
-        registry: Address,
-    ) -> Result<(), RetireError> {
+    pub fn initialize(env: Env, admin: Address, registry: Address) -> Result<(), RetireError> {
         if storage::has_admin(&env) {
             return Err(RetireError::AlreadyInit);
         }

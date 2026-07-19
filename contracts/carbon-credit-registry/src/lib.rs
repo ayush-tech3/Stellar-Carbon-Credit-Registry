@@ -30,11 +30,7 @@ impl CarbonCreditRegistry {
 
     /// Initialize the registry with an admin and the retirement manager contract address.
     /// Can only be called once.
-    pub fn initialize(
-        env: Env,
-        admin: Address,
-        retire_ctr: Address,
-    ) -> Result<(), RegistryError> {
+    pub fn initialize(env: Env, admin: Address, retire_ctr: Address) -> Result<(), RegistryError> {
         if storage::has_admin(&env) {
             return Err(RegistryError::AlreadyInit);
         }
@@ -124,8 +120,7 @@ impl CarbonCreditRegistry {
         }
 
         // Verify credit exists
-        let _credit = storage::get_credit(&env, credit_id)
-            .ok_or(RegistryError::BadCredit)?;
+        let _credit = storage::get_credit(&env, credit_id).ok_or(RegistryError::BadCredit)?;
 
         // Check sender balance
         let from_bal = storage::get_balance(&env, &from, credit_id);
@@ -137,9 +132,7 @@ impl CarbonCreditRegistry {
             .checked_sub(amount)
             .ok_or(RegistryError::Overflow)?;
         let to_bal = storage::get_balance(&env, &to, credit_id);
-        let new_to_bal = to_bal
-            .checked_add(amount)
-            .ok_or(RegistryError::Overflow)?;
+        let new_to_bal = to_bal.checked_add(amount).ok_or(RegistryError::Overflow)?;
 
         storage::set_balance(&env, &from, credit_id, new_from_bal);
         storage::set_balance(&env, &to, credit_id, new_to_bal);
@@ -166,8 +159,7 @@ impl CarbonCreditRegistry {
             return Err(RegistryError::BadAmount);
         }
 
-        let mut credit = storage::get_credit(&env, credit_id)
-            .ok_or(RegistryError::BadCredit)?;
+        let mut credit = storage::get_credit(&env, credit_id).ok_or(RegistryError::BadCredit)?;
 
         let owner_bal = storage::get_balance(&env, &owner, credit_id);
         if owner_bal < amount {
@@ -206,8 +198,7 @@ impl CarbonCreditRegistry {
         let retirement_id = {
             // In tests, we call the retirement manager directly via its registered client.
             use crate::test::retirement_manager;
-            let retire_client =
-                retirement_manager::Client::new(&env, &retire_addr);
+            let retire_client = retirement_manager::Client::new(&env, &retire_addr);
             retire_client.record(
                 &credit.id,
                 &owner,
