@@ -25,17 +25,12 @@ pub fn set_retire_ctr(env: &Env, addr: &Address) {
 }
 
 pub fn get_next_id(env: &Env) -> u64 {
-    env.storage()
-        .instance()
-        .get(&DataKey::NextId)
-        .unwrap_or(0)
+    env.storage().instance().get(&DataKey::NextId).unwrap_or(0)
 }
 
 pub fn incr_next_id(env: &Env) -> u64 {
     let id = get_next_id(env);
-    env.storage()
-        .instance()
-        .set(&DataKey::NextId, &(id + 1));
+    env.storage().instance().set(&DataKey::NextId, &(id + 1));
     id
 }
 
@@ -43,10 +38,7 @@ pub fn incr_next_id(env: &Env) -> u64 {
 
 pub fn is_issuer(env: &Env, addr: &Address) -> bool {
     let key = DataKey::Issuer(addr.clone());
-    env.storage()
-        .persistent()
-        .get(&key)
-        .unwrap_or(false)
+    env.storage().persistent().get(&key).unwrap_or(false)
 }
 
 pub fn set_issuer(env: &Env, addr: &Address, authorized: bool) {
@@ -66,10 +58,7 @@ pub fn set_credit(env: &Env, credit: &CreditInfo) {
 
 pub fn get_balance(env: &Env, owner: &Address, credit_id: u64) -> i128 {
     let key = DataKey::Balance(owner.clone(), credit_id);
-    env.storage()
-        .persistent()
-        .get(&key)
-        .unwrap_or(0i128)
+    env.storage().persistent().get(&key).unwrap_or(0i128)
 }
 
 pub fn set_balance(env: &Env, owner: &Address, credit_id: u64, amount: i128) {

@@ -6,15 +6,17 @@ use crate::{CarbonCreditRegistry, CarbonCreditRegistryClient};
 
 // Re-export the retirement manager so lib.rs can use it in cfg(test) blocks.
 pub(crate) mod retirement_manager {
-    soroban_sdk::contractimport!(file = "../target/wasm32-unknown-unknown/release/retirement_manager.wasm");
+    soroban_sdk::contractimport!(
+        file = "../target/wasm32-unknown-unknown/release/retirement_manager.wasm"
+    );
 }
 
 /// Helper: set up the test environment with both contracts registered.
 fn setup_env() -> (
     Env,
-    Address,                          // registry contract id
+    Address, // registry contract id
     CarbonCreditRegistryClient<'static>,
-    Address,                          // retirement contract id
+    Address, // retirement contract id
 ) {
     let env = Env::default();
     env.mock_all_auths();

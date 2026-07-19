@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'lucide-react' {
   import { FC, SVGProps } from 'react'
   export interface LucideProps extends SVGProps<SVGSVGElement> {

@@ -25,17 +25,12 @@ pub fn set_registry(env: &Env, registry: &Address) {
 }
 
 pub fn get_next_id(env: &Env) -> u64 {
-    env.storage()
-        .instance()
-        .get(&DataKey::NextId)
-        .unwrap_or(0)
+    env.storage().instance().get(&DataKey::NextId).unwrap_or(0)
 }
 
 pub fn incr_next_id(env: &Env) -> u64 {
     let id = get_next_id(env);
-    env.storage()
-        .instance()
-        .set(&DataKey::NextId, &(id + 1));
+    env.storage().instance().set(&DataKey::NextId, &(id + 1));
     id
 }
 
