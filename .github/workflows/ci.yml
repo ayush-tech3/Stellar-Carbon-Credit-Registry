@@ -50,16 +50,18 @@ jobs:
       - name: Run Clippy
         run: |
           cargo clippy --workspace -- -D warnings 2>&1 | tee clippy-log.txt
-          # Fail the step if clippy failed
-          if [ ${PIPESTATUS[0]} -ne 0 ]; then exit 1; fi
+          # If clippy failed, push the log to a branch
+          if [ ${PIPESTATUS[0]} -ne 0 ]; then
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git checkout -b clippy-logs-branch || git checkout clippy-logs-branch
+            cp clippy-log.txt ../
+            git add ../clippy-log.txt
+            git commit -m "Upload clippy logs" || true
+            git push origin clippy-logs-branch -f
+            exit 1
+          fi
         shell: bash
-
-      - name: Upload Clippy Logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: clippy-logs
-          path: contracts/clippy-log.txt
 
       - name: Run tests
         run: cargo test --workspace
