@@ -6,7 +6,7 @@
 #   1. Install Stellar CLI: cargo install --locked stellar-cli
 #   2. Add a testnet identity:
 #      stellar keys generate deployer --network testnet --fund
-#   3. Rust wasm32 target: rustup target add wasm32-unknown-unknown
+#   3. Rust wasm32 target: rustup target add wasm32v1-none
 # ============================================================
 
 set -euo pipefail
@@ -25,16 +25,16 @@ echo ""
 # ─── Step 1: Build contracts ────────────────────────────────
 echo "🔨 Building retirement-manager..."
 cd "$CONTRACTS_DIR"
-cargo build --release --target wasm32-unknown-unknown -p retirement-manager
+cargo build --release --target wasm32v1-none -p retirement-manager
 echo "✅ retirement-manager built"
 
 echo ""
 echo "🔨 Building carbon-credit-registry..."
-cargo build --release --target wasm32-unknown-unknown -p carbon-credit-registry
+cargo build --release --target wasm32v1-none -p carbon-credit-registry
 echo "✅ carbon-credit-registry built"
 
-RETIRE_WASM="$CONTRACTS_DIR/target/wasm32-unknown-unknown/release/retirement_manager.wasm"
-REGISTRY_WASM="$CONTRACTS_DIR/target/wasm32-unknown-unknown/release/carbon_credit_registry.wasm"
+RETIRE_WASM="$CONTRACTS_DIR/target/wasm32v1-none/release/retirement_manager.wasm"
+REGISTRY_WASM="$CONTRACTS_DIR/target/wasm32v1-none/release/carbon_credit_registry.wasm"
 
 # ─── Step 2: Deploy retirement-manager ──────────────────────
 echo ""

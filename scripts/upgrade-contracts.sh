@@ -36,11 +36,11 @@ fi
 # Map contract name to WASM file
 case "$CONTRACT_NAME" in
   retirement-manager)
-    WASM_FILE="$CONTRACTS_DIR/target/wasm32-unknown-unknown/release/retirement_manager.wasm"
+    WASM_FILE="$CONTRACTS_DIR/target/wasm32v1-none/release/retirement_manager.wasm"
     CARGO_PKG="retirement-manager"
     ;;
   carbon-credit-registry)
-    WASM_FILE="$CONTRACTS_DIR/target/wasm32-unknown-unknown/release/carbon_credit_registry.wasm"
+    WASM_FILE="$CONTRACTS_DIR/target/wasm32v1-none/release/carbon_credit_registry.wasm"
     CARGO_PKG="carbon-credit-registry"
     ;;
   *)
@@ -52,7 +52,7 @@ esac
 # ─── Step 1: Build ──────────────────────────────────────────
 echo "🔨 Building $CONTRACT_NAME..."
 cd "$CONTRACTS_DIR"
-cargo build --release --target wasm32-unknown-unknown -p "$CARGO_PKG"
+cargo build --release --target wasm32v1-none -p "$CARGO_PKG"
 echo "✅ Built"
 
 # ─── Step 2: Upload new WASM ────────────────────────────────

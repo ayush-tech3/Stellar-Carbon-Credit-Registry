@@ -45,20 +45,20 @@ echo "✅ Test identity: $LOCAL_ADDRESS"
 echo ""
 echo "🔨 Building contracts..."
 cd "$ROOT_DIR/contracts"
-cargo build --release --target wasm32-unknown-unknown -p retirement-manager
-cargo build --release --target wasm32-unknown-unknown -p carbon-credit-registry
+cargo build --release --target wasm32v1-none -p retirement-manager
+cargo build --release --target wasm32v1-none -p carbon-credit-registry
 echo "✅ Contracts built"
 
 echo ""
 echo "🚀 Deploying to local network..."
 
 RETIRE_ID=$(stellar contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/retirement_manager.wasm \
+  --wasm target/wasm32v1-none/release/retirement_manager.wasm \
   --network local \
   --source-account local-dev)
 
 REGISTRY_ID=$(stellar contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/carbon_credit_registry.wasm \
+  --wasm target/wasm32v1-none/release/carbon_credit_registry.wasm \
   --network local \
   --source-account local-dev)
 

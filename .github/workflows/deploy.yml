@@ -24,7 +24,7 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: wasm32-unknown-unknown
+          targets: wasm32-unknown-unknown,wasm32v1-none
 
       - name: Cache cargo
         uses: actions/cache@v4
@@ -36,18 +36,18 @@ jobs:
           key: ${{ runner.os }}-cargo-deploy-${{ hashFiles('contracts/**/Cargo.lock') }}
 
       - name: Build retirement-manager WASM
-        run: cargo build --release --target wasm32-unknown-unknown -p retirement-manager
+        run: cargo build --release --target wasm32v1-none -p retirement-manager
 
       - name: Build carbon-credit-registry WASM
-        run: cargo build --release --target wasm32-unknown-unknown -p carbon-credit-registry
+        run: cargo build --release --target wasm32v1-none -p carbon-credit-registry
 
       - name: Upload WASM artifacts
         uses: actions/upload-artifact@v4
         with:
           name: contract-wasm
           path: |
-            contracts/target/wasm32-unknown-unknown/release/retirement_manager.wasm
-            contracts/target/wasm32-unknown-unknown/release/carbon_credit_registry.wasm
+            contracts/target/wasm32v1-none/release/retirement_manager.wasm
+            contracts/target/wasm32v1-none/release/carbon_credit_registry.wasm
 
   # ─────────────────────────────────────────────
   # Deploy Frontend to Vercel

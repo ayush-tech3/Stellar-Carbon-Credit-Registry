@@ -1,5 +1,3 @@
-#![allow(warnings)]
-#![allow(clippy::all)]
 #![no_std]
 
 use soroban_sdk::{contract, contractimpl, Address, BytesN, Env, String};
@@ -19,9 +17,10 @@ use types::CreditInfo;
 // This import is used at build time; the WASM must be pre-built.
 // In tests, we register the retirement contract directly instead.
 #[cfg(not(test))]
+#[allow(clippy::all, warnings)]
 mod retirement {
     soroban_sdk::contractimport!(
-        file = "../target/wasm32-unknown-unknown/release/retirement_manager.wasm"
+        file = "../target/wasm32v1-none/release/retirement_manager.wasm"
     );
 }
 

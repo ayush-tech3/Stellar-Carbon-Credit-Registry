@@ -1,5 +1,3 @@
-#![allow(warnings)]
-#![allow(clippy::all)]
 #![no_std]
 
 use soroban_sdk::{contract, contractimpl, Address, BytesN, Env, String, Vec};
