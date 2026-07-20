@@ -197,9 +197,9 @@ impl CarbonCreditRegistry {
 
         #[cfg(test)]
         let retirement_id = {
-            // In tests, we call the retirement manager directly via its registered client.
-            use crate::test::retirement_manager;
-            let retire_client = retirement_manager::Client::new(&env, &retire_addr);
+            // In tests, we call the retirement manager directly via its dependency client.
+            use retirement_manager::Client as RetireClient;
+            let retire_client = RetireClient::new(&env, &retire_addr);
             retire_client.record(
                 &credit.id,
                 &owner,

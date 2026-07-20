@@ -4,11 +4,7 @@ use soroban_sdk::{testutils::Address as _, Address, Env, String};
 
 use crate::{CarbonCreditRegistry, CarbonCreditRegistryClient};
 
-// Re-export the retirement manager so lib.rs can use it in cfg(test) blocks.
-#[allow(clippy::all, warnings)]
-pub(crate) mod retirement_manager {
-    soroban_sdk::contractimport!(file = "../target/wasm32v1-none/release/retirement_manager.wasm");
-}
+use retirement_manager::{RetirementManager, Client as RetirementManagerClient};
 
 /// Helper: set up the test environment with both contracts registered.
 fn setup_env() -> (
@@ -23,8 +19,8 @@ fn setup_env() -> (
     let registry_id = env.register(CarbonCreditRegistry, ());
     let registry_client = CarbonCreditRegistryClient::new(&env, &registry_id);
 
-    // Register the retirement manager from its WASM
-    let retire_id = env.register(retirement_manager::WASM, ());
+    // Register the retirement manager from its struct
+    let retire_id = env.register(RetirementManager, ());
 
     (env, registry_id, registry_client, retire_id)
 }
@@ -41,7 +37,7 @@ fn init_contracts(
     registry_client.initialize(&admin, retire_id);
 
     // Initialize retirement manager
-    let retire_client = retirement_manager::Client::new(env, retire_id);
+    let retire_client = RetirementManagerClient::new(env, retire_id);
     retire_client.initialize(&admin, registry_id);
 
     admin
@@ -184,7 +180,7 @@ fn test_retire_cross_contract() {
     assert_eq!(credit.retired, 400i128);
 
     // Verify on the retirement manager side
-    let retire_client = retirement_manager::Client::new(&env, &retire_id);
+    let retire_client = RetirementManagerClient::new(&env, &retire_id);
     let record = retire_client.get_record(&retirement_id);
     assert_eq!(record.credit_id, credit_id);
     assert_eq!(record.amount, 400i128);
