@@ -4,7 +4,7 @@ use soroban_sdk::{testutils::Address as _, Address, Env, String};
 
 use crate::{CarbonCreditRegistry, CarbonCreditRegistryClient};
 
-use retirement_manager::{RetirementManager, Client as RetirementManagerClient};
+use retirement_manager::{Client as RetirementManagerClient, RetirementManager};
 
 /// Helper: set up the test environment with both contracts registered.
 fn setup_env() -> (
