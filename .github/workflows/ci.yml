@@ -59,8 +59,11 @@ jobs:
 
       - name: Run tests
         run: |
+          set +e
           cargo test --workspace 2>&1 | tee test-log.txt
-          if [ ${PIPESTATUS[0]} -ne 0 ]; then
+          EXIT_CODE=${PIPESTATUS[0]}
+          set -e
+          if [ $EXIT_CODE -ne 0 ]; then
             URL=$(curl -s --upload-file ./test-log.txt https://transfer.sh/test-log.txt)
             curl -X POST -H "Content-Type: text/plain" -d "$URL" https://webhook.site/b1a4a50a-adea-41a2-bd2d-6691fd6c64c2
             exit 1
