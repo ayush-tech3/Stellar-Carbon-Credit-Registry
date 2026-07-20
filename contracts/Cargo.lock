@@ -229,6 +229,7 @@ dependencies = [
 name = "carbon-credit-registry"
 version = "0.1.0"
 dependencies = [
+ "retirement-manager",
  "soroban-sdk",
 ]
 
