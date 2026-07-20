@@ -7,9 +7,7 @@ use crate::{CarbonCreditRegistry, CarbonCreditRegistryClient};
 // Re-export the retirement manager so lib.rs can use it in cfg(test) blocks.
 #[allow(clippy::all, warnings)]
 pub(crate) mod retirement_manager {
-    soroban_sdk::contractimport!(
-        file = "../target/wasm32v1-none/release/retirement_manager.wasm"
-    );
+    soroban_sdk::contractimport!(file = "../target/wasm32v1-none/release/retirement_manager.wasm");
 }
 
 /// Helper: set up the test environment with both contracts registered.

@@ -19,9 +19,7 @@ use types::CreditInfo;
 #[cfg(not(test))]
 #[allow(clippy::all, warnings)]
 mod retirement {
-    soroban_sdk::contractimport!(
-        file = "../target/wasm32v1-none/release/retirement_manager.wasm"
-    );
+    soroban_sdk::contractimport!(file = "../target/wasm32v1-none/release/retirement_manager.wasm");
 }
 
 #[contract]
