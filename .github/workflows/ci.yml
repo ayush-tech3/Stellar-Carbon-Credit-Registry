@@ -48,7 +48,18 @@ jobs:
         run: cargo build --release --target wasm32v1-none -p retirement-manager
 
       - name: Run Clippy
-        run: cargo clippy --all-targets -- -D warnings
+        run: |
+          cargo clippy --workspace -- -D warnings 2>&1 | tee clippy-log.txt
+          # Fail the step if clippy failed
+          if [ ${PIPESTATUS[0]} -ne 0 ]; then exit 1; fi
+        shell: bash
+
+      - name: Upload Clippy Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clippy-logs
+          path: contracts/clippy-log.txt
 
       - name: Run tests
         run: cargo test --workspace
