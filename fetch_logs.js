@@ -55,20 +55,19 @@ function get(url) {
                         fs.writeFileSync('job_log.txt', log);
                         console.log('Saved log to job_log.txt');
                         
-                        // Try to find the clippy error
+                        // Try to find the test error
                         const lines = log.split('\n');
-                        let inClippy = false;
+                        let inTest = false;
                         for (let i = 0; i < lines.length; i++) {
-                            if (lines[i].includes('Run cargo clippy --all-targets')) {
-                                inClippy = true;
-                                console.log('--- FOUND CLIPPY STEP ---');
+                            if (lines[i].includes('Run cargo test')) {
+                                inTest = true;
+                                console.log('--- FOUND TEST STEP ---');
                             }
-                            if (inClippy && lines[i].includes('error:')) {
+                            if (inTest && (lines[i].includes('error[') || lines[i].includes('error:') || lines[i].includes('FAILED'))) {
                                 // print context around error
-                                for (let j = Math.max(0, i-5); j < Math.min(lines.length, i+15); j++) {
+                                for (let j = Math.max(0, i-2); j < Math.min(lines.length, i+20); j++) {
                                     console.log(lines[j]);
                                 }
-                                break;
                             }
                         }
                     });
