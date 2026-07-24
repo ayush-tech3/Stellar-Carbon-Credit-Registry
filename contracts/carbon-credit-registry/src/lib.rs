@@ -198,7 +198,7 @@ impl CarbonCreditRegistry {
         #[cfg(test)]
         let retirement_id = {
             // In tests, we call the retirement manager directly via its dependency client.
-            use retirement_manager::Client as RetireClient;
+            use retirement_manager::RetirementManagerClient as RetireClient;
             let retire_client = RetireClient::new(&env, &retire_addr);
             retire_client.record(
                 &credit.id,

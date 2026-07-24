@@ -4,7 +4,7 @@ use soroban_sdk::{testutils::Address as _, Address, Env, String};
 
 use crate::{CarbonCreditRegistry, CarbonCreditRegistryClient};
 
-use retirement_manager::{Client as RetirementManagerClient, RetirementManager};
+use retirement_manager::{RetirementManager, RetirementManagerClient};
 
 /// Helper: set up the test environment with both contracts registered.
 fn setup_env() -> (
@@ -66,7 +66,7 @@ fn test_initialize() {
 #[test]
 fn test_issue_credits() {
     let (env, registry_id, client, retire_id) = setup_env();
-    let admin = init_contracts(&env, &client, &retire_id, &registry_id);
+    let _admin = init_contracts(&env, &client, &retire_id, &registry_id);
 
     let issuer = Address::generate(&env);
     client.add_issuer(&issuer);
