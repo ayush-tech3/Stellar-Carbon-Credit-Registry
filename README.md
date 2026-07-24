@@ -395,6 +395,15 @@ On merge to `main`:
 | **Mobile Responsive UI** | Responsive grid layout across mobile, tablet, and desktop viewports | ✅ Verified |
 | **CI/CD Pipeline** | Fully passing GitHub Actions workflow for contracts & frontend | ✅ Passing (100%) |
 
+### 📱 Mobile Responsive UI
+![Mobile Responsive Dashboard](screenshots/mobile-responsive-ui.png)
+
+### ⚙️ CI/CD Pipeline Running
+![CI/CD Pipeline Passing](screenshots/cicd-pipeline.png)
+
+### ✅ Test Output (4 Passing Tests)
+![Test Output](screenshots/test-output.png)
+
 ---
 
 ## 📋 Contract Addresses (Stellar Testnet)

@@ -1,0 +1,28 @@
+﻿
+> frontend@0.1.0 test
+> vitest --run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90mC:/Users/Ayush Kumar/OneDrive/Desktop/CarbonCreditRegistry/frontend[39m
+
+ [32mΓ£ô[39m src/__tests__/integration/credit-flow.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32mΓ£ô[39m src/__tests__/features/credits/IssueForm.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 183[2mms[22m[39m
+ [32mΓ£ô[39m src/__tests__/components/WalletButton.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 53[2mms[22m[39m
+ [32mΓ£ô[39m src/__tests__/features/transactions/TransactionCard.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 76[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 14:08:10
+[2m   Duration [22m 6.14s[2m (transform 436ms, setup 2.21s, import 2.99s, tests 316ms, environment 15.15s)[22m
+
+node.exe : npm notice
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm notice:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm notice New minor version of npm available! 11.6.2 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
