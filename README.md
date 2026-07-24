@@ -419,7 +419,7 @@ On merge to `main`:
 | Deliverable | Link | Description |
 |------|-------------|-------------|
 | 📦 **GitHub Repository** | [ayush-tech3/Stellar-Carbon-Credit-Registry](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry) | Full source code with smart contracts & Next.js frontend |
-| 🌐 **Live Application**  [carbon-credit-registry.netlify.app]
+| 🌐 **Live Application** | [carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app) | Deployed Next.js Application on Netlify |
 ---
 
 ## 📁 Project Structure
