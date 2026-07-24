@@ -48,27 +48,10 @@ jobs:
         run: cargo build --release --target wasm32v1-none -p retirement-manager
 
       - name: Run Clippy
-        run: |
-          cargo clippy --workspace -- -D warnings 2>&1 | tee clippy-log.txt
-          # If clippy failed, push the log to webhook
-          if [ ${PIPESTATUS[0]} -ne 0 ]; then
-            curl -X POST -H "Content-Type: text/plain" --data-binary @clippy-log.txt https://webhook.site/b1a4a50a-adea-41a2-bd2d-6691fd6c64c2
-            exit 1
-          fi
-        shell: bash
+        run: cargo clippy --workspace -- -D warnings
 
       - name: Run tests
-        run: |
-          set +e
-          cargo test --workspace 2>&1 | tee test-log.txt
-          EXIT_CODE=${PIPESTATUS[0]}
-          set -e
-          if [ $EXIT_CODE -ne 0 ]; then
-            URL=$(curl -s --upload-file ./test-log.txt https://transfer.sh/test-log.txt)
-            curl -X POST -H "Content-Type: text/plain" -d "$URL" https://webhook.site/b1a4a50a-adea-41a2-bd2d-6691fd6c64c2
-            exit 1
-          fi
-        shell: bash
+        run: cargo test --workspace
 
       - name: Build WASM (release)
         run: cargo build --release --target wasm32v1-none -p carbon-credit-registry
