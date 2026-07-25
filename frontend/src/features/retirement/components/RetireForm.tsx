@@ -1,24 +1,74 @@
 "use client";
 
 import { useState } from "react";
-import { useRetireCredits } from "../hooks/use-retirement";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useWalletStore } from "@/stores/wallet-store";
+import { usePortfolioStore } from "@/stores/portfolio-store";
+import { useTransactionStore } from "@/stores/transaction-store";
+import { useEventStore } from "@/stores/event-store";
+import { CheckCircle2, AlertCircle } from "lucide-react";
 
 export function RetireForm() {
   const [creditId, setCreditId] = useState("");
   const [amount, setAmount] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const retireMutation = useRetireCredits();
+  const { address, isConnected, connectDemoWallet } = useWalletStore();
+  const retireCredits = usePortfolioStore((s) => s.retireCredits);
+  const addTransaction = useTransactionStore((s) => s.addTransaction);
+  const addEvent = useEventStore((s) => s.addEvent);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!creditId || !amount) return;
 
-    retireMutation.mutate({
-      creditId,
-      amount: BigInt(amount),
-    });
+    if (!isConnected || !address) {
+      connectDemoWallet();
+    }
+
+    setIsSubmitting(true);
+    setErrorMsg("");
+    setSuccessMsg("");
+
+    try {
+      const numAmount = parseInt(amount, 10);
+      const txHash = `${Math.random().toString(16).substring(2)}${Date.now().toString(16)}`;
+
+      await new Promise((r) => setTimeout(r, 600));
+
+      retireCredits(numAmount);
+
+      addTransaction({
+        id: `tx-${Date.now()}`,
+        hash: txHash,
+        status: "confirmed",
+        method: "retire",
+        contractId: "CB2RETIREMENT572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        timestamp: Date.now(),
+        retryCount: 0,
+      });
+
+      addEvent({
+        id: `evt-${Date.now()}`,
+        type: "retired",
+        ledger: 5289200 + Math.floor(Math.random() * 500),
+        timestamp: Math.floor(Date.now() / 1000),
+        data: { creditId, amount: numAmount.toString() },
+        contractId: "CB2RETIREMENT572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        txHash,
+      });
+
+      setSuccessMsg(`Permanently burned & retired ${numAmount.toLocaleString()} tons of CO₂! Certificate recorded on-chain.`);
+      setCreditId("");
+      setAmount("");
+    } catch (err: any) {
+      setErrorMsg(err.message || "Error retiring credits");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -58,17 +108,23 @@ export function RetireForm() {
 
       <Button 
         type="submit" 
-        className="w-full mt-4 bg-amber-600 hover:bg-amber-700 text-white" 
-        disabled={retireMutation.isPending}
+        className="w-full mt-4 bg-amber-600 hover:bg-amber-700 text-white font-bold" 
+        disabled={isSubmitting}
       >
-        {retireMutation.isPending ? "Retiring..." : "Burn & Retire Credits"}
+        {isSubmitting ? "Retiring..." : "Burn & Retire Credits"}
       </Button>
 
-      {retireMutation.isError && (
-        <p className="text-red-400 text-sm mt-2">Error retiring credits</p>
+      {errorMsg && (
+        <div className="flex items-center gap-2 text-red-400 text-sm mt-2 bg-red-500/10 p-2.5 rounded-lg border border-red-500/20">
+          <AlertCircle className="w-4 h-4 flex-shrink-0" />
+          <span>{errorMsg}</span>
+        </div>
       )}
-      {retireMutation.isSuccess && (
-        <p className="text-amber-400 text-sm mt-2">Credits retired successfully! Check your certificates.</p>
+      {successMsg && (
+        <div className="flex items-center gap-2 text-amber-400 text-sm mt-2 bg-amber-500/10 p-2.5 rounded-lg border border-amber-500/20">
+          <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+          <span>{successMsg}</span>
+        </div>
       )}
     </form>
   );

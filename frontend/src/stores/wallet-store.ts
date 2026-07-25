@@ -5,12 +5,15 @@ import { NETWORK_CONFIG } from '@/lib/stellar/network';
 interface WalletState {
   address: string | null;
   isConnected: boolean;
+  isDemoMode: boolean;
   network: string;
   walletType: string | null;
   setAddress: (address: string | null) => void;
   setIsConnected: (isConnected: boolean) => void;
+  setIsDemoMode: (isDemoMode: boolean) => void;
   setNetwork: (network: string) => void;
   setWalletType: (walletType: string | null) => void;
+  connectDemoWallet: () => void;
 }
 
 export const useWalletStore = create<WalletState>()(
@@ -18,12 +21,21 @@ export const useWalletStore = create<WalletState>()(
     (set) => ({
       address: null,
       isConnected: false,
+      isDemoMode: false,
       network: NETWORK_CONFIG.network,
       walletType: null,
       setAddress: (address) => set({ address }),
       setIsConnected: (isConnected) => set({ isConnected }),
+      setIsDemoMode: (isDemoMode) => set({ isDemoMode }),
       setNetwork: (network) => set({ network }),
       setWalletType: (walletType) => set({ walletType }),
+      connectDemoWallet: () =>
+        set({
+          address: "GBCTQ5XLK2R4NXZPLQQ4MNTL7V3K9L2QQ4",
+          isConnected: true,
+          isDemoMode: true,
+          walletType: "demo",
+        }),
     }),
     {
       name: 'wallet-storage',

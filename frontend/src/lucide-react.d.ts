@@ -21,6 +21,7 @@ declare module 'lucide-react' {
   export const ExternalLink: any;
   export const Copy: any;
   export const CheckCircle2: any;
+  export const CheckCircle: any;
   export const XCircle: any;
   export const AlertCircle: any;
   export const Wallet: any;
@@ -48,4 +49,5 @@ declare module 'lucide-react' {
   export const UserPlus: any;
   export const UserMinus: any;
   export const Clock: any;
+  export const Sparkles: any;
 }

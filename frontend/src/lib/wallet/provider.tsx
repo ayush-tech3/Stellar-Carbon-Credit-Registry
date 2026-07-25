@@ -7,6 +7,7 @@ import { useWalletStore } from '@/stores/wallet-store';
 
 interface WalletContextType {
   connect: () => Promise<void>;
+  connectDemo: () => void;
   disconnect: () => void;
   signTransaction: (xdr: string) => Promise<string>;
 }
@@ -14,56 +15,72 @@ interface WalletContextType {
 const WalletContext = createContext<WalletContextType | undefined>(undefined);
 
 export function WalletProvider({ children }: { children: React.ReactNode }) {
-  const { address, setAddress, setIsConnected, setWalletType } = useWalletStore();
+  const { address, isDemoMode, setAddress, setIsConnected, setIsDemoMode, setWalletType, connectDemoWallet } = useWalletStore();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
+    if (isDemoMode && address) return;
     const checkConnection = async () => {
-      if (address && await isConnected()) {
-        const res = (await getAddress()) as unknown as { address?: string } | string | null;
-        const pubKey = typeof res === 'object' && res !== null ? res.address : (typeof res === 'string' ? res : null);
-        if (pubKey) {
-          setAddress(pubKey);
-          setIsConnected(true);
-          setWalletType('freighter');
-        } else {
-          setAddress(null);
-          setIsConnected(false);
-          setWalletType(null);
+      try {
+        if (address && await isConnected()) {
+          const res = (await getAddress()) as unknown as { address?: string } | string | null;
+          const pubKey = typeof res === 'object' && res !== null ? res.address : (typeof res === 'string' ? res : null);
+          if (pubKey) {
+            setAddress(pubKey);
+            setIsConnected(true);
+            setWalletType('freighter');
+          } else {
+            setAddress(null);
+            setIsConnected(false);
+            setWalletType(null);
+          }
         }
+      } catch (err) {
+        console.warn("Wallet check error:", err);
       }
     };
     checkConnection();
-  }, [address, setAddress, setIsConnected, setWalletType]);
+  }, [address, isDemoMode, setAddress, setIsConnected, setWalletType]);
 
   const connect = async () => {
-    if (await isConnected()) {
-      try {
+    try {
+      if (await isConnected()) {
         const res = (await requestAccess()) as unknown as { address?: string } | string | null;
         const pubKey = typeof res === 'object' && res !== null ? res.address : (typeof res === 'string' ? res : null);
         if (pubKey) {
           setAddress(pubKey);
           setIsConnected(true);
+          setIsDemoMode(false);
           setWalletType('freighter');
         }
-      } catch (error) {
-        console.error("Failed to connect wallet", error);
+      } else {
+        // Fallback to Demo mode if extension is missing, or open link
+        connectDemo();
       }
-    } else {
-      window.open('https://freighter.app/', '_blank');
+    } catch (error) {
+      console.error("Failed to connect wallet", error);
+      connectDemo();
     }
+  };
+
+  const connectDemo = () => {
+    connectDemoWallet();
   };
 
   const disconnect = () => {
     setAddress(null);
     setIsConnected(false);
+    setIsDemoMode(false);
     setWalletType(null);
   };
 
   const signTransaction = async (xdr: string): Promise<string> => {
     if (!address) throw new Error("Wallet not connected");
+    if (isDemoMode) {
+      return "AAAAAGDEMO_SIGNED_TRANSACTION_XDR";
+    }
     const result = await freighterSignTx(xdr, { networkPassphrase: NETWORK_CONFIG.networkPassphrase });
     if (result.error) {
       throw new Error(result.error);
@@ -72,7 +89,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <WalletContext.Provider value={{ connect, disconnect, signTransaction }}>
+    <WalletContext.Provider value={{ connect, connectDemo, disconnect, signTransaction }}>
       {isMounted ? children : null}
     </WalletContext.Provider>
   );

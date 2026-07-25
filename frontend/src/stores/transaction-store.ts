@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { INITIAL_TRANSACTIONS } from '@/features/transactions/data/initial-transactions';
 
 export type TransactionStatus = 'pending' | 'processing' | 'confirmed' | 'failed';
 
@@ -24,7 +25,7 @@ interface TransactionState {
 export const useTransactionStore = create<TransactionState>()(
   persist(
     (set) => ({
-      transactions: [],
+      transactions: INITIAL_TRANSACTIONS,
       addTransaction: (tx) =>
         set((state) => ({ transactions: [tx, ...state.transactions] })),
       updateTransaction: (id, updates) =>
@@ -33,7 +34,7 @@ export const useTransactionStore = create<TransactionState>()(
             tx.id === id ? { ...tx, ...updates } : tx
           ),
         })),
-      clearTransactions: () => set({ transactions: [] }),
+      clearTransactions: () => set({ transactions: INITIAL_TRANSACTIONS }),
     }),
     {
       name: 'tx-storage',

@@ -2,10 +2,11 @@
 
 
 import { ImpactCounter } from "@/features/retirement/components/ImpactCounter";
+import { IssuanceTrendChart } from "@/features/analytics/components/IssuanceTrendChart";
+import { RetirementsByMethodologyChart } from "@/features/analytics/components/RetirementsByMethodologyChart";
 
 export default function AnalyticsPage() {
   return (
-
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold text-white">Global Analytics</h1>
@@ -56,23 +57,16 @@ export default function AnalyticsPage() {
           </div>
         </div>
         
-        {/* Mock Charts Area */}
+        {/* Interactive Charts Area */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="glass-card rounded-xl p-6 h-80 flex flex-col">
-            <h3 className="text-lg font-medium text-gray-300 mb-4">Issuance Trend</h3>
-            <div className="flex-1 border border-dashed border-white/10 rounded-lg flex items-center justify-center text-gray-500">
-               Line Chart Placeholder
-            </div>
+          <div className="glass-card rounded-xl p-6 h-88 flex flex-col">
+            <IssuanceTrendChart />
           </div>
           
-          <div className="glass-card rounded-xl p-6 h-80 flex flex-col">
-            <h3 className="text-lg font-medium text-gray-300 mb-4">Retirements by Methodology</h3>
-            <div className="flex-1 border border-dashed border-white/10 rounded-lg flex items-center justify-center text-gray-500">
-               Bar Chart Placeholder
-            </div>
+          <div className="glass-card rounded-xl p-6 h-88 flex flex-col">
+            <RetirementsByMethodologyChart />
           </div>
         </div>
       </div>
-
   );
 }
