@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { isConnected, requestAccess, getAddress, signTransaction as freighterSignTx } from '@stellar/freighter-api';
+import { isConnected, isAllowed, setAllowed, requestAccess, getAddress, signTransaction as freighterSignTx } from '@stellar/freighter-api';
 import { NETWORK_CONFIG } from '../stellar/network';
 import { useWalletStore } from '@/stores/wallet-store';
 
@@ -24,7 +24,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     if (isDemoMode && address) return;
     const checkConnection = async () => {
       try {
-        if (address && await isConnected()) {
+        if (address && await isConnected() && await isAllowed()) {
           const res = (await getAddress()) as unknown as { address?: string } | string | null;
           const pubKey = typeof res === 'object' && res !== null ? res.address : (typeof res === 'string' ? res : null);
           if (pubKey) {
@@ -47,6 +47,11 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
   const connect = async () => {
     try {
       if (await isConnected()) {
+        try {
+          await setAllowed();
+        } catch {
+          // Ignore if setAllowed is already granted or unsupported
+        }
         const res = (await requestAccess()) as unknown as { address?: string } | string | null;
         const pubKey = typeof res === 'object' && res !== null ? res.address : (typeof res === 'string' ? res : null);
         if (pubKey) {
