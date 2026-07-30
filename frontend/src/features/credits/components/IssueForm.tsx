@@ -71,8 +71,8 @@ export function IssueForm() {
       setAmount("");
       setVintageYear("");
       setMethodology("");
-    } catch (err: any) {
-      setErrorMsg(err.message || "Error issuing credits");
+    } catch (err: unknown) {
+      setErrorMsg(err instanceof Error ? err.message : "Error issuing credits");
     } finally {
       setIsSubmitting(false);
     }

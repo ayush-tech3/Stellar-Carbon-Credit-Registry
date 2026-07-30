@@ -66,8 +66,8 @@ export function TransferForm() {
       setCreditId("");
       setToAddress("");
       setAmount("");
-    } catch (err: any) {
-      setErrorMsg(err.message || "Error transferring credits");
+    } catch (err: unknown) {
+      setErrorMsg(err instanceof Error ? err.message : "Error transferring credits");
     } finally {
       setIsSubmitting(false);
     }

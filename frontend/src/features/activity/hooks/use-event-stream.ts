@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { eventService } from '../services/event-service';
+import { ActivityEvent } from '../types';
 import { NETWORK_CONFIG } from '@/lib/stellar/network';
 import { rpcServer } from '@/lib/stellar/client';
 import { useEventStore } from '@/stores/event-store';
@@ -25,7 +26,7 @@ export function useEventStream() {
   return useQuery({
     queryKey: ['events', startLedger, localEvents.length],
     queryFn: async () => {
-      let remoteEvents: any[] = [];
+      let remoteEvents: ActivityEvent[] = [];
       if (startLedger && NETWORK_CONFIG.registryContractId) {
         try {
           const contracts = [

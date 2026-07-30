@@ -64,8 +64,8 @@ export function RetireForm() {
       setSuccessMsg(`Permanently burned & retired ${numAmount.toLocaleString()} tons of CO₂! Certificate recorded on-chain.`);
       setCreditId("");
       setAmount("");
-    } catch (err: any) {
-      setErrorMsg(err.message || "Error retiring credits");
+    } catch (err: unknown) {
+      setErrorMsg(err instanceof Error ? err.message : "Error retiring credits");
     } finally {
       setIsSubmitting(false);
     }

@@ -39,6 +39,7 @@ export function RetirementsByMethodologyChart() {
                 borderRadius: "8px",
                 color: "#fff",
               }}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               formatter={(value: any) => [`${Number(value).toLocaleString()} tons CO₂`, "Retired"]}
             />
             <Bar dataKey="value" radius={[0, 6, 6, 0]}>
