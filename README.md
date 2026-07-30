@@ -430,7 +430,7 @@ On merge to `main`:
 | 📦 **GitHub Repository** | [ayush-tech3/Stellar-Carbon-Credit-Registry](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry) | Full source code with smart contracts & Next.js frontend |
 | 🌐 **Live Application** | [carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app) | Deployed Next.js Application on Netlify |
 | 📹 **Demo Video** | [Watch on YouTube](https://youtu.be/LXSb4yaDnEI) | 1–2 minute project walkthrough |
-| 📊 **PPT / Pitch Deck** | [CarbonTrack Pitch Deck (PPT)](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/blob/main/CarbonTrack_Pitch_Deck.pdf) | Project Presentation & Architecture Overview |
+| 📊 **PPT / Pitch Deck** | [CarbonTrack Presentation (PPTX)](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/blob/main/CarbonTrack_Presentation.pptx) | Project Presentation & Architecture Overview |
 ---
 
 ## 📁 Project Structure
