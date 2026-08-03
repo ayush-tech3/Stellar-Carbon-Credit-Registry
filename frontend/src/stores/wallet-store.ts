@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { NETWORK_CONFIG } from '@/lib/stellar/network';
+import { Keypair, Networks } from '@stellar/stellar-sdk';
 
 interface WalletState {
   address: string | null;
@@ -31,7 +32,7 @@ export const useWalletStore = create<WalletState>()(
       setWalletType: (walletType) => set({ walletType }),
       connectDemoWallet: () =>
         set({
-          address: "GBCTQ5XLK2R4NXZPLQQ4MNTL7V3K9L2QQ4",
+          address: "GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF",
           isConnected: true,
           isDemoMode: true,
           walletType: "demo",
@@ -42,3 +43,4 @@ export const useWalletStore = create<WalletState>()(
     }
   )
 );
+

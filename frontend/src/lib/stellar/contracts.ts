@@ -55,6 +55,35 @@ export async function pollTransactionResult(hash: string) {
   return status;
 }
 
+export async function simulateContractRead<T>(
+  contractId: string,
+  method: string,
+  args: StellarSdk.xdr.ScVal[] = []
+): Promise<T | null> {
+  if (!contractId) return null;
+  try {
+    const dummyAccount = new StellarSdk.Account('GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF', '0');
+    const contract = new StellarSdk.Contract(contractId);
+    const tx = new StellarSdk.TransactionBuilder(dummyAccount, {
+      fee: StellarSdk.BASE_FEE,
+      networkPassphrase: NETWORK_CONFIG.networkPassphrase,
+    })
+      .addOperation(contract.call(method, ...args))
+      .setTimeout(30)
+      .build();
+
+    const simulation = await rpcServer.simulateTransaction(tx);
+    if (StellarSdk.rpc.Api.isSimulationSuccess(simulation) && simulation.result) {
+      return StellarSdk.scValToNative(simulation.result.retval) as T;
+    }
+    return null;
+  } catch (err) {
+    console.warn(`Simulation read failed for ${method}:`, err);
+    return null;
+  }
+}
+
 export function getExplorerUrl(type: 'tx' | 'contract' | 'account', id: string) {
   return `${NETWORK_CONFIG.explorerUrl}/${type}/${id}`;
 }
+

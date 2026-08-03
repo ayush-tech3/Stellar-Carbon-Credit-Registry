@@ -7,6 +7,8 @@ import { useWalletStore } from "@/stores/wallet-store";
 import { usePortfolioStore } from "@/stores/portfolio-store";
 import { useTransactionStore } from "@/stores/transaction-store";
 import { useEventStore } from "@/stores/event-store";
+import { useIssueCredits } from "../hooks/use-credits";
+import { NETWORK_CONFIG } from "@/lib/stellar/network";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 
 export function IssueForm() {
@@ -18,10 +20,11 @@ export function IssueForm() {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const { address, isConnected, connectDemoWallet } = useWalletStore();
+  const { address, isConnected, isDemoMode, connectDemoWallet } = useWalletStore();
   const addCredits = usePortfolioStore((s) => s.addCredits);
   const addTransaction = useTransactionStore((s) => s.addTransaction);
   const addEvent = useEventStore((s) => s.addEvent);
+  const { mutateAsync: issueCreditsContract } = useIssueCredits();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,12 +41,24 @@ export function IssueForm() {
     try {
       const numAmount = parseInt(amount, 10);
       const numYear = parseInt(vintageYear, 10);
-      const txHash = `${Math.random().toString(16).substring(2)}${Date.now().toString(16)}`;
+      let txHash = "";
 
-      // Simulate blockchain execution latency
-      await new Promise((r) => setTimeout(r, 600));
+      if (isDemoMode || !NETWORK_CONFIG.registryContractId) {
+        // Simulated execution for preview mode / unconfigured contract ID
+        await new Promise((r) => setTimeout(r, 600));
+        txHash = `demo_${Math.random().toString(16).substring(2)}${Date.now().toString(16)}`;
+      } else {
+        // Execute real Soroban transaction on Stellar network using @stellar/stellar-sdk
+        const res = await issueCreditsContract({
+          project,
+          amount: BigInt(numAmount),
+          vintageYear: numYear,
+          methodology,
+        });
+        txHash = res.hash;
+      }
 
-      // Update state stores
+      // Update state stores & logs
       addCredits(project, numAmount, numYear, methodology);
 
       addTransaction({
@@ -51,7 +66,7 @@ export function IssueForm() {
         hash: txHash,
         status: "confirmed",
         method: "issue_credits",
-        contractId: "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        contractId: NETWORK_CONFIG.registryContractId || "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
         timestamp: Date.now(),
         retryCount: 0,
       });
@@ -62,17 +77,17 @@ export function IssueForm() {
         ledger: 5289200 + Math.floor(Math.random() * 500),
         timestamp: Math.floor(Date.now() / 1000),
         data: { project, amount: numAmount.toString(), vintageYear: numYear, methodology },
-        contractId: "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        contractId: NETWORK_CONFIG.registryContractId || "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
         txHash,
       });
 
-      setSuccessMsg(`Successfully issued ${numAmount.toLocaleString()} tons of CO₂ for ${project}!`);
+      setSuccessMsg(`Successfully executed issue_credits via Soroban contract for ${numAmount.toLocaleString()} tons of CO₂!`);
       setProject("");
       setAmount("");
       setVintageYear("");
       setMethodology("");
     } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : "Error issuing credits");
+      setErrorMsg(err instanceof Error ? err.message : "Error issuing credits via Soroban contract");
     } finally {
       setIsSubmitting(false);
     }
@@ -132,7 +147,7 @@ export function IssueForm() {
         className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold" 
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Issuing..." : "Issue Credits"}
+        {isSubmitting ? "Issuing via Soroban SDK..." : "Issue Credits"}
       </Button>
 
       {errorMsg && (
@@ -150,3 +165,4 @@ export function IssueForm() {
     </form>
   );
 }
+

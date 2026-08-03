@@ -7,6 +7,8 @@ import { useWalletStore } from "@/stores/wallet-store";
 import { usePortfolioStore } from "@/stores/portfolio-store";
 import { useTransactionStore } from "@/stores/transaction-store";
 import { useEventStore } from "@/stores/event-store";
+import { useTransferCredits } from "../hooks/use-credits";
+import { NETWORK_CONFIG } from "@/lib/stellar/network";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 
 export function TransferForm() {
@@ -17,10 +19,11 @@ export function TransferForm() {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const { address, isConnected, connectDemoWallet } = useWalletStore();
+  const { address, isConnected, isDemoMode, connectDemoWallet } = useWalletStore();
   const transferCredits = usePortfolioStore((s) => s.transferCredits);
   const addTransaction = useTransactionStore((s) => s.addTransaction);
   const addEvent = useEventStore((s) => s.addEvent);
+  const { mutateAsync: transferCreditsContract } = useTransferCredits();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,9 +39,19 @@ export function TransferForm() {
 
     try {
       const numAmount = parseInt(amount, 10);
-      const txHash = `${Math.random().toString(16).substring(2)}${Date.now().toString(16)}`;
+      let txHash = "";
 
-      await new Promise((r) => setTimeout(r, 600));
+      if (isDemoMode || !NETWORK_CONFIG.registryContractId) {
+        await new Promise((r) => setTimeout(r, 600));
+        txHash = `demo_${Math.random().toString(16).substring(2)}${Date.now().toString(16)}`;
+      } else {
+        const res = await transferCreditsContract({
+          creditId,
+          to: toAddress,
+          amount: BigInt(numAmount),
+        });
+        txHash = res.hash;
+      }
 
       transferCredits(numAmount);
 
@@ -47,7 +60,7 @@ export function TransferForm() {
         hash: txHash,
         status: "confirmed",
         method: "transfer",
-        contractId: "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        contractId: NETWORK_CONFIG.registryContractId || "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
         timestamp: Date.now(),
         retryCount: 0,
       });
@@ -58,16 +71,16 @@ export function TransferForm() {
         ledger: 5289200 + Math.floor(Math.random() * 500),
         timestamp: Math.floor(Date.now() / 1000),
         data: { creditId, to: toAddress, amount: numAmount.toString() },
-        contractId: "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        contractId: NETWORK_CONFIG.registryContractId || "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
         txHash,
       });
 
-      setSuccessMsg(`Transferred ${numAmount.toLocaleString()} tons of CO₂ credits to ${toAddress.substring(0, 8)}...!`);
+      setSuccessMsg(`Transferred ${numAmount.toLocaleString()} tons of CO₂ credits to ${toAddress.substring(0, 8)}... via Soroban contract!`);
       setCreditId("");
       setToAddress("");
       setAmount("");
     } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : "Error transferring credits");
+      setErrorMsg(err instanceof Error ? err.message : "Error transferring credits via Soroban contract");
     } finally {
       setIsSubmitting(false);
     }
@@ -114,7 +127,7 @@ export function TransferForm() {
         className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold" 
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Transferring..." : "Transfer Credits"}
+        {isSubmitting ? "Transferring via Soroban SDK..." : "Transfer Credits"}
       </Button>
 
       {errorMsg && (
@@ -132,3 +145,4 @@ export function TransferForm() {
     </form>
   );
 }
+

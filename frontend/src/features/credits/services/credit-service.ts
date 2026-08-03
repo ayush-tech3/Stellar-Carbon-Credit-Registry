@@ -1,17 +1,70 @@
 import { nativeToScVal, Address } from '@stellar/stellar-sdk';
 import { NETWORK_CONFIG } from '@/lib/stellar/network';
-import { buildTransaction, simulateAndAssemble, submitTransaction } from '@/lib/stellar/contracts';
+import { buildTransaction, simulateAndAssemble, submitTransaction, simulateContractRead } from '@/lib/stellar/contracts';
 import { IssueCreditsParams, TransferParams, CreditBatch } from '../types';
 
 export class CreditService {
-  private contractId = NETWORK_CONFIG.registryContractId;
+  private getContractId() {
+    return NETWORK_CONFIG.registryContractId;
+  }
+
+  async initialize(
+    admin: string,
+    retireCtr: string,
+    publicKey: string,
+    signTx: (xdr: string) => Promise<string>
+  ) {
+    const contractId = this.getContractId();
+    if (!contractId) throw new Error("Registry contract ID not configured");
+
+    const args = [
+      new Address(admin).toScVal(),
+      new Address(retireCtr).toScVal(),
+    ];
+
+    const tx = await buildTransaction(publicKey, contractId, 'initialize', args);
+    const assembledTx = await simulateAndAssemble(tx);
+    const signedXdr = await signTx(assembledTx.toXDR());
+    return await submitTransaction(signedXdr);
+  }
+
+  async addIssuer(
+    issuer: string,
+    publicKey: string,
+    signTx: (xdr: string) => Promise<string>
+  ) {
+    const contractId = this.getContractId();
+    if (!contractId) throw new Error("Registry contract ID not configured");
+
+    const args = [new Address(issuer).toScVal()];
+    const tx = await buildTransaction(publicKey, contractId, 'add_issuer', args);
+    const assembledTx = await simulateAndAssemble(tx);
+    const signedXdr = await signTx(assembledTx.toXDR());
+    return await submitTransaction(signedXdr);
+  }
+
+  async removeIssuer(
+    issuer: string,
+    publicKey: string,
+    signTx: (xdr: string) => Promise<string>
+  ) {
+    const contractId = this.getContractId();
+    if (!contractId) throw new Error("Registry contract ID not configured");
+
+    const args = [new Address(issuer).toScVal()];
+    const tx = await buildTransaction(publicKey, contractId, 'remove_issuer', args);
+    const assembledTx = await simulateAndAssemble(tx);
+    const signedXdr = await signTx(assembledTx.toXDR());
+    return await submitTransaction(signedXdr);
+  }
 
   async issueCredits(
     params: IssueCreditsParams,
     publicKey: string,
     signTx: (xdr: string) => Promise<string>
   ) {
-    if (!this.contractId) throw new Error("Registry contract ID not configured");
+    const contractId = this.getContractId();
+    if (!contractId) throw new Error("Registry contract ID not configured");
 
     const args = [
       new Address(publicKey).toScVal(),
@@ -21,7 +74,7 @@ export class CreditService {
       nativeToScVal(params.methodology, { type: 'string' }),
     ];
 
-    const tx = await buildTransaction(publicKey, this.contractId, 'issue_credits', args);
+    const tx = await buildTransaction(publicKey, contractId, 'issue_credits', args);
     const assembledTx = await simulateAndAssemble(tx);
     const signedXdr = await signTx(assembledTx.toXDR());
     return await submitTransaction(signedXdr);
@@ -32,7 +85,8 @@ export class CreditService {
     publicKey: string,
     signTx: (xdr: string) => Promise<string>
   ) {
-    if (!this.contractId) throw new Error("Registry contract ID not configured");
+    const contractId = this.getContractId();
+    if (!contractId) throw new Error("Registry contract ID not configured");
 
     const args = [
       new Address(publicKey).toScVal(),
@@ -41,26 +95,56 @@ export class CreditService {
       nativeToScVal(params.amount, { type: 'i128' }),
     ];
 
-    const tx = await buildTransaction(publicKey, this.contractId, 'transfer', args);
+    const tx = await buildTransaction(publicKey, contractId, 'transfer', args);
     const assembledTx = await simulateAndAssemble(tx);
     const signedXdr = await signTx(assembledTx.toXDR());
     return await submitTransaction(signedXdr);
   }
 
-  // View functions wouldn't require a signature, but in Soroban currently we simulate
-  // to get the return value of view functions for free.
-  async getCredit(creditId: string): Promise<CreditBatch> {
-      console.debug(creditId);
-      // NOTE: A real implementation would parse the contract storage or simulate a read
-      // Since this is a view we can simulate
-      // For this hackathon scope we might mock or actually implement the simulation read
-      throw new Error("Not implemented yet");
+  async getCredit(creditId: string): Promise<CreditBatch | null> {
+    const contractId = this.getContractId();
+    if (!contractId) return null;
+
+    const args = [nativeToScVal(BigInt(creditId), { type: 'u64' })];
+    const rawResult = await simulateContractRead<Record<string, unknown>>(
+      contractId,
+      'get_credit',
+      args
+    );
+
+    if (!rawResult) return null;
+
+    return {
+      id: creditId,
+      issuer: (rawResult.issuer as string) || '',
+      project: (rawResult.project as string) || 'Unknown Project',
+      amount: typeof rawResult.amount === 'bigint' ? rawResult.amount : BigInt(String(rawResult.amount ?? 0)),
+      retired: typeof rawResult.retired === 'bigint' ? rawResult.retired : BigInt(String(rawResult.retired ?? 0)),
+      vintage: Number(rawResult.vintage ?? 2024),
+      methodology: (rawResult.method as string) || 'VCS VM0015',
+      active: rawResult.active !== false,
+    };
   }
 
   async getBalance(owner: string, creditId: string): Promise<bigint> {
-      console.debug(owner, creditId);
-      throw new Error("Not implemented yet");
+    const contractId = this.getContractId();
+    if (!contractId) return BigInt(0);
+
+    const args = [
+      new Address(owner).toScVal(),
+      nativeToScVal(BigInt(creditId), { type: 'u64' }),
+    ];
+
+    const result = await simulateContractRead<bigint | number>(
+      contractId,
+      'get_balance',
+      args
+    );
+
+    if (result === null || result === undefined) return BigInt(0);
+    return typeof result === 'bigint' ? result : BigInt(String(result));
   }
 }
 
 export const creditService = new CreditService();
+

@@ -12,12 +12,12 @@
 ## ✅ Submission Checklist Verification
 
 - [x] **Public GitHub Repository**: [https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry)
-- [x] **README.md with Documentation**: Setup instructions, architecture, contract specs, and security design
-- [x] **Minimum Commit History**: 32+ meaningful commits
+- [x] **README.md & Frontend Integration Guide**: Setup instructions, architecture, contract specs, and [`FRONTEND_INTEGRATION.md`](FRONTEND_INTEGRATION.md) function matching documentation
+- [x] **Frontend Soroban Integration**: Complete `@stellar/stellar-sdk` & `@stellar/freighter-api` integration calling `issue_credits`, `transfer`, `retire`, `get_credit`, `get_balance`, `get_record`, and `get_total`
 - [x] **Smart Contracts Deployed**: `CarbonCreditRegistry` and `RetirementManager` on Stellar Testnet
 - [x] **Verified Transaction Hashes**: Verifiable on Stellar Expert Explorer
-- [x] **Frontend UI Capabilities**: Wallet option modal, connected state (`GBCT...LQQ4`), carbon credit balance display, and transaction feedback
-- [x] **CI/CD Pipeline**: Passing GitHub Actions automated builds & tests
+- [x] **Frontend UI Capabilities**: Freighter wallet connection, testnet keypair demo, balance tracking, issuance, transfer, and retirement forms with live feedback
+- [x] **CI/CD Pipeline**: Passing GitHub Actions automated builds & Vitest integration tests
 
 ---
 
