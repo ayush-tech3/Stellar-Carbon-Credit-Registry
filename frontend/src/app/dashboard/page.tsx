@@ -21,7 +21,7 @@ export default function DashboardPage() {
   const { address } = useWalletStore();
   const { totalProjects, userCredits, totalRetired, transfers24h } = usePortfolioStore();
   const [activeTab, setActiveTab] = useState<"issue" | "transfer" | "retire">("issue");
-  const [viewMode, setViewMode] = useState<"tabs" | "grid">("grid");
+  const [viewMode, setViewMode] = useState<"tabs" | "grid">("tabs");
 
   return (
     <div className="space-y-6 relative z-10">
@@ -30,12 +30,12 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight">CarbonTrack Dashboard</h1>
           <p className="text-gray-400 text-sm mt-0.5">
-            Connected: {address ? <span className="font-mono text-emerald-400">{formatAddress(address)}</span> : <span className="font-mono text-gray-500">GBCT...LQQ4 (Testnet)</span>}
+            Connected: {address ? <span className="font-mono text-emerald-400">{formatAddress(address)}</span> : <span className="font-mono text-gray-500">Not Connected</span>}
           </p>
         </div>
         <div className="flex items-center gap-2">
           <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-            Testnet Active
+            Stellar Testnet
           </span>
         </div>
       </div>
@@ -81,85 +81,94 @@ export default function DashboardPage() {
         {/* Quick Actions Panel */}
         <div className="lg:col-span-2 glass-card rounded-2xl p-6 border border-white/10 bg-[#0f172a]/75 shadow-xl">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-white">Quick Actions</h2>
+            <div>
+              <h2 className="text-xl font-bold text-white">Quick Actions</h2>
+              <p className="text-xs text-gray-400 mt-0.5">Issue, transfer, or permanently burn carbon credits on Stellar</p>
+            </div>
             <div className="flex gap-2">
-              <Button
-                variant={viewMode === "grid" ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setViewMode("grid")}
-                className="hidden xl:inline-flex text-xs"
-              >
-                All Actions
-              </Button>
               <Button
                 variant={viewMode === "tabs" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setViewMode("tabs")}
                 className="text-xs"
               >
-                Tabs
+                Focused Tabs
+              </Button>
+              <Button
+                variant={viewMode === "grid" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setViewMode("grid")}
+                className="hidden xl:inline-flex text-xs"
+              >
+                All 3 Actions
               </Button>
             </div>
           </div>
 
           {viewMode === "grid" ? (
-            /* 3 Action Cards Side-by-side matching screenshot */
+            /* 3 Action Cards Side-by-side */
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
               {/* Issue Card */}
               <div className="p-4 rounded-xl border border-emerald-500/30 bg-[#0a101f]/70 space-y-3">
                 <div className="text-center font-bold text-emerald-400 pb-2 border-b border-emerald-500/20">
-                  Issue
+                  Issue Credits
                 </div>
                 <IssueForm />
               </div>
 
               {/* Transfer Card */}
-              <div className="p-4 rounded-xl border border-white/10 hover:border-cyan-500/30 bg-[#0a101f]/70 space-y-3 transition-colors">
-                <div className="text-center font-bold text-cyan-400 pb-2 border-b border-white/10">
-                  Transfer
+              <div className="p-4 rounded-xl border border-cyan-500/30 bg-[#0a101f]/70 space-y-3">
+                <div className="text-center font-bold text-cyan-400 pb-2 border-b border-cyan-500/20">
+                  Transfer Credits
                 </div>
                 <TransferForm />
               </div>
 
               {/* Retire Card */}
-              <div className="p-4 rounded-xl border border-white/10 hover:border-teal-500/30 bg-[#0a101f]/70 space-y-3 transition-colors">
-                <div className="text-center font-bold text-teal-400 pb-2 border-b border-white/10">
-                  Retire
+              <div className="p-4 rounded-xl border border-amber-500/30 bg-[#0a101f]/70 space-y-3">
+                <div className="text-center font-bold text-amber-400 pb-2 border-b border-amber-500/20">
+                  Retire Credits
                 </div>
                 <RetireForm />
               </div>
             </div>
           ) : (
-            /* Tabbed Single Card View for Mobile or Focused View */
-            <div className="space-y-4">
-              <div className="flex gap-2 bg-black/40 p-1 rounded-xl max-w-sm">
-                <Button
-                  variant={activeTab === "issue" ? "default" : "ghost"}
-                  size="sm"
+            /* Tabbed View */
+            <div className="space-y-6">
+              <div className="flex gap-2 bg-black/40 p-1.5 rounded-xl max-w-md border border-white/5">
+                <button
                   onClick={() => setActiveTab("issue")}
-                  className="flex-1"
+                  className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
+                    activeTab === "issue"
+                      ? "bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 border border-emerald-400/30"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
                 >
-                  Issue
-                </Button>
-                <Button
-                  variant={activeTab === "transfer" ? "default" : "ghost"}
-                  size="sm"
+                  🌱 Issue Credits
+                </button>
+                <button
                   onClick={() => setActiveTab("transfer")}
-                  className="flex-1"
+                  className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
+                    activeTab === "transfer"
+                      ? "bg-cyan-600 text-white shadow-lg shadow-cyan-500/20 border border-cyan-400/30"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
                 >
-                  Transfer
-                </Button>
-                <Button
-                  variant={activeTab === "retire" ? "default" : "ghost"}
-                  size="sm"
+                  🔄 Transfer
+                </button>
+                <button
                   onClick={() => setActiveTab("retire")}
-                  className="flex-1"
+                  className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
+                    activeTab === "retire"
+                      ? "bg-amber-600 text-white shadow-lg shadow-amber-500/20 border border-amber-400/30"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}
                 >
-                  Retire
-                </Button>
+                  🔥 Retire (Burn)
+                </button>
               </div>
 
-              <div className="max-w-xl mx-auto pt-2">
+              <div className="max-w-xl">
                 {activeTab === "issue" && <IssueForm />}
                 {activeTab === "transfer" && <TransferForm />}
                 {activeTab === "retire" && <RetireForm />}

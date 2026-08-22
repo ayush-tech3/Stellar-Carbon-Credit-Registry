@@ -7,6 +7,7 @@ import { ToastContainer } from "@/components/ui/toast";
 import { FeedbackWidget } from "@/components/shared/FeedbackWidget";
 import { Analytics } from "@/lib/utils/analytics";
 import { ThreeDBackground } from "@/components/shared/ThreeDBackground";
+import { WalletModal } from "@/components/wallet/WalletModal";
 
 function AnalyticsTracker() {
   const pathname = usePathname();
@@ -42,6 +43,7 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
       {children}
       <ToastContainer />
       <FeedbackWidget />
+      <WalletModal />
     </ErrorBoundary>
   );
 }
