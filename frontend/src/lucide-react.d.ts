@@ -50,4 +50,14 @@ declare module 'lucide-react' {
   export const UserMinus: any;
   export const Clock: any;
   export const Sparkles: any;
+  export const Users: any;
+  export const ArrowUpRight: any;
+  export const ArrowDownRight: any;
+  export const Eye: any;
+  export const AlertTriangle: any;
+  export const Star: any;
+  export const MessageSquare: any;
+  export const MessageSquarePlus: any;
+  export const Send: any;
+  export const Monitor: any;
 }
