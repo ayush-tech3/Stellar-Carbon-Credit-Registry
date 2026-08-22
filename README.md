@@ -18,6 +18,11 @@
 - [x] **Verified Transaction Hashes**: Verifiable on Stellar Expert Explorer
 - [x] **Frontend UI Capabilities**: Freighter wallet connection, testnet keypair demo, balance tracking, issuance, transfer, and retirement forms with live feedback
 - [x] **CI/CD Pipeline**: Passing GitHub Actions automated builds & Vitest integration tests
+- [x] **Monitoring & Analytics**: Built-in analytics dashboard tracking page views, wallet connections, transactions, and performance metrics
+- [x] **User Feedback Collection**: In-app floating feedback widget with star ratings and comments, viewable in monitoring dashboard
+- [x] **Toast Notifications**: Global toast notification system for success/error/warning/info messages
+- [x] **Error Boundaries**: React error boundary with styled fallback UI and retry capability
+- [x] **Mobile Navigation**: Hamburger menu, slide-out sidebar, and bottom navigation bar for mobile devices
 
 ---
 
@@ -165,10 +170,14 @@ sequenceDiagram
 - ✅ **Activity Feed** — Real-time event polling with live indicator
 - ✅ **Transaction Center** — Full lifecycle (pending → processing → confirmed/failed)
 - ✅ **Analytics** — Charts, impact metrics, leaderboards
+- ✅ **Monitoring** — Live app health metrics, event log, and user feedback dashboard
 - ✅ **Settings** — Network config, wallet management, preferences
 - ✅ **Wallet Integration** — Freighter wallet connect/disconnect
-- ✅ **Mobile Responsive** — Full responsive design
+- ✅ **Mobile Responsive** — Hamburger menu, slide-out sidebar, bottom nav bar
 - ✅ **Dark Theme** — Premium glassmorphic design with emerald accents
+- ✅ **Toast Notifications** — Animated success/error/warning/info notifications
+- ✅ **Error Boundaries** — Graceful error handling with retry capability
+- ✅ **User Feedback** — In-app floating feedback widget with star ratings
 
 ### Architecture
 - ✅ Feature-based module architecture
@@ -176,6 +185,8 @@ sequenceDiagram
 - ✅ React Query for server state
 - ✅ Zustand for client state with persistence
 - ✅ Comprehensive error handling + logging
+- ✅ Analytics tracking (page views, wallet events, transactions, errors, performance)
+- ✅ Client-side monitoring with localStorage persistence
 
 ---
 
@@ -392,8 +403,13 @@ On merge to `main`:
 | **Balance Displayed** | Real-time carbon credit holdings & portfolio balance | ✅ Verified |
 | **Successful Testnet Transaction** | On-chain Soroban contract invocation (Issue, Transfer, Retire) | ✅ Verified |
 | **Transaction Result Shown** | Live activity log & transaction lifecycle status cards | ✅ Verified |
-| **Mobile Responsive UI** | Responsive grid layout across mobile, tablet, and desktop viewports | ✅ Verified |
+| **Mobile Responsive UI** | Hamburger menu, slide-out sidebar, bottom nav, responsive grid layout | ✅ Verified |
 | **CI/CD Pipeline** | Fully passing GitHub Actions workflow for contracts & frontend | ✅ Passing (100%) |
+| **Monitoring & Analytics** | Built-in monitoring dashboard with event log, metrics, and performance tracking | ✅ Verified |
+| **User Feedback Collection** | In-app floating feedback widget with star ratings, comments, and data persistence | ✅ Verified |
+| **Toast Notifications** | Animated toast notifications for all transaction outcomes (success/error) | ✅ Verified |
+| **Error Boundaries** | Global React error boundary with styled fallback UI and retry button | ✅ Verified |
+| **Loading States** | Skeleton loading screens and proper loading indicators | ✅ Verified |
 
 ### 📱 Mobile Responsive UI
 ![Mobile Responsive Dashboard](screenshots/mobile-responsive-ui.png)
@@ -445,11 +461,15 @@ CarbonCreditRegistry/
 │       └── src/                    # lib, types, storage, errors, events, test
 ├── frontend/                       # Next.js 15 application
 │   └── src/
-│       ├── app/                    # App Router pages
+│       ├── app/                    # App Router pages (dashboard, activity, analytics, monitoring, settings, transactions)
 │       ├── components/             # Shared UI (layout, wallet, ui, shared)
-│       ├── features/               # Feature modules (credits, retirement, activity, transactions)
-│       ├── lib/                    # Stellar SDK, wallet, utils
-│       ├── stores/                 # Zustand state stores
+│       │   ├── layout/             # AppShell, Header (mobile hamburger), Sidebar (mobile overlay + bottom nav)
+│       │   ├── shared/             # ErrorBoundary, FeedbackWidget, ClientProviders, StatCard, LoadingSpinner
+│       │   ├── ui/                 # Button, Card, Input, Skeleton, Toast
+│       │   └── wallet/             # WalletButton (connect modal + demo mode)
+│       ├── features/               # Feature modules (credits, retirement, activity, transactions, analytics)
+│       ├── lib/                    # Stellar SDK, wallet, utils (analytics tracker)
+│       ├── stores/                 # Zustand stores (wallet, portfolio, transaction, event, settings, toast, feedback)
 │       └── __tests__/              # Frontend tests
 ├── scripts/                        # Deployment & utility scripts
 ├── .github/workflows/              # CI/CD pipelines
@@ -484,6 +504,7 @@ Based on collected community & user feedback, the project is evolving with the f
 | Improvement Phase | Feature Description | Status & Commit Reference |
 |-------------------|---------------------|---------------------------|
 | **Phase 1: Wallet & UX Improvements** | Integrated 1-click demo mode, interactive analytics, and explicit Freighter wallet permissions (`setAllowed`/`isAllowed`). | ✅ Completed in [Commit 8df3399](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/commit/8df3399abd1ea82f0a0c4e26cfa4186591ac3e17) |
+| **Phase 1.5: Production Polish** | Mobile responsive navigation (hamburger + bottom nav), monitoring dashboard, analytics tracking, user feedback collection, toast notifications, error boundaries, skeleton loading states. | ✅ Completed (Level 4 Green Belt) |
 | **Phase 2: Micro-Fractional Carbon Credits** | Upgrade Soroban smart contracts to support micro-fractional carbon credits (down to $0.0001 per kg CO₂). | 🚧 Planned (Q4 2026) |
 | **Phase 3: Verra / Gold Standard Verification Oracles** | Integrate decentralized oracle feeds to cross-verify carbon offset certificates against real-world registries. | 🚧 Planned (Q1 2027) |
 | **Phase 4: Decentralized Governance (DAO)** | Transition issuer authorization (`add_issuer`/`remove_issuer`) to community token-weighted voting. | 🚧 Planned (Q2 2027) |
