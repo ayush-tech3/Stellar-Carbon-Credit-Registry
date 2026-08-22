@@ -143,15 +143,17 @@ export function RetireForm() {
           </Button>
         </div>
       ) : (
-        <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            <span className="font-mono">{formatAddress(address)}</span>
-            <span className="text-[10px] uppercase font-bold bg-amber-500/20 px-1.5 py-0.5 rounded text-amber-300">
-              {walletType || "Active"}
-            </span>
+        <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 flex flex-col gap-1">
+          <div className="flex items-center justify-between gap-1">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse flex-shrink-0" />
+              <span className="font-mono text-[11px] font-semibold">{formatAddress(address)}</span>
+              <span className="text-[9px] uppercase font-bold bg-amber-500/25 px-1 py-0.5 rounded text-amber-300">
+                {walletType || "Active"}
+              </span>
+            </div>
+            <span className="text-amber-300 font-semibold text-[11px]">{userCredits.toLocaleString()} tCO₂</span>
           </div>
-          <span className="text-gray-300 font-semibold">{userCredits.toLocaleString()} tCO₂ available</span>
         </div>
       )}
 
@@ -160,14 +162,14 @@ export function RetireForm() {
         <button
           type="button"
           onClick={() => handleQuickRetire("250", "Corporate Scope 1 Offset")}
-          className="text-[11px] px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/30 text-gray-300 hover:text-amber-300 transition-colors"
+          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/30 text-gray-300 hover:text-amber-300 transition-colors"
         >
           🔥 Scope 1 (250 t)
         </button>
         <button
           type="button"
           onClick={() => handleQuickRetire("1000", "Data Center Net-Zero")}
-          className="text-[11px] px-2.5 py-1 rounded-lg bg-white/5 hover:bg-teal-500/15 border border-white/10 hover:border-teal-500/30 text-gray-300 hover:text-teal-300 transition-colors"
+          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-teal-500/15 border border-white/10 hover:border-teal-500/30 text-gray-300 hover:text-teal-300 transition-colors"
         >
           ⚡ Net-Zero (1k t)
         </button>

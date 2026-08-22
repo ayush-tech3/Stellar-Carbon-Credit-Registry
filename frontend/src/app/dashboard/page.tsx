@@ -21,7 +21,7 @@ export default function DashboardPage() {
   const { address } = useWalletStore();
   const { totalProjects, userCredits, totalRetired, transfers24h } = usePortfolioStore();
   const [activeTab, setActiveTab] = useState<"issue" | "transfer" | "retire">("issue");
-  const [viewMode, setViewMode] = useState<"tabs" | "grid">("tabs");
+  const [viewMode, setViewMode] = useState<"tabs" | "grid">("grid");
 
   return (
     <div className="space-y-6 relative z-10">
@@ -87,20 +87,20 @@ export default function DashboardPage() {
             </div>
             <div className="flex gap-2">
               <Button
+                variant={viewMode === "grid" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setViewMode("grid")}
+                className="text-xs"
+              >
+                All 3 Actions
+              </Button>
+              <Button
                 variant={viewMode === "tabs" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setViewMode("tabs")}
                 className="text-xs"
               >
                 Focused Tabs
-              </Button>
-              <Button
-                variant={viewMode === "grid" ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setViewMode("grid")}
-                className="hidden xl:inline-flex text-xs"
-              >
-                All 3 Actions
               </Button>
             </div>
           </div>
