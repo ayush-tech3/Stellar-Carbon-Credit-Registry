@@ -6,6 +6,7 @@ import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 import { ToastContainer } from "@/components/ui/toast";
 import { FeedbackWidget } from "@/components/shared/FeedbackWidget";
 import { Analytics } from "@/lib/utils/analytics";
+import { ThreeDBackground } from "@/components/shared/ThreeDBackground";
 
 function AnalyticsTracker() {
   const pathname = usePathname();
@@ -36,6 +37,7 @@ function AnalyticsTracker() {
 export function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
     <ErrorBoundary>
+      <ThreeDBackground />
       <AnalyticsTracker />
       {children}
       <ToastContainer />

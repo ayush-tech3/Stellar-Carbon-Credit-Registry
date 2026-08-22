@@ -60,4 +60,8 @@ declare module 'lucide-react' {
   export const MessageSquarePlus: any;
   export const Send: any;
   export const Monitor: any;
+  export const Search: any;
+  export const Bell: any;
+  export const User: any;
+  export const TrendingUp: any;
 }
