@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { NETWORK_CONFIG } from '@/lib/stellar/network';
-import { Keypair, Networks } from '@stellar/stellar-sdk';
 
 interface WalletState {
   address: string | null;

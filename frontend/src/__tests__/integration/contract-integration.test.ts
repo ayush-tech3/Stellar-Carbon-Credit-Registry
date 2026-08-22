@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { creditService } from '@/features/credits/services/credit-service';
 import { retirementService } from '@/features/retirement/services/retirement-service';
-import { Address, nativeToScVal, Keypair, Networks } from '@stellar/stellar-sdk';
+import { Address, nativeToScVal } from '@stellar/stellar-sdk';
 
 describe('Soroban Contract & Frontend Integration', () => {
   it('correctly constructs Soroban ScVal parameters for issue_credits', () => {

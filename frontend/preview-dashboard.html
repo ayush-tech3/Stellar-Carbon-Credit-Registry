@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CarbonTrack — Upgraded Dashboard Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          surface: "#0a0e1a",
+          "surface-dim": "#080c16",
+          "surface-card": "rgba(15, 23, 42, 0.65)",
+          "surface-elevated": "rgba(30, 41, 59, 0.5)",
+          primary: { DEFAULT: "#10b981", light: "#4edea3", dim: "#059669", glow: "rgba(16, 185, 129, 0.15)" },
+          secondary: { DEFAULT: "#3b82f6", light: "#adc6ff", dim: "#0566d9" },
+          accent: { DEFAULT: "#f59e0b", dim: "#d97706" },
+          error: { DEFAULT: "#ef4444", light: "#ffb4ab" },
+          text: { DEFAULT: "#dfe2ee", muted: "#94a3b8", dim: "#64748b" },
+          border: { DEFAULT: "rgba(255,255,255,0.08)", hover: "rgba(255,255,255,0.15)" },
+        },
+        fontFamily: {
+          sans: ["Inter", "system-ui", "sans-serif"],
+          mono: ["JetBrains Mono", "monospace"],
+        },
+        animation: {
+          "spin-slow": "spin 8s linear infinite",
+          "pulse-glow": "pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+          "fade-in": "fadeIn 0.5s ease-out",
+          "slide-up": "slideUp 0.4s ease-out",
+          "slide-right": "slideRight 0.3s ease-out",
+        },
+        keyframes: {
+          "pulse-glow": {
+            "0%, 100%": { opacity: "1", boxShadow: "0 0 15px 0 rgba(16, 185, 129, 0.5)" },
+            "50%": { opacity: ".5", boxShadow: "0 0 5px 0 rgba(16, 185, 129, 0.2)" },
+          },
+          fadeIn: { from: { opacity: "0" }, to: { opacity: "1" } },
+          slideUp: { from: { opacity: "0", transform: "translateY(12px)" }, to: { opacity: "1", transform: "translateY(0)" } },
+          slideRight: { from: { opacity: "0", transform: "translateX(-8px)" }, to: { opacity: "1", transform: "translateX(0)" } },
+        },
+      },
+    },
+  };
+</script>
+<style>
+  body { background: #0a0e1a; color: #dfe2ee; }
+
+  /* Glass Card */
+  .glass-card {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .glass-card:hover {
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.3), 0 0 20px rgba(16, 185, 129, 0.05);
+    transform: translateY(-1px);
+  }
+
+  /* Grid background */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  /* Sidebar active link */
+  .sidebar-link { transition: all 0.2s ease; }
+  .sidebar-link:hover { background: rgba(255,255,255,0.05); }
+  .sidebar-link.active { background: rgba(16, 185, 129, 0.1); }
+  .sidebar-link.active .link-indicator { background: #10b981; }
+
+  /* Tab button */
+  .tab-btn { transition: all 0.2s ease; }
+  .tab-btn:hover:not(.tab-active) { background: rgba(255,255,255,0.05); }
+  .tab-active { background: #10b981 !important; color: #003824 !important; font-weight: 600; }
+  .tab-retire-active { background: #d97706 !important; color: #1a0a00 !important; font-weight: 600; }
+
+  /* Stat card sparkline */
+  .sparkline-container { position: relative; }
+  .sparkline-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(16,185,129,0.3), transparent);
+  }
+
+  /* Badge styles */
+  .badge-mint { background: rgba(16,185,129,0.15); color: #4edea3; border: 1px solid rgba(16,185,129,0.25); }
+  .badge-transfer { background: rgba(59,130,246,0.15); color: #93bbfd; border: 1px solid rgba(59,130,246,0.25); }
+  .badge-burn { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.25); }
+
+  /* Glow effect for key elements */
+  .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.1); }
+
+  /* Form input styling */
+  .form-input {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #dfe2ee;
+    transition: all 0.2s ease;
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  }
+  .form-input::placeholder { color: #64748b; }
+
+  /* Primary CTA */
+  .btn-primary {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  /* Animated background blobs */
+  .blob-1 {
+    position: fixed;
+    top: -15%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.08), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-2 {
+    position: fixed;
+    bottom: -15%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.06), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+</head>
+
+<body class="font-sans antialiased min-h-screen bg-grid overflow-x-hidden">
+  <!-- Background blobs -->
+  <div class="blob-1"></div>
+  <div class="blob-2"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HEADER — Matches your Header.tsx + WalletButton.tsx
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <header class="sticky top-0 z-50 w-full glass-card border-b border-white/10">
+    <div class="max-w-[1600px] mx-auto px-4 h-16 flex items-center justify-between">
+      <!-- Brand -->
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🌿</span>
+        <a href="#" class="font-bold text-xl tracking-tight text-white flex items-center">
+          Carbon<span class="text-emerald-500">Track</span>
+        </a>
+        <span class="ml-3 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-medium border border-emerald-500/25 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Testnet
+        </span>
+      </div>
+
+      <!-- Wallet Connected State (matching WalletButton.tsx) -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex flex-col items-end">
+          <span class="text-xs text-emerald-400 font-mono font-medium">1,250 tCO₂e</span>
+          <span class="text-[11px] text-text-dim font-mono">GBCTQ5XL...LQQ4</span>
+        </div>
+        <button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all text-sm text-white">
+          <span class="material-symbols-outlined text-[18px] text-emerald-400">account_balance_wallet</span>
+          <span class="hidden sm:inline">Connected</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-glow"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       APP SHELL — Matches your AppShell.tsx (Sidebar + main content)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <div class="flex max-w-[1600px] mx-auto w-full relative z-10">
+
+    <!-- SIDEBAR — Matches your Sidebar.tsx navigation links -->
+    <aside class="w-64 border-r border-white/10 glass-card h-[calc(100vh-4rem)] sticky top-16 hidden md:flex flex-col shrink-0">
+      <nav class="flex-1 py-6 px-3 space-y-1 custom-scrollbar overflow-y-auto">
+        <!-- Dashboard (active) -->
+        <a href="#" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg animate-slide-right">
+          <div class="link-indicator w-0.5 h-5 rounded-full bg-emerald-500 -ml-1"></div>
+          <span class="material-symbols-outlined text-[20px] text-emerald-500" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+          <span class="font-medium text-emerald-400 text-sm">Dashboard</span>
+        </a>
+        <!-- Activity -->
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted">
+          <div class="link-indicator w-0.5 h-5 rounded-full bg-transparent -ml-1"></div>
+          <span class="material-symbols-outlined text-[20px] text-text-dim">monitoring</span>
+          <span class="font-medium text-sm">Activity</span>
+        </a>
+        <!-- Transactions -->
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted">
+          <div class="link-indicator w-0.5 h-5 rounded-full bg-transparent -ml-1"></div>
+          <span class="material-symbols-outlined text-[20px] text-text-dim">history</span>
+          <span class="font-medium text-sm">Transactions</span>
+        </a>
+        <!-- Analytics -->
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted">
+          <div class="link-indicator w-0.5 h-5 rounded-full bg-transparent -ml-1"></div>
+          <span class="material-symbols-outlined text-[20px] text-text-dim">bar_chart</span>
+          <span class="font-medium text-sm">Analytics</span>
+        </a>
+        <!-- Settings -->
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted">
+          <div class="link-indicator w-0.5 h-5 rounded-full bg-transparent -ml-1"></div>
+          <span class="material-symbols-outlined text-[20px] text-text-dim">settings</span>
+          <span class="font-medium text-sm">Settings</span>
+        </a>
+      </nav>
+
+      <div class="p-4 border-t border-white/5 bg-black/20">
+        <p class="text-[11px] text-text-dim text-center">Built on Stellar Soroban</p>
+      </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         MAIN CONTENT — Dashboard page (matches your dashboard/page.tsx)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <main class="flex-1 p-6 md:p-8 lg:p-10 w-full space-y-6 animate-fade-in">
+
+      <!-- Page Header -->
+      <div class="animate-slide-up">
+        <h1 class="text-3xl font-bold text-white">Dashboard</h1>
+        <p class="text-text-muted mt-1">
+          Welcome back, <span class="font-mono text-emerald-400">GBCTQ5XL...LQQ4</span>
+        </p>
+      </div>
+
+      <!-- ──────────────────────────────────────────────────────────────────
+           KPI STAT CARDS — Matches your StatCard.tsx component grid
+           ────────────────────────────────────────────────────────────────── -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Total Projects (matches your Leaf icon stat) -->
+        <div class="glass-card rounded-xl p-5 relative overflow-hidden group animate-slide-up" style="animation-delay: 50ms">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-emerald-500/5 rounded-bl-full blur-2xl group-hover:bg-emerald-500/10 transition-colors"></div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold uppercase tracking-wider text-text-dim">Total Projects</span>
+            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[18px] text-emerald-400" style="font-variation-settings: 'FILL' 1;">eco</span>
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-white">24</div>
+          <div class="mt-2 flex items-center gap-1.5 text-xs">
+            <span class="material-symbols-outlined text-[14px] text-emerald-400">trending_up</span>
+            <span class="text-emerald-400 font-medium">+2 this month</span>
+          </div>
+          <!-- Sparkline -->
+          <div class="mt-3 h-6 w-full sparkline-container">
+            <svg width="100%" height="100%" viewBox="0 0 120 24" preserveAspectRatio="none">
+              <defs><linearGradient id="sparkGreen" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0,24 L0,18 L15,14 L30,16 L45,10 L60,12 L75,6 L90,8 L105,3 L120,5 L120,24 Z" fill="url(#sparkGreen)"/>
+              <path d="M0,18 L15,14 L30,16 L45,10 L60,12 L75,6 L90,8 L105,3 L120,5" fill="none" stroke="#10b981" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Your Credits (matches your Award icon stat) -->
+        <div class="glass-card rounded-xl p-5 relative overflow-hidden group animate-slide-up" style="animation-delay: 100ms">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-blue-500/5 rounded-bl-full blur-2xl group-hover:bg-blue-500/10 transition-colors"></div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold uppercase tracking-wider text-text-dim">Your Credits</span>
+            <div class="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[18px] text-blue-400" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-white">1,250</div>
+          <div class="mt-2 text-xs text-text-dim">tCO₂e balance</div>
+          <div class="mt-3 h-6 w-full sparkline-container">
+            <svg width="100%" height="100%" viewBox="0 0 120 24" preserveAspectRatio="none">
+              <defs><linearGradient id="sparkBlue" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0,24 L0,20 L20,15 L40,18 L60,10 L80,12 L100,5 L120,8 L120,24 Z" fill="url(#sparkBlue)"/>
+              <path d="M0,20 L20,15 L40,18 L60,10 L80,12 L100,5 L120,8" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Total Retired (matches your Flame icon stat) -->
+        <div class="glass-card rounded-xl p-5 relative overflow-hidden group animate-slide-up" style="animation-delay: 150ms">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-amber-500/5 rounded-bl-full blur-2xl group-hover:bg-amber-500/10 transition-colors"></div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold uppercase tracking-wider text-text-dim">Total Retired</span>
+            <div class="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[18px] text-amber-400" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-white">48.20<span class="text-base text-text-muted font-normal ml-1">M</span></div>
+          <div class="mt-2 flex items-center gap-1.5 text-xs text-text-dim">
+            <span>tons CO₂</span>
+          </div>
+          <div class="mt-3 h-6 w-full sparkline-container">
+            <svg width="100%" height="100%" viewBox="0 0 120 24" preserveAspectRatio="none">
+              <defs><linearGradient id="sparkAmber" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#f59e0b" stop-opacity="0.3"/><stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0,24 L0,16 L20,18 L40,12 L60,14 L80,8 L100,10 L120,4 L120,24 Z" fill="url(#sparkAmber)"/>
+              <path d="M0,16 L20,18 L40,12 L60,14 L80,8 L100,10 L120,4" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Transfers 24h (matches your ArrowRightLeft stat) -->
+        <div class="glass-card rounded-xl p-5 relative overflow-hidden group animate-slide-up" style="animation-delay: 200ms">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold uppercase tracking-wider text-text-dim">Transfers (24h)</span>
+            <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[18px] text-purple-400">swap_horiz</span>
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-white">18</div>
+          <div class="mt-2 flex items-center gap-1.5 text-xs">
+            <span class="material-symbols-outlined text-[14px] text-emerald-400">trending_up</span>
+            <span class="text-emerald-400 font-medium">+5 vs yesterday</span>
+          </div>
+          <div class="mt-3 flex gap-1 items-end h-6">
+            <div class="w-2 bg-purple-500/30 rounded-sm" style="height: 40%"></div>
+            <div class="w-2 bg-purple-500/30 rounded-sm" style="height: 55%"></div>
+            <div class="w-2 bg-purple-500/40 rounded-sm" style="height: 35%"></div>
+            <div class="w-2 bg-purple-500/40 rounded-sm" style="height: 70%"></div>
+            <div class="w-2 bg-purple-500/50 rounded-sm" style="height: 50%"></div>
+            <div class="w-2 bg-purple-500/50 rounded-sm" style="height: 80%"></div>
+            <div class="w-2 bg-purple-500/60 rounded-sm" style="height: 65%"></div>
+            <div class="w-2 bg-purple-400 rounded-sm" style="height: 90%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ──────────────────────────────────────────────────────────────────
+           MAIN GRID — Quick Actions + Portfolio (matches dashboard/page.tsx)
+           ────────────────────────────────────────────────────────────────── -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- LEFT: Quick Actions with Issue/Transfer/Retire tabs -->
+        <div class="lg:col-span-2 glass-card rounded-xl p-6 min-h-[420px] animate-slide-up" style="animation-delay: 250ms">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold text-white">Quick Actions</h2>
+            <!-- Tab switcher (matches your activeTab state) -->
+            <div class="flex gap-1 bg-black/40 p-1 rounded-lg" id="tab-group">
+              <button onclick="switchTab('issue')" class="tab-btn tab-active px-3 py-1.5 rounded-md text-sm transition-all" id="tab-issue">Issue</button>
+              <button onclick="switchTab('transfer')" class="tab-btn px-3 py-1.5 rounded-md text-sm text-text-muted" id="tab-transfer">Transfer</button>
+              <button onclick="switchTab('retire')" class="tab-btn px-3 py-1.5 rounded-md text-sm text-text-muted" id="tab-retire">Retire</button>
+            </div>
+          </div>
+
+          <!-- Issue Form (matches IssueForm.tsx — calls issue_credits on contract) -->
+          <div id="form-issue" class="max-w-md mx-auto space-y-4 mt-4">
+            <div class="text-center mb-6">
+              <div class="w-14 h-14 mx-auto rounded-xl bg-emerald-500/10 flex items-center justify-center mb-3">
+                <span class="material-symbols-outlined text-[28px] text-emerald-400" style="font-variation-settings: 'FILL' 1;">eco</span>
+              </div>
+              <p class="text-sm text-text-muted">Issue new carbon credits from a verified project</p>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Project Name</label>
+              <input type="text" placeholder="e.g. Amazon Reforestation" class="form-input w-full px-3 py-2.5 rounded-lg text-sm"/>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Amount (tCO₂e)</label>
+                <input type="number" placeholder="5000" class="form-input w-full px-3 py-2.5 rounded-lg text-sm"/>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Vintage Year</label>
+                <input type="number" placeholder="2026" class="form-input w-full px-3 py-2.5 rounded-lg text-sm"/>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Methodology</label>
+              <input type="text" placeholder="e.g. Verra VCS" class="form-input w-full px-3 py-2.5 rounded-lg text-sm"/>
+            </div>
+            <button class="btn-primary w-full py-3 rounded-lg text-sm flex items-center justify-center gap-2 mt-2">
+              <span class="material-symbols-outlined text-[18px]">add_circle</span>
+              Issue Credits on Soroban
+            </button>
+          </div>
+
+          <!-- Transfer Form (matches TransferForm.tsx — calls transfer on contract) -->
+          <div id="form-transfer" class="max-w-md mx-auto space-y-4 mt-4 hidden">
+            <div class="text-center mb-6">
+              <div class="w-14 h-14 mx-auto rounded-xl bg-blue-500/10 flex items-center justify-center mb-3">
+                <span class="material-symbols-outlined text-[28px] text-blue-400">swap_horiz</span>
+              </div>
+              <p class="text-sm text-text-muted">Transfer carbon credits to another Stellar address</p>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Recipient Address</label>
+              <input type="text" placeholder="G..." class="form-input w-full px-3 py-2.5 rounded-lg text-sm font-mono"/>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Credit ID</label>
+                <input type="number" placeholder="1" class="form-input w-full px-3 py-2.5 rounded-lg text-sm"/>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Amount (tCO₂e)</label>
+                <input type="number" placeholder="100" class="form-input w-full px-3 py-2.5 rounded-lg text-sm"/>
+              </div>
+            </div>
+            <button class="w-full py-3 rounded-lg text-sm flex items-center justify-center gap-2 mt-2 font-semibold transition-all" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; box-shadow: 0 4px 14px rgba(59,130,246,0.25);">
+              <span class="material-symbols-outlined text-[18px]">send</span>
+              Sign & Transfer
+            </button>
+          </div>
+
+          <!-- Retire Form (matches RetireForm.tsx — calls retire on contract) -->
+          <div id="form-retire" class="max-w-md mx-auto space-y-4 mt-4 hidden">
+            <div class="text-center mb-6">
+              <div class="w-14 h-14 mx-auto rounded-xl bg-amber-500/10 flex items-center justify-center mb-3">
+                <span class="material-symbols-outlined text-[28px] text-amber-400" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+              </div>
+              <p class="text-sm text-text-muted">Permanently burn credits to claim your carbon offset</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Credit ID</label>
+                <input type="number" placeholder="1" class="form-input w-full px-3 py-2.5 rounded-lg text-sm"/>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-text-dim mb-1.5">Amount to Burn</label>
+                <input type="number" placeholder="450" class="form-input w-full px-3 py-2.5 rounded-lg text-sm"/>
+              </div>
+            </div>
+            <!-- Impact estimate -->
+            <div class="rounded-lg bg-amber-500/5 border border-amber-500/15 p-3">
+              <p class="text-xs text-amber-300 font-medium mb-1">🔥 Estimated Impact</p>
+              <p class="text-xs text-text-muted">Equivalent to removing <span class="text-white font-semibold">95 cars</span> off the road for one year.</p>
+            </div>
+            <button class="w-full py-3 rounded-lg text-sm flex items-center justify-center gap-2 mt-2 font-semibold transition-all" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #1a0a00; box-shadow: 0 4px 14px rgba(245,158,11,0.25);">
+              <span class="material-symbols-outlined text-[18px]">local_fire_department</span>
+              Burn & Retire Forever
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT: Portfolio + Live Activity (matches your portfolio panel) -->
+        <div class="flex flex-col gap-6">
+          <!-- Portfolio Donut -->
+          <div class="glass-card rounded-xl p-6 animate-slide-up" style="animation-delay: 300ms">
+            <h2 class="text-xl font-bold text-white mb-4">Your Portfolio</h2>
+            <div class="relative w-36 h-36 mx-auto my-4">
+              <div class="absolute inset-0 border-[6px] border-emerald-500/20 rounded-full border-t-emerald-500 border-r-teal-500 animate-spin-slow"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-white">1,250</div>
+                  <div class="text-xs text-text-dim">Total Credits</div>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-2 mt-4">
+              <div class="flex justify-between items-center text-sm p-2 rounded-lg bg-white/5 border border-white/5">
+                <div class="flex items-center gap-2">
+                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                  <span class="text-gray-300 text-xs">Amazon Reforestation</span>
+                </div>
+                <span class="font-semibold text-white text-xs">750</span>
+              </div>
+              <div class="flex justify-between items-center text-sm p-2 rounded-lg bg-white/5 border border-white/5">
+                <div class="flex items-center gap-2">
+                  <div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+                  <span class="text-gray-300 text-xs">Wind Farm Alpha</span>
+                </div>
+                <span class="font-semibold text-white text-xs">350</span>
+              </div>
+              <div class="flex justify-between items-center text-sm p-2 rounded-lg bg-white/5 border border-white/5">
+                <div class="flex items-center gap-2">
+                  <div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
+                  <span class="text-gray-300 text-xs">Solar Array Beta</span>
+                </div>
+                <span class="font-semibold text-white text-xs">150</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Activity Feed (from Stitch design, integrated with your Event Service) -->
+          <div class="glass-card rounded-xl p-6 flex-grow animate-slide-up" style="animation-delay: 350ms">
+            <div class="flex justify-between items-center mb-5">
+              <h2 class="text-lg font-bold text-white">Live Activity</h2>
+              <div class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-emerald-400">Live</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-3 relative">
+              <div class="absolute left-[9px] top-3 bottom-3 w-px bg-white/5"></div>
+              <!-- Event 1 -->
+              <div class="flex gap-3 relative z-10">
+                <div class="w-5 h-5 rounded-full bg-surface border border-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                </div>
+                <div>
+                  <p class="text-xs text-text-DEFAULT"><strong class="text-white">5,000 tCO₂e minted</strong> for Amazon Reforestation</p>
+                  <p class="text-[10px] text-text-dim font-mono mt-0.5">2 mins ago</p>
+                </div>
+              </div>
+              <!-- Event 2 -->
+              <div class="flex gap-3 relative z-10">
+                <div class="w-5 h-5 rounded-full bg-surface border border-amber-500 flex items-center justify-center shrink-0 mt-0.5">
+                  <span class="material-symbols-outlined text-[10px] text-amber-400">local_fire_department</span>
+                </div>
+                <div>
+                  <p class="text-xs text-text-DEFAULT"><strong class="text-white">450 tCO₂e retired</strong> by <span class="font-mono text-emerald-400">0x4F...9e2</span></p>
+                  <p class="text-[10px] text-text-dim font-mono mt-0.5">15 mins ago</p>
+                </div>
+              </div>
+              <!-- Event 3 -->
+              <div class="flex gap-3 relative z-10">
+                <div class="w-5 h-5 rounded-full bg-surface border border-blue-500 flex items-center justify-center shrink-0 mt-0.5">
+                  <span class="material-symbols-outlined text-[10px] text-blue-400">swap_horiz</span>
+                </div>
+                <div>
+                  <p class="text-xs text-text-DEFAULT"><strong class="text-white">1,200 tCO₂e transferred</strong> — Wind Farm Alpha</p>
+                  <p class="text-[10px] text-text-dim font-mono mt-0.5">1 hour ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ──────────────────────────────────────────────────────────────────
+           RECENT TRANSACTIONS TABLE (new upgrade from Stitch design)
+           ────────────────────────────────────────────────────────────────── -->
+      <div class="glass-card rounded-xl p-6 overflow-x-auto animate-slide-up" style="animation-delay: 400ms">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl font-bold text-white">Recent On-Chain Transactions</h2>
+          <a href="#" class="text-xs text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1">
+            View All
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </a>
+        </div>
+        <table class="w-full text-left">
+          <thead>
+            <tr class="border-b border-white/5">
+              <th class="py-2.5 px-4 text-[10px] font-semibold uppercase tracking-wider text-text-dim">Tx Hash</th>
+              <th class="py-2.5 px-4 text-[10px] font-semibold uppercase tracking-wider text-text-dim">Project</th>
+              <th class="py-2.5 px-4 text-[10px] font-semibold uppercase tracking-wider text-text-dim text-right">Amount (tCO₂e)</th>
+              <th class="py-2.5 px-4 text-[10px] font-semibold uppercase tracking-wider text-text-dim text-center">Type</th>
+              <th class="py-2.5 px-4 text-[10px] font-semibold uppercase tracking-wider text-text-dim text-center">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+              <td class="py-3 px-4 font-mono text-xs text-emerald-400">7a3f...f4e2</td>
+              <td class="py-3 px-4 text-text-DEFAULT">Amazon Reforestation</td>
+              <td class="py-3 px-4 text-right font-mono text-xs text-white">5,000</td>
+              <td class="py-3 px-4 text-center"><span class="badge-mint text-[10px] font-semibold px-2 py-0.5 rounded-full">Mint</span></td>
+              <td class="py-3 px-4 text-center"><span class="text-emerald-400 text-xs flex items-center justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Confirmed</span></td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+              <td class="py-3 px-4 font-mono text-xs text-emerald-400">3b92...9a1c</td>
+              <td class="py-3 px-4 text-text-DEFAULT">Wind Farm Alpha</td>
+              <td class="py-3 px-4 text-right font-mono text-xs text-white">1,200</td>
+              <td class="py-3 px-4 text-center"><span class="badge-transfer text-[10px] font-semibold px-2 py-0.5 rounded-full">Transfer</span></td>
+              <td class="py-3 px-4 text-center"><span class="text-emerald-400 text-xs flex items-center justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Confirmed</span></td>
+            </tr>
+            <tr class="hover:bg-white/[0.02] transition-colors">
+              <td class="py-3 px-4 font-mono text-xs text-emerald-400">9c1e...2d8b</td>
+              <td class="py-3 px-4 text-text-DEFAULT">Solar Array Beta</td>
+              <td class="py-3 px-4 text-right font-mono text-xs text-white">450</td>
+              <td class="py-3 px-4 text-center"><span class="badge-burn text-[10px] font-semibold px-2 py-0.5 rounded-full">Burn</span></td>
+              <td class="py-3 px-4 text-center"><span class="text-emerald-400 text-xs flex items-center justify-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Confirmed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Tab switching script -->
+  <script>
+    function switchTab(tab) {
+      // Hide all forms
+      document.getElementById('form-issue').classList.add('hidden');
+      document.getElementById('form-transfer').classList.add('hidden');
+      document.getElementById('form-retire').classList.add('hidden');
+
+      // Reset all tab buttons
+      document.getElementById('tab-issue').className = 'tab-btn px-3 py-1.5 rounded-md text-sm text-text-muted';
+      document.getElementById('tab-transfer').className = 'tab-btn px-3 py-1.5 rounded-md text-sm text-text-muted';
+      document.getElementById('tab-retire').className = 'tab-btn px-3 py-1.5 rounded-md text-sm text-text-muted';
+
+      // Show selected form and activate tab
+      document.getElementById('form-' + tab).classList.remove('hidden');
+      const activeClass = tab === 'retire' ? 'tab-retire-active' : 'tab-active';
+      document.getElementById('tab-' + tab).className = 'tab-btn ' + activeClass + ' px-3 py-1.5 rounded-md text-sm';
+    }
+  </script>
+</body>
+</html>
