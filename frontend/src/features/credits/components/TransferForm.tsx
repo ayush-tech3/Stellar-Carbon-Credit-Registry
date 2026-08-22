@@ -144,33 +144,35 @@ export function TransferForm() {
           </Button>
         </div>
       ) : (
-        <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-300 flex flex-col gap-1">
-          <div className="flex items-center justify-between gap-1">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse flex-shrink-0" />
-              <span className="font-mono text-[11px] font-semibold">{formatAddress(address)}</span>
-              <span className="text-[9px] uppercase font-bold bg-cyan-500/25 px-1 py-0.5 rounded text-cyan-300">
-                {walletType || "Active"}
-              </span>
-            </div>
-            <span className="text-cyan-300 font-semibold text-[11px]">{userCredits.toLocaleString()} tCO₂</span>
+        <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-300 space-y-1">
+          <div className="flex items-center justify-center gap-1.5 flex-wrap">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse flex-shrink-0" />
+            <span className="font-mono text-xs font-semibold">{formatAddress(address)}</span>
+            <span className="text-[9px] uppercase font-bold bg-cyan-500/25 px-1.5 py-0.5 rounded text-cyan-300">
+              {walletType || "Demo"}
+            </span>
+          </div>
+          <div className="text-center text-[11px] text-cyan-300 font-semibold">
+            Balance: {userCredits.toLocaleString()} tCO₂
           </div>
         </div>
       )}
 
       {/* Quick Recipient Presets */}
-      <div className="flex flex-wrap gap-1.5 pt-1">
+      <div className="grid grid-cols-2 gap-1 pt-0.5">
         <button
           type="button"
           onClick={() => handleQuickAddress("GCKL7Y72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0CC3", "500")}
-          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-500/30 text-gray-300 hover:text-cyan-300 transition-colors"
+          className="text-[10px] py-1 px-1 text-center rounded-lg bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-500/30 text-gray-300 hover:text-cyan-300 transition-colors truncate"
+          title="EcoTrade (500)"
         >
           🏢 EcoTrade (500)
         </button>
         <button
           type="button"
           onClick={() => handleQuickAddress("GCJW1H72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0KK1", "1000")}
-          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-teal-500/15 border border-white/10 hover:border-teal-500/30 text-gray-300 hover:text-teal-300 transition-colors"
+          className="text-[10px] py-1 px-1 text-center rounded-lg bg-white/5 hover:bg-teal-500/15 border border-white/10 hover:border-teal-500/30 text-gray-300 hover:text-teal-300 transition-colors truncate"
+          title="Fund (1k)"
         >
           🏦 Fund (1k)
         </button>

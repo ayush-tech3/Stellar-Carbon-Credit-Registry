@@ -146,40 +146,43 @@ export function IssueForm() {
           </Button>
         </div>
       ) : (
-        <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 flex flex-col gap-1">
-          <div className="flex items-center justify-between gap-1">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
-              <span className="font-mono text-[11px] font-semibold">{formatAddress(address)}</span>
-              <span className="text-[9px] uppercase font-bold bg-emerald-500/25 px-1 py-0.5 rounded text-emerald-300">
-                {walletType || "Active"}
-              </span>
-            </div>
-            <span className="text-gray-400 text-[10px] font-medium">Stellar Testnet</span>
+        <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 space-y-1">
+          <div className="flex items-center justify-center gap-1.5 flex-wrap">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+            <span className="font-mono text-xs font-semibold">{formatAddress(address)}</span>
+            <span className="text-[9px] uppercase font-bold bg-emerald-500/25 px-1.5 py-0.5 rounded text-emerald-300">
+              {walletType || "Demo"}
+            </span>
+          </div>
+          <div className="text-center text-[10px] text-gray-400 font-medium">
+            Stellar Testnet
           </div>
         </div>
       )}
 
       {/* Quick Presets */}
-      <div className="flex flex-wrap gap-1.5 pt-1">
+      <div className="grid grid-cols-3 gap-1 pt-0.5">
         <button
           type="button"
           onClick={() => handleQuickPreset("Amazon Reforestation", "1000", "2024", "VCS VM0015")}
-          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-emerald-500/15 border border-white/10 hover:border-emerald-500/30 text-gray-300 hover:text-emerald-300 transition-colors"
+          className="text-[10px] py-1 px-1 text-center rounded-lg bg-white/5 hover:bg-emerald-500/15 border border-white/10 hover:border-emerald-500/30 text-gray-300 hover:text-emerald-300 transition-colors truncate"
+          title="Amazon (1k)"
         >
           🌱 Amazon (1k)
         </button>
         <button
           type="button"
           onClick={() => handleQuickPreset("Texas Wind Farm", "2500", "2024", "Gold Standard")}
-          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-teal-500/15 border border-white/10 hover:border-teal-500/30 text-gray-300 hover:text-teal-300 transition-colors"
+          className="text-[10px] py-1 px-1 text-center rounded-lg bg-white/5 hover:bg-teal-500/15 border border-white/10 hover:border-teal-500/30 text-gray-300 hover:text-teal-300 transition-colors truncate"
+          title="Wind (2.5k)"
         >
-          💨 Texas Wind (2.5k)
+          💨 Wind (2.5k)
         </button>
         <button
           type="button"
           onClick={() => handleQuickPreset("Kenya Mangrove Restoration", "5000", "2024", "Plan Vivo")}
-          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-500/30 text-gray-300 hover:text-cyan-300 transition-colors"
+          className="text-[10px] py-1 px-1 text-center rounded-lg bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-500/30 text-gray-300 hover:text-cyan-300 transition-colors truncate"
+          title="Mangrove (5k)"
         >
           🌊 Mangrove (5k)
         </button>

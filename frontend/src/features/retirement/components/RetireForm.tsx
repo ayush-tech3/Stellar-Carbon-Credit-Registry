@@ -143,35 +143,37 @@ export function RetireForm() {
           </Button>
         </div>
       ) : (
-        <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 flex flex-col gap-1">
-          <div className="flex items-center justify-between gap-1">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse flex-shrink-0" />
-              <span className="font-mono text-[11px] font-semibold">{formatAddress(address)}</span>
-              <span className="text-[9px] uppercase font-bold bg-amber-500/25 px-1 py-0.5 rounded text-amber-300">
-                {walletType || "Active"}
-              </span>
-            </div>
-            <span className="text-amber-300 font-semibold text-[11px]">{userCredits.toLocaleString()} tCO₂</span>
+        <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 space-y-1">
+          <div className="flex items-center justify-center gap-1.5 flex-wrap">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse flex-shrink-0" />
+            <span className="font-mono text-xs font-semibold">{formatAddress(address)}</span>
+            <span className="text-[9px] uppercase font-bold bg-amber-500/25 px-1 py-0.5 rounded text-amber-300">
+              {walletType || "Demo"}
+            </span>
+          </div>
+          <div className="text-center text-[11px] text-amber-300 font-semibold">
+            Available: {userCredits.toLocaleString()} tCO₂
           </div>
         </div>
       )}
 
       {/* Quick Burn Presets */}
-      <div className="flex flex-wrap gap-1.5 pt-1">
+      <div className="grid grid-cols-2 gap-1 pt-0.5">
         <button
           type="button"
           onClick={() => handleQuickRetire("250", "Corporate Scope 1 Offset")}
-          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/30 text-gray-300 hover:text-amber-300 transition-colors"
+          className="text-[10px] py-1 px-1 text-center rounded-lg bg-white/5 hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/30 text-gray-300 hover:text-amber-300 transition-colors truncate"
+          title="Scope 1 (250)"
         >
-          🔥 Scope 1 (250 t)
+          🔥 Scope 1 (250)
         </button>
         <button
           type="button"
           onClick={() => handleQuickRetire("1000", "Data Center Net-Zero")}
-          className="text-[11px] px-2 py-0.5 rounded-lg bg-white/5 hover:bg-teal-500/15 border border-white/10 hover:border-teal-500/30 text-gray-300 hover:text-teal-300 transition-colors"
+          className="text-[10px] py-1 px-1 text-center rounded-lg bg-white/5 hover:bg-teal-500/15 border border-white/10 hover:border-teal-500/30 text-gray-300 hover:text-teal-300 transition-colors truncate"
+          title="Net-Zero (1k)"
         >
-          ⚡ Net-Zero (1k t)
+          ⚡ Net-Zero (1k)
         </button>
       </div>
 

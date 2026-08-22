@@ -107,26 +107,26 @@ export default function DashboardPage() {
 
           {viewMode === "grid" ? (
             /* 3 Action Cards Side-by-side */
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3.5">
               {/* Issue Card */}
-              <div className="p-4 rounded-xl border border-emerald-500/30 bg-[#0a101f]/70 space-y-3">
-                <div className="text-center font-bold text-emerald-400 pb-2 border-b border-emerald-500/20">
+              <div className="p-3.5 rounded-xl border border-emerald-500/30 bg-[#0a101f]/70 space-y-3 overflow-hidden">
+                <div className="text-center font-bold text-emerald-400 pb-2 border-b border-emerald-500/20 text-sm">
                   Issue Credits
                 </div>
                 <IssueForm />
               </div>
 
               {/* Transfer Card */}
-              <div className="p-4 rounded-xl border border-cyan-500/30 bg-[#0a101f]/70 space-y-3">
-                <div className="text-center font-bold text-cyan-400 pb-2 border-b border-cyan-500/20">
+              <div className="p-3.5 rounded-xl border border-cyan-500/30 bg-[#0a101f]/70 space-y-3 overflow-hidden">
+                <div className="text-center font-bold text-cyan-400 pb-2 border-b border-cyan-500/20 text-sm">
                   Transfer Credits
                 </div>
                 <TransferForm />
               </div>
 
               {/* Retire Card */}
-              <div className="p-4 rounded-xl border border-amber-500/30 bg-[#0a101f]/70 space-y-3">
-                <div className="text-center font-bold text-amber-400 pb-2 border-b border-amber-500/20">
+              <div className="p-3.5 rounded-xl border border-amber-500/30 bg-[#0a101f]/70 space-y-3 overflow-hidden">
+                <div className="text-center font-bold text-amber-400 pb-2 border-b border-amber-500/20 text-sm">
                   Retire Credits
                 </div>
                 <RetireForm />
