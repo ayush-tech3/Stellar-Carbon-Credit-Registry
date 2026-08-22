@@ -10,6 +10,8 @@ import { useEventStore } from "@/stores/event-store";
 import { useRetireCredits } from "../hooks/use-retirement";
 import { NETWORK_CONFIG } from "@/lib/stellar/network";
 import { CheckCircle2, AlertCircle } from "lucide-react";
+import { Analytics } from "@/lib/utils/analytics";
+import { useToastStore } from "@/stores/toast-store";
 
 export function RetireForm() {
   const [creditId, setCreditId] = useState("");
@@ -23,6 +25,7 @@ export function RetireForm() {
   const addTransaction = useTransactionStore((s) => s.addTransaction);
   const addEvent = useEventStore((s) => s.addEvent);
   const { mutateAsync: retireCreditsContract } = useRetireCredits();
+  const { addToast } = useToastStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,10 +77,16 @@ export function RetireForm() {
       });
 
       setSuccessMsg(`Permanently burned & retired ${numAmount.toLocaleString()} tons of CO₂ via Soroban contract! Certificate recorded on-chain.`);
+      Analytics.trackTransaction('retire', 'success', numAmount);
+      addToast({ type: 'success', title: 'Credits Retired', message: `${numAmount.toLocaleString()} tons permanently burned` });
       setCreditId("");
       setAmount("");
     } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : "Error retiring credits via Soroban contract");
+      const errMsg = err instanceof Error ? err.message : "Error retiring credits via Soroban contract";
+      setErrorMsg(errMsg);
+      Analytics.trackTransaction('retire', 'failed');
+      Analytics.trackError(errMsg, 'RetireForm');
+      addToast({ type: 'error', title: 'Retire Failed', message: errMsg });
     } finally {
       setIsSubmitting(false);
     }

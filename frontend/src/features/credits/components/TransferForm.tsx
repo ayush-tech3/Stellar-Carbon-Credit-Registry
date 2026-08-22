@@ -10,6 +10,8 @@ import { useEventStore } from "@/stores/event-store";
 import { useTransferCredits } from "../hooks/use-credits";
 import { NETWORK_CONFIG } from "@/lib/stellar/network";
 import { CheckCircle2, AlertCircle } from "lucide-react";
+import { Analytics } from "@/lib/utils/analytics";
+import { useToastStore } from "@/stores/toast-store";
 
 export function TransferForm() {
   const [creditId, setCreditId] = useState("");
@@ -24,6 +26,7 @@ export function TransferForm() {
   const addTransaction = useTransactionStore((s) => s.addTransaction);
   const addEvent = useEventStore((s) => s.addEvent);
   const { mutateAsync: transferCreditsContract } = useTransferCredits();
+  const { addToast } = useToastStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,11 +79,17 @@ export function TransferForm() {
       });
 
       setSuccessMsg(`Transferred ${numAmount.toLocaleString()} tons of CO₂ credits to ${toAddress.substring(0, 8)}... via Soroban contract!`);
+      Analytics.trackTransaction('transfer', 'success', numAmount);
+      addToast({ type: 'success', title: 'Credits Transferred', message: `${numAmount.toLocaleString()} tons sent to ${toAddress.substring(0, 8)}...` });
       setCreditId("");
       setToAddress("");
       setAmount("");
     } catch (err: unknown) {
-      setErrorMsg(err instanceof Error ? err.message : "Error transferring credits via Soroban contract");
+      const errMsg = err instanceof Error ? err.message : "Error transferring credits via Soroban contract";
+      setErrorMsg(errMsg);
+      Analytics.trackTransaction('transfer', 'failed');
+      Analytics.trackError(errMsg, 'TransferForm');
+      addToast({ type: 'error', title: 'Transfer Failed', message: errMsg });
     } finally {
       setIsSubmitting(false);
     }

@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { isConnected, isAllowed, setAllowed, requestAccess, getAddress, signTransaction as freighterSignTx } from '@stellar/freighter-api';
 import { NETWORK_CONFIG } from '../stellar/network';
 import { useWalletStore } from '@/stores/wallet-store';
+import { Analytics } from '../utils/analytics';
 
 interface WalletContextType {
   connect: () => Promise<void>;
@@ -59,6 +60,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
           setIsConnected(true);
           setIsDemoMode(false);
           setWalletType('freighter');
+          Analytics.trackWalletConnect(pubKey, 'freighter');
         }
       } else {
         // Fallback to Demo mode if extension is missing, or open link
@@ -72,9 +74,11 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
 
   const connectDemo = () => {
     connectDemoWallet();
+    Analytics.trackWalletConnect('GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF', 'demo');
   };
 
   const disconnect = () => {
+    if (address) Analytics.trackWalletDisconnect(address);
     setAddress(null);
     setIsConnected(false);
     setIsDemoMode(false);
