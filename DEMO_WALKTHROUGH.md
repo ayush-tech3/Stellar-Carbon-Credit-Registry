@@ -3,7 +3,7 @@
 > **Stellar Carbon Credit Registry — Level 5 Blue Belt Submission**  
 > *Complete step-by-step product walkthrough demonstrating real on-chain carbon credit issuance, transfers, permanent retirements, and real-time monitoring.*
 
-🎥 **Watch Demo Video on YouTube**: [https://youtu.be/LXSb4yaDnEI](https://youtu.be/LXSb4yaDnEI)  
+🎥 **Watch Demo Video on YouTube**: [https://youtu.be/tyFBRt-QJQs](https://youtu.be/tyFBRt-QJQs)  
 🌐 **Live Interactive App**: [https://carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app)  
 📝 **User Feedback Form (Level 4)**: [https://forms.gle/rF7KsMAaD7SQzQan9](https://forms.gle/rF7KsMAaD7SQzQan9)  
 📊 **Live Responses Sheet (Level 4)**: [https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing)

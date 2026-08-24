@@ -15,7 +15,7 @@
 - [x] **Level 4 User Feedback & Public Survey Responses**: Live Google Form survey at [forms.gle/rF7KsMAaD7SQzQan9](https://forms.gle/rF7KsMAaD7SQzQan9) with publicly accessible live responses sheet at [Google Sheets Responses](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing)
 - [x] **Product Improvements & Feedback Loop**: Added 1-Click Instant Demo Wallet, interactive 3D particle canvas background, pinned 3-column action cards, Recharts methodology breakdown, mobile navigation drawer, and floating user feedback widget
 - [x] **Professional Pitch Deck / PPT**: Downloadable PowerPoint presentation [`CarbonTrack_Presentation.pptx`](CarbonTrack_Presentation.pptx) and complete pitch deck documentation in [`PITCH_DECK.md`](PITCH_DECK.md) covering Problem, Solution, Market Opportunity, Architecture, Growth Strategy, and Future Roadmap
-- [x] **Product Walkthrough & Demo**: Step-by-step user flow walkthrough in [`DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md) and live video demonstration on [YouTube](https://youtu.be/LXSb4yaDnEI)
+- [x] **Product Walkthrough & Demo**: Step-by-step user flow walkthrough in [`DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md) and live video demonstration on [YouTube](https://youtu.be/tyFBRt-QJQs)
 - [x] **Live Deployed Web Application**: Fully interactive on Netlify at [carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app)
 - [x] **Smart Contracts Deployed**: `CarbonCreditRegistry` and `RetirementManager` on Stellar Testnet
 - [x] **CI/CD Pipeline & Automated Testing**: 100% passing GitHub Actions automated workflow and Vitest unit/integration test suites
@@ -449,7 +449,7 @@ On merge to `main`:
 |------|-------------|-------------|
 | 📦 **GitHub Repository** | [ayush-tech3/Stellar-Carbon-Credit-Registry](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry) | Full source code with smart contracts & Next.js frontend |
 | 🌐 **Live Application** | [carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app) | Deployed Next.js Application on Netlify |
-| 📹 **Demo Video** | [Watch on YouTube](https://youtu.be/LXSb4yaDnEI) | 1–2 minute project walkthrough |
+| 📹 **Demo Video** | [Watch on YouTube](https://youtu.be/tyFBRt-QJQs) | 1–2 minute project walkthrough |
 | 📊 **PPT / Pitch Deck** | [CarbonTrack Presentation (PPTX)](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/blob/main/CarbonTrack_Presentation.pptx) | Project Presentation & Architecture Overview |
 | 📝 **User Feedback Form (Level 4)** | [Google Feedback Form](https://forms.gle/rF7KsMAaD7SQzQan9) | Submit community feedback, reviews, and feature requests |
 | 📈 **Live Survey Responses (Level 4)** | [Google Sheets Responses](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing) | Publicly viewable live spreadsheet with all user responses |
