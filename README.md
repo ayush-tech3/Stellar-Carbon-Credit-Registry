@@ -12,6 +12,7 @@
 ## ✅ Level 5 — Blue Belt Submission Checklist Verification
 
 - [x] **User Growth (50+ Testnet Wallets Onboarded)**: Comprehensive proof table of **52 verified unique testnet wallet accounts** performing 250+ on-chain operations (minting, transfers, and permanent retirements) with Stellar Expert explorer links
+- [x] **Level 4 User Feedback & Public Survey Responses**: Live Google Form survey at [forms.gle/rF7KsMAaD7SQzQan9](https://forms.gle/rF7KsMAaD7SQzQan9) with publicly accessible live responses sheet at [Google Sheets Responses](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing)
 - [x] **Product Improvements & Feedback Loop**: Added 1-Click Instant Demo Wallet, interactive 3D particle canvas background, pinned 3-column action cards, Recharts methodology breakdown, mobile navigation drawer, and floating user feedback widget
 - [x] **Professional Pitch Deck / PPT**: Downloadable PowerPoint presentation [`CarbonTrack_Presentation.pptx`](CarbonTrack_Presentation.pptx) and complete pitch deck documentation in [`PITCH_DECK.md`](PITCH_DECK.md) covering Problem, Solution, Market Opportunity, Architecture, Growth Strategy, and Future Roadmap
 - [x] **Product Walkthrough & Demo**: Step-by-step user flow walkthrough in [`DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md) and live video demonstration on [YouTube](https://youtu.be/LXSb4yaDnEI)
@@ -450,6 +451,9 @@ On merge to `main`:
 | 🌐 **Live Application** | [carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app) | Deployed Next.js Application on Netlify |
 | 📹 **Demo Video** | [Watch on YouTube](https://youtu.be/LXSb4yaDnEI) | 1–2 minute project walkthrough |
 | 📊 **PPT / Pitch Deck** | [CarbonTrack Presentation (PPTX)](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/blob/main/CarbonTrack_Presentation.pptx) | Project Presentation & Architecture Overview |
+| 📝 **User Feedback Form (Level 4)** | [Google Feedback Form](https://forms.gle/rF7KsMAaD7SQzQan9) | Submit community feedback, reviews, and feature requests |
+| 📈 **Live Survey Responses (Level 4)** | [Google Sheets Responses](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing) | Publicly viewable live spreadsheet with all user responses |
+
 ---
 
 ## 📁 Project Structure
@@ -544,9 +548,18 @@ As part of **Level 5 Blue Belt Submission (User Growth & Onboarding Proof)**, th
 
 ---
 
-## 📊 Basic User Feedback Summary & Product Iterations
+## 📊 Level 4 Requirement: User Feedback Collection & Live Responses
 
-During beta onboarding with carbon offset project managers and early testnet traders, feedback was collected via our in-app feedback widget:
+> [!IMPORTANT]
+> **Level 4 Submission Qualification — Transparent Feedback Collection & Live Public Responses**
+> - 📝 **Community Feedback Google Form**: [https://forms.gle/rF7KsMAaD7SQzQan9](https://forms.gle/rF7KsMAaD7SQzQan9)  
+>   *(Used to gather feedback from real beta testers, carbon project developers, and testnet users)*
+> - 📊 **Public Live Responses Spreadsheet**: [https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing)  
+>   *(Publicly accessible sheet where anyone can check all submitted responses in real-time)*
+
+### User Feedback Summary & Product Iterations
+
+During beta onboarding with carbon offset project managers and early testnet traders, feedback was collected via our in-app feedback widget as well as our [Community Google Form](https://forms.gle/rF7KsMAaD7SQzQan9):
 
 | User Role | Rating | Feedback Received | Product Action & Commit Reference |
 |-----------|:------:|-------------------|-----------------------------------|

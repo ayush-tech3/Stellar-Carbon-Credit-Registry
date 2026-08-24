@@ -14,6 +14,7 @@ import {
   User,
   MoreHorizontal,
   TrendingUp,
+  ExternalLink,
 } from "lucide-react";
 
 interface SeedFeedback {
@@ -292,11 +293,31 @@ export default function MonitoringPage() {
         {/* User Feedback Panel */}
         <div className="glass-card rounded-2xl p-6 border border-white/10 bg-[#0f172a]/75 shadow-xl flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-bold text-white">User Feedback Panel</h2>
               <button className="text-gray-400 hover:text-white p-1">
                 <MoreHorizontal className="w-5 h-5" />
               </button>
+            </div>
+            <div className="flex flex-wrap gap-2 mb-4">
+              <a
+                href="https://forms.gle/rF7KsMAaD7SQzQan9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors shadow-[0_0_8px_rgba(16,185,129,0.2)]"
+              >
+                <span>Google Form</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+              <a
+                href="https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 transition-colors"
+              >
+                <span>Live Responses Sheet</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
             </div>
             <p className="text-xs text-gray-400 mb-4 font-medium uppercase tracking-wider">Recent reviews</p>
 

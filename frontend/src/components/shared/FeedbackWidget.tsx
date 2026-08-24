@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MessageSquarePlus, Star, Send, X } from "lucide-react";
+import { MessageSquarePlus, Star, Send, X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFeedbackStore } from "@/stores/feedback-store";
 import { useWalletStore } from "@/stores/wallet-store";
@@ -122,11 +122,33 @@ export function FeedbackWidget() {
               {/* Submit */}
               <Button
                 onClick={handleSubmit}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 gap-2"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 gap-2 mb-3"
               >
                 <Send className="w-4 h-4" />
                 Submit Feedback
               </Button>
+
+              {/* External Google Form & Sheets Response Links */}
+              <div className="pt-3 border-t border-white/10 flex flex-col gap-1.5 text-center">
+                <a
+                  href="https://forms.gle/rF7KsMAaD7SQzQan9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 hover:underline font-medium transition-colors"
+                >
+                  <span>Open Community Google Form</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <a
+                  href="https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 text-[11px] text-gray-400 hover:text-gray-300 hover:underline transition-colors"
+                >
+                  <span>View Public Live Responses Sheet</span>
+                  <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+              </div>
             </motion.div>
           </div>
         )}

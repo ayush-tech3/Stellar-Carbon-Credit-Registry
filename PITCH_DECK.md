@@ -6,7 +6,9 @@
 📊 **Download PowerPoint Presentation**: [`CarbonTrack_Presentation.pptx`](CarbonTrack_Presentation.pptx)  
 🌐 **Live Application**: [carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app)  
 📦 **Source Code**: [github.com/ayush-tech3/Stellar-Carbon-Credit-Registry](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry)  
-🎥 **Demo Walkthrough Video**: [YouTube Project Demo](https://youtu.be/LXSb4yaDnEI)
+🎥 **Demo Walkthrough Video**: [YouTube Project Demo](https://youtu.be/LXSb4yaDnEI)  
+📝 **User Feedback Google Form**: [forms.gle/rF7KsMAaD7SQzQan9](https://forms.gle/rF7KsMAaD7SQzQan9)  
+📈 **Live Public Responses Sheet**: [Google Sheets Responses](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing)
 
 ---
 
