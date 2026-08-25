@@ -6,6 +6,18 @@ const nextConfig: NextConfig = {
     return config;
   },
   transpilePackages: ['@stellar/stellar-sdk'],
+  async rewrites() {
+    return [
+      {
+        source: '/docs',
+        destination: '/docs/index.html',
+      },
+      {
+        source: '/docs/',
+        destination: '/docs/index.html',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
