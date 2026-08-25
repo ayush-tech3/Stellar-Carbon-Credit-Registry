@@ -4,13 +4,15 @@
 
 [![CI](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/actions/workflows/ci.yml/badge.svg)](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/actions/workflows/ci.yml)
 [![Deploy](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/actions/workflows/deploy.yml/badge.svg)](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/actions/workflows/deploy.yml)
+[![Docs](https://img.shields.io/badge/Docs-Public%20Website-brightgreen?logo=markdown)](https://carbon-credit-registry.netlify.app/docs/)
 [![Stellar](https://img.shields.io/badge/Stellar-Soroban-blue?logo=stellar)](https://stellar.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
-## ✅ Level 5 — Blue Belt Submission Checklist Verification
+## ✅ Level 4 & Level 5 Submission Checklist Verification
 
+- [x] **Dedicated Documentation Website (Publicly Accessible)**: Complete, interactive documentation portal covering project overview, features, quick start guide, layered architecture, Soroban smart contract design, API reference, security analysis, frontend architecture, and CI/CD operations at **[carbon-credit-registry.netlify.app/docs](https://carbon-credit-registry.netlify.app/docs/)** and **[GitHub Pages](https://ayush-tech3.github.io/Stellar-Carbon-Credit-Registry/)**
 - [x] **User Growth (50+ Testnet Wallets Onboarded)**: Comprehensive proof table of **52 verified unique testnet wallet accounts** performing 250+ on-chain operations (minting, transfers, and permanent retirements) with Stellar Expert explorer links
 - [x] **Level 4 User Feedback & Public Survey Responses**: Live Google Form survey at [forms.gle/rF7KsMAaD7SQzQan9](https://forms.gle/rF7KsMAaD7SQzQan9) with publicly accessible live responses sheet at [Google Sheets Responses](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing)
 - [x] **Product Improvements & Feedback Loop**: Added 1-Click Instant Demo Wallet, interactive 3D particle canvas background, pinned 3-column action cards, Recharts methodology breakdown, mobile navigation drawer, and floating user feedback widget
@@ -447,6 +449,7 @@ On merge to `main`:
 
 | Deliverable | Link | Description |
 |------|-------------|-------------|
+| 📖 **Dedicated Documentation Website** | [carbon-credit-registry.netlify.app/docs](https://carbon-credit-registry.netlify.app/docs/) | Comprehensive documentation covering features, architecture, smart contracts, API, and setup |
 | 📦 **GitHub Repository** | [ayush-tech3/Stellar-Carbon-Credit-Registry](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry) | Full source code with smart contracts & Next.js frontend |
 | 🌐 **Live Application** | [carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app) | Deployed Next.js Application on Netlify |
 | 📹 **Demo Video** | [Watch on YouTube](https://youtu.be/tyFBRt-QJQs) | 1–2 minute project walkthrough |

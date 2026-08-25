@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en" data-page="home">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonTrack Documentation — Stellar Carbon Credit Registry</title>
+    <meta name="description" content="Complete documentation for CarbonTrack, a transparent, tamper-proof carbon credit registry built on Stellar Soroban smart contracts. Learn about features, architecture, smart contracts, API reference, setup, and deployment.">
+    <meta name="keywords" content="CarbonTrack, carbon credits, Stellar, Soroban, blockchain, documentation, smart contracts, sustainability, climate">
+    <meta property="og:title" content="CarbonTrack Documentation — Stellar Carbon Credit Registry">
+    <meta property="og:description" content="Complete documentation for CarbonTrack carbon credit registry on Stellar blockchain.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Ambient background -->
+    <div class="ambient-bg">
+        <div class="ambient-orb ambient-orb-1"></div>
+        <div class="ambient-orb ambient-orb-2"></div>
+        <div class="ambient-orb ambient-orb-3"></div>
+    </div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🌿</span>
+                <div>
+                    <span class="logo-text">CarbonTrack</span>
+                    <span class="logo-sub">Documentation</span>
+                </div>
+            </div>
+            <button class="mobile-close-btn" id="closeSidebar" aria-label="Close menu">✕</button>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+            <div class="nav-section">
+                <span class="nav-section-title">Getting Started</span>
+                <a href="#overview" class="nav-link active" data-section="overview">
+                    <span class="nav-icon">🏠</span> Overview
+                </a>
+                <a href="#features" class="nav-link" data-section="features">
+                    <span class="nav-icon">✨</span> Features
+                </a>
+                <a href="#quickstart" class="nav-link" data-section="quickstart">
+                    <span class="nav-icon">🚀</span> Quick Start
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-title">Architecture</span>
+                <a href="#architecture" class="nav-link" data-section="architecture">
+                    <span class="nav-icon">🏗️</span> System Design
+                </a>
+                <a href="#tech-stack" class="nav-link" data-section="tech-stack">
+                    <span class="nav-icon">🛠️</span> Tech Stack
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-title">Smart Contracts</span>
+                <a href="#contracts" class="nav-link" data-section="contracts">
+                    <span class="nav-icon">📜</span> Contract Design
+                </a>
+                <a href="#api-reference" class="nav-link" data-section="api-reference">
+                    <span class="nav-icon">📡</span> API Reference
+                </a>
+                <a href="#security" class="nav-link" data-section="security">
+                    <span class="nav-icon">🔒</span> Security
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-title">Frontend</span>
+                <a href="#frontend" class="nav-link" data-section="frontend">
+                    <span class="nav-icon">💻</span> Frontend Guide
+                </a>
+                <a href="#components" class="nav-link" data-section="components">
+                    <span class="nav-icon">🧩</span> Components
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-title">Operations</span>
+                <a href="#deployment" class="nav-link" data-section="deployment">
+                    <span class="nav-icon">📦</span> Deployment
+                </a>
+                <a href="#testing" class="nav-link" data-section="testing">
+                    <span class="nav-icon">🧪</span> Testing
+                </a>
+                <a href="#cicd" class="nav-link" data-section="cicd">
+                    <span class="nav-icon">🔄</span> CI/CD Pipeline
+                </a>
+                <a href="#env-vars" class="nav-link" data-section="env-vars">
+                    <span class="nav-icon">🔐</span> Configuration
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-title">Resources</span>
+                <a href="#contributing" class="nav-link" data-section="contributing">
+                    <span class="nav-icon">🤝</span> Contributing
+                </a>
+                <a href="#links" class="nav-link" data-section="links">
+                    <span class="nav-icon">🔗</span> Links & Demo
+                </a>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry" target="_blank" class="github-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span>GitHub Repository</span>
+            </a>
+            <div class="version-badge">v1.0.0 • MIT License</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="topbar-breadcrumb">
+                <span class="breadcrumb-home">Docs</span>
+                <span class="breadcrumb-sep">/</span>
+                <span class="breadcrumb-page" id="breadcrumbPage">Overview</span>
+            </div>
+            <div class="topbar-actions">
+                <a href="https://carbon-credit-registry.netlify.app" target="_blank" class="topbar-btn live-app-btn">
+                    <span class="live-dot"></span> Live App
+                </a>
+                <a href="https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry" target="_blank" class="topbar-btn">
+                    GitHub
+                </a>
+            </div>
+        </header>
+
+        <main class="content">
+            <!-- ═══════ OVERVIEW ═══════ -->
+            <section id="overview" class="doc-section active">
+                <div class="hero-section">
+                    <div class="hero-badge">Stellar Soroban Smart Contracts</div>
+                    <h1 class="hero-title">
+                        <span class="hero-icon">🌿</span>
+                        CarbonTrack
+                    </h1>
+                    <p class="hero-subtitle">A transparent, tamper-proof carbon credit registry built on the Stellar blockchain</p>
+                    <div class="hero-actions">
+                        <a href="#quickstart" class="btn btn-primary" onclick="navigateTo('quickstart')">Get Started →</a>
+                        <a href="https://carbon-credit-registry.netlify.app" target="_blank" class="btn btn-secondary">View Live App</a>
+                        <a href="https://youtu.be/tyFBRt-QJQs" target="_blank" class="btn btn-outline">Watch Demo ▶</a>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">Smart Contracts</div>
+                        <div class="stat-sub">Soroban / Rust</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">15+</div>
+                        <div class="stat-label">Contract Functions</div>
+                        <div class="stat-sub">Full CRUD + Views</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">10+</div>
+                        <div class="stat-label">Frontend Pages</div>
+                        <div class="stat-sub">Next.js 15 + TypeScript</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">52+</div>
+                        <div class="stat-label">Testnet Wallets</div>
+                        <div class="stat-sub">Onboarded Users</div>
+                    </div>
+                </div>
+
+                <h2>The Problem</h2>
+                <div class="callout callout-warning">
+                    <strong>Carbon credit markets are broken.</strong> Traditional registries suffer from fraud, double-spending, and lack of transparency. Companies buy and sell carbon credits to offset their climate impact, but there's no public audit trail of the credit lifecycle.
+                </div>
+
+                <h2>Our Solution</h2>
+                <p>CarbonTrack builds a <strong>transparent, tamper-proof registry on the Stellar blockchain</strong> that manages the full lifecycle of carbon credits:</p>
+
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Issue</h3>
+                        <p>Verified organizations mint new carbon credits from real projects like reforestation, solar energy, and direct air capture.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Transfer</h3>
+                        <p>Companies buy, sell, and trade credits — all tracked on-chain with full provenance and audit trail.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔥</div>
+                        <h3>Retire</h3>
+                        <p>When a company claims its offset, the credit is permanently burned — can never be reused. Double-spending is cryptographically impossible.</p>
+                    </div>
+                </div>
+
+                <h2>Why Stellar & Soroban?</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>⚡ Low Transaction Costs</strong>
+                        <p>Stellar's fee model keeps carbon credit operations affordable at scale — typically < $0.01 per transaction.</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>🌐 Global Accessibility</strong>
+                        <p>5-second finality means credits can be issued, transferred, and retired in near real-time worldwide.</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>🔒 Cryptographic Security</strong>
+                        <p>Soroban smart contracts enforce business rules on-chain, making double-spending mathematically impossible.</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>🌍 Environmental Sustainability</strong>
+                        <p>Stellar's consensus mechanism uses minimal energy — fitting for a climate-focused application.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════ FEATURES ═══════ -->
+            <section id="features" class="doc-section">
+                <h1>✨ Features</h1>
+                <p class="section-intro">CarbonTrack is a production-ready dApp with comprehensive smart contract and frontend features.</p>
+
+                <h2>Smart Contracts (Soroban / Rust)</h2>
+                <div class="checklist">
+                    <div class="check-item"><span class="check">✅</span> Advanced storage patterns (Instance, Persistent, Temporary)</div>
+                    <div class="check-item"><span class="check">✅</span> Role-Based Access Control (Admin + Authorized Issuers)</div>
+                    <div class="check-item"><span class="check">✅</span> Inter-contract communication (Registry ↔ RetirementManager)</div>
+                    <div class="check-item"><span class="check">✅</span> Custom error types with descriptive codes</div>
+                    <div class="check-item"><span class="check">✅</span> Event emission for all state changes</div>
+                    <div class="check-item"><span class="check">✅</span> Contract upgrade mechanism (Admin-only)</div>
+                    <div class="check-item"><span class="check">✅</span> Input validation (amounts, addresses, ownership)</div>
+                    <div class="check-item"><span class="check">✅</span> Double-spend prevention (atomic balance deduction)</div>
+                    <div class="check-item"><span class="check">✅</span> Overflow protection via Rust's checked arithmetic</div>
+                </div>
+
+                <h2>Frontend (Next.js 15 / TypeScript)</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead>
+                            <tr><th>Page / Feature</th><th>Description</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Landing Page</strong></td><td>Hero section, impact counter, feature cards, 3D particle animations</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Dashboard</strong></td><td>Portfolio overview, stats, quick actions, interactive charts</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Activity Feed</strong></td><td>Real-time event polling with live indicator</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Transaction Center</strong></td><td>Full lifecycle (pending → processing → confirmed/failed)</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Analytics</strong></td><td>Charts, impact metrics, leaderboards, methodology breakdown</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Monitoring</strong></td><td>Live app health metrics, event log, feedback dashboard</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Settings</strong></td><td>Network config, wallet management, preferences</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Wallet Integration</strong></td><td>Freighter wallet connect/disconnect + 1-Click Demo Mode</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Mobile Responsive</strong></td><td>Hamburger menu, slide-out sidebar, bottom nav bar</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Dark Theme</strong></td><td>Premium glassmorphic design with emerald accents</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Toast Notifications</strong></td><td>Animated success/error/warning/info notifications</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>Error Boundaries</strong></td><td>Graceful error handling with retry capability</td><td><span class="badge badge-green">Live</span></td></tr>
+                            <tr><td><strong>User Feedback</strong></td><td>In-app floating feedback widget with star ratings</td><td><span class="badge badge-green">Live</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Architecture Highlights</h2>
+                <div class="checklist">
+                    <div class="check-item"><span class="check">✅</span> Feature-based module architecture</div>
+                    <div class="check-item"><span class="check">✅</span> Service layer (no blockchain logic in components)</div>
+                    <div class="check-item"><span class="check">✅</span> React Query for server state management</div>
+                    <div class="check-item"><span class="check">✅</span> Zustand for client state with persistence</div>
+                    <div class="check-item"><span class="check">✅</span> Comprehensive error handling + logging</div>
+                    <div class="check-item"><span class="check">✅</span> Analytics tracking (page views, wallet events, transactions, errors)</div>
+                    <div class="check-item"><span class="check">✅</span> Client-side monitoring with localStorage persistence</div>
+                </div>
+            </section>
+
+            <!-- ═══════ QUICKSTART ═══════ -->
+            <section id="quickstart" class="doc-section">
+                <h1>🚀 Quick Start Guide</h1>
+                <p class="section-intro">Get CarbonTrack running locally in under 10 minutes.</p>
+
+                <h2>Prerequisites</h2>
+                <div class="prereq-grid">
+                    <div class="prereq-card">
+                        <div class="prereq-icon">🦀</div>
+                        <h4>Rust</h4>
+                        <p>With <code>wasm32-unknown-unknown</code> target</p>
+                        <a href="https://rustup.rs/" target="_blank">Install →</a>
+                    </div>
+                    <div class="prereq-card">
+                        <div class="prereq-icon">⭐</div>
+                        <h4>Stellar CLI</h4>
+                        <p><code>cargo install --locked stellar-cli</code></p>
+                        <a href="https://developers.stellar.org/docs/tools/cli" target="_blank">Docs →</a>
+                    </div>
+                    <div class="prereq-card">
+                        <div class="prereq-icon">💚</div>
+                        <h4>Node.js v20+</h4>
+                        <p>LTS version recommended</p>
+                        <a href="https://nodejs.org/" target="_blank">Download →</a>
+                    </div>
+                    <div class="prereq-card">
+                        <div class="prereq-icon">🔑</div>
+                        <h4>Freighter Wallet</h4>
+                        <p>Browser extension for Stellar</p>
+                        <a href="https://freighter.app/" target="_blank">Install →</a>
+                    </div>
+                </div>
+
+                <h2>Step 1 — Clone the Repository</h2>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>git clone https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry.git
+cd Stellar-Carbon-Credit-Registry</code></pre>
+                </div>
+
+                <h2>Step 2 — Build Smart Contracts</h2>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>cd contracts
+rustup target add wasm32-unknown-unknown
+cargo build --release --target wasm32-unknown-unknown -p retirement-manager
+cargo build --release --target wasm32-unknown-unknown -p carbon-credit-registry
+cargo test --workspace</code></pre>
+                </div>
+
+                <h2>Step 3 — Deploy to Stellar Testnet</h2>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code># Generate a testnet identity (funded automatically)
+stellar keys generate deployer --network testnet --fund
+
+# Run the deployment script
+chmod +x scripts/deploy-testnet.sh
+./scripts/deploy-testnet.sh</code></pre>
+                </div>
+                <div class="callout callout-info">
+                    The deployment script will output contract addresses. Save them for the frontend configuration.
+                </div>
+
+                <h2>Step 4 — Setup Frontend</h2>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>cd frontend
+cp ../.env.example .env.local
+# Edit .env.local with your contract addresses
+
+npm install
+npm run dev</code></pre>
+                </div>
+                <p>Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> and connect your Freighter wallet to start interacting with the registry.</p>
+
+                <h2>Step 5 — Run Tests</h2>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code># Smart contract tests
+cd contracts && cargo test
+
+# Frontend tests
+cd frontend && npm run test -- --run</code></pre>
+                </div>
+            </section>
+
+            <!-- ═══════ ARCHITECTURE ═══════ -->
+            <section id="architecture" class="doc-section">
+                <h1>🏗️ System Architecture</h1>
+                <p class="section-intro">CarbonTrack follows a clean layered architecture with clear separation of concerns.</p>
+
+                <h2>High-Level Architecture Diagram</h2>
+                <div class="arch-diagram">
+                    <div class="arch-layer">
+                        <div class="arch-label">Frontend Layer</div>
+                        <div class="arch-boxes">
+                            <div class="arch-box">Landing Page</div>
+                            <div class="arch-box">Dashboard</div>
+                            <div class="arch-box">Activity Feed</div>
+                            <div class="arch-box">Transaction Center</div>
+                            <div class="arch-box">Analytics</div>
+                            <div class="arch-box">Settings</div>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">▼</div>
+                    <div class="arch-layer">
+                        <div class="arch-label">Service Layer</div>
+                        <div class="arch-boxes">
+                            <div class="arch-box">Credit Service</div>
+                            <div class="arch-box">Event Service</div>
+                            <div class="arch-box">Transaction Service</div>
+                            <div class="arch-box">Wallet Service</div>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">▼</div>
+                    <div class="arch-layer">
+                        <div class="arch-label">State Management</div>
+                        <div class="arch-boxes">
+                            <div class="arch-box">Zustand Stores</div>
+                            <div class="arch-box">React Query Cache</div>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">▼</div>
+                    <div class="arch-layer">
+                        <div class="arch-label">Wallet Layer</div>
+                        <div class="arch-boxes">
+                            <div class="arch-box accent">Freighter Wallet Extension</div>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">▼</div>
+                    <div class="arch-layer">
+                        <div class="arch-label">Blockchain Layer (Stellar Testnet)</div>
+                        <div class="arch-boxes">
+                            <div class="arch-box chain">CarbonCreditRegistry</div>
+                            <div class="arch-box chain">RetirementManager</div>
+                            <div class="arch-box chain">Soroban RPC</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Data Flow: Credit Retirement</h2>
+                <div class="flow-diagram">
+                    <div class="flow-step">
+                        <div class="flow-num">1</div>
+                        <div class="flow-content">
+                            <strong>User Action</strong>
+                            <p>User clicks "Retire Credits" in the dashboard</p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">2</div>
+                        <div class="flow-content">
+                            <strong>Frontend → Registry</strong>
+                            <p><code>retire(owner, credit_id, amount)</code></p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">3</div>
+                        <div class="flow-content">
+                            <strong>Registry Validation</strong>
+                            <p>Validate ownership + sufficient balance</p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">4</div>
+                        <div class="flow-content">
+                            <strong>Cross-Contract Call</strong>
+                            <p>Registry → <code>RetirementManager.record()</code></p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">5</div>
+                        <div class="flow-content">
+                            <strong>Permanent Record</strong>
+                            <p>Store retirement record, increment global CO₂ counter</p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">6</div>
+                        <div class="flow-content">
+                            <strong>Balance Update</strong>
+                            <p>Deduct credits from balance, update retired counter</p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">7</div>
+                        <div class="flow-content">
+                            <strong>Event Emission</strong>
+                            <p><code>CreditRetired</code> event → Frontend shows success</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Project Structure</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>Project Layout</span></div>
+                    <pre><code>CarbonCreditRegistry/
+├── contracts/                      # Soroban smart contracts
+│   ├── Cargo.toml                  # Workspace root
+│   ├── carbon-credit-registry/     # Core registry contract
+│   │   └── src/                    # lib, types, storage, errors, events, access, test
+│   └── retirement-manager/         # Retirement tracking contract
+│       └── src/                    # lib, types, storage, errors, events, test
+├── frontend/                       # Next.js 15 application
+│   └── src/
+│       ├── app/                    # App Router pages
+│       ├── components/             # Shared UI components
+│       │   ├── layout/             # AppShell, Header, Sidebar
+│       │   ├── shared/             # ErrorBoundary, FeedbackWidget
+│       │   ├── ui/                 # Button, Card, Input, Skeleton, Toast
+│       │   └── wallet/             # WalletButton (connect + demo mode)
+│       ├── features/               # Feature modules
+│       ├── lib/                    # Stellar SDK, wallet, utils
+│       ├── stores/                 # Zustand stores
+│       └── __tests__/              # Frontend tests
+├── docs/                           # Documentation website (this site)
+├── screenshots/                    # Deliverable screenshots
+├── scripts/                        # Deployment &amp; utility scripts
+├── .github/workflows/              # CI/CD pipelines
+├── .env.example                    # Environment template
+└── README.md                       # Project README</code></pre>
+                </div>
+            </section>
+
+            <!-- ═══════ TECH STACK ═══════ -->
+            <section id="tech-stack" class="doc-section">
+                <h1>🛠️ Tech Stack</h1>
+                <p class="section-intro">A modern, production-grade technology stack chosen for reliability and developer experience.</p>
+
+                <div class="feature-table">
+                    <table>
+                        <thead>
+                            <tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Smart Contracts</strong></td><td>Rust + soroban-sdk 22.0.1</td><td>On-chain business logic with memory safety</td></tr>
+                            <tr><td><strong>Blockchain</strong></td><td>Stellar Testnet (Soroban)</td><td>Decentralized execution environment</td></tr>
+                            <tr><td><strong>Frontend Framework</strong></td><td>Next.js 15 + TypeScript</td><td>Server-side rendering, App Router</td></tr>
+                            <tr><td><strong>Styling</strong></td><td>Tailwind CSS</td><td>Utility-first CSS framework</td></tr>
+                            <tr><td><strong>UI Components</strong></td><td>shadcn/ui (custom)</td><td>Accessible, composable components</td></tr>
+                            <tr><td><strong>Server State</strong></td><td>TanStack React Query v5</td><td>Data fetching, caching, synchronization</td></tr>
+                            <tr><td><strong>Client State</strong></td><td>Zustand v5</td><td>Lightweight client-side state management</td></tr>
+                            <tr><td><strong>Wallet</strong></td><td>Freighter (@stellar/freighter-api)</td><td>Stellar wallet browser extension</td></tr>
+                            <tr><td><strong>Stellar SDK</strong></td><td>@stellar/stellar-sdk</td><td>Transaction building, RPC communication</td></tr>
+                            <tr><td><strong>Charts</strong></td><td>Recharts</td><td>Data visualization and analytics</td></tr>
+                            <tr><td><strong>Animations</strong></td><td>Framer Motion</td><td>Smooth transitions and micro-animations</td></tr>
+                            <tr><td><strong>Testing</strong></td><td>Vitest + React Testing Library</td><td>Unit and integration testing</td></tr>
+                            <tr><td><strong>CI/CD</strong></td><td>GitHub Actions</td><td>Automated testing and deployment</td></tr>
+                            <tr><td><strong>Hosting</strong></td><td>Netlify</td><td>Production deployment with CDN</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ═══════ CONTRACTS ═══════ -->
+            <section id="contracts" class="doc-section">
+                <h1>📜 Smart Contract Design</h1>
+                <p class="section-intro">Two Soroban smart contracts work together to manage the full carbon credit lifecycle.</p>
+
+                <h2>Contract 1: CarbonCreditRegistry</h2>
+                <p>The core registry that manages issuance, transfer, and initiates retirement of carbon credits.</p>
+
+                <div class="contract-card">
+                    <div class="contract-header">
+                        <span class="contract-name">carbon_credit_registry</span>
+                        <span class="badge badge-blue">Core Contract</span>
+                    </div>
+                    <div class="contract-body">
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Manage admin and authorized issuers (RBAC)</li>
+                            <li>Mint new carbon credit batches with project metadata</li>
+                            <li>Transfer credits between addresses with balance validation</li>
+                            <li>Initiate retirements via cross-contract call to RetirementManager</li>
+                            <li>Emit events for all state changes</li>
+                        </ul>
+                        <h4>Storage Patterns</h4>
+                        <ul>
+                            <li><strong>Instance Storage:</strong> Admin address, retirement contract address, next credit ID</li>
+                            <li><strong>Persistent Storage:</strong> Credit info, balances, issuer authorizations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Contract 2: RetirementManager</h2>
+                <p>Immutable retirement ledger with global CO₂ offset tracking.</p>
+
+                <div class="contract-card">
+                    <div class="contract-header">
+                        <span class="contract-name">retirement_manager</span>
+                        <span class="badge badge-purple">Retirement Ledger</span>
+                    </div>
+                    <div class="contract-body">
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Record permanent retirement entries (called only by Registry)</li>
+                            <li>Track global CO₂ tons retired across all users</li>
+                            <li>Provide query access to retirement records by owner or ID</li>
+                            <li>Maintain immutable audit trail</li>
+                        </ul>
+                        <h4>Security Model</h4>
+                        <ul>
+                            <li><strong>Caller Validation:</strong> Only accepts calls from the registered registry contract</li>
+                            <li><strong>Immutability:</strong> Once recorded, retirements cannot be reversed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Inter-Contract Communication</h2>
+                <p>When a user retires credits, the Registry contract atomically deducts the balance and calls the RetirementManager to create a permanent record. This cross-contract design ensures:</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>🔗 Atomic Operations</strong>
+                        <p>Balance deduction and retirement recording happen in one transaction — if either fails, both revert.</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>🛡️ Trust Boundary</strong>
+                        <p>RetirementManager only accepts calls from the Registry, preventing unauthorized retirement records.</p>
+                    </div>
+                </div>
+
+                <h2>Data Types</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>types.rs — CreditInfo</span></div>
+                    <pre><code>#[contracttype]
+#[derive(Clone, Debug)]
+pub struct CreditInfo {
+    pub id: u64,           // Unique credit batch ID
+    pub issuer: Address,   // Address of the authorized issuer
+    pub project: String,   // Project name (e.g., "Amazon Reforestation")
+    pub amount: i128,      // Total credits issued in this batch
+    pub retired: i128,     // Total credits retired from this batch
+    pub vintage: u32,      // Vintage year (e.g., 2024)
+    pub method: String,    // Methodology (e.g., "VCS", "Gold Standard")
+    pub active: bool,      // Whether the credit batch is active
+}</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header"><span>types.rs — RetirementRecord</span></div>
+                    <pre><code>#[contracttype]
+#[derive(Clone, Debug)]
+pub struct RetirementRecord {
+    pub id: u64,           // Unique retirement record ID
+    pub credit_id: u64,    // Reference to the credit batch
+    pub owner: Address,    // Who retired the credits
+    pub amount: i128,      // Amount of tCO₂ retired
+    pub project: String,   // Project name
+    pub vintage: u32,      // Vintage year
+    pub timestamp: u64,    // Block timestamp of retirement
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- ═══════ API REFERENCE ═══════ -->
+            <section id="api-reference" class="doc-section">
+                <h1>📡 API Reference</h1>
+                <p class="section-intro">Complete reference for all smart contract functions and their parameters.</p>
+
+                <h2>CarbonCreditRegistry Functions</h2>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">initialize(admin, retire_ctr)</code>
+                        <span class="badge badge-red">Admin (Once)</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Set admin and link the retirement manager contract. Can only be called once.</p>
+                        <div class="params-table">
+                            <table>
+                                <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>admin</code></td><td><code>Address</code></td><td>Admin address (requires auth)</td></tr>
+                                    <tr><td><code>retire_ctr</code></td><td><code>Address</code></td><td>RetirementManager contract address</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Returns:</strong> <code>Result&lt;(), RegistryError&gt;</code></p>
+                        <p><strong>Errors:</strong> <code>AlreadyInit</code> if already initialized</p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">add_issuer(issuer)</code>
+                        <span class="badge badge-red">Admin Only</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Authorize an address to issue carbon credits.</p>
+                        <div class="params-table">
+                            <table>
+                                <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>issuer</code></td><td><code>Address</code></td><td>Address to authorize as issuer</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Returns:</strong> <code>Result&lt;(), RegistryError&gt;</code></p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">remove_issuer(issuer)</code>
+                        <span class="badge badge-red">Admin Only</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Revoke issuer authorization from an address.</p>
+                        <div class="params-table">
+                            <table>
+                                <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>issuer</code></td><td><code>Address</code></td><td>Address to remove from issuers</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Returns:</strong> <code>Result&lt;(), RegistryError&gt;</code></p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">issue_credits(issuer, project, amount, vintage, method)</code>
+                        <span class="badge badge-yellow">Authorized Issuer</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Mint a new batch of carbon credits for a verified project.</p>
+                        <div class="params-table">
+                            <table>
+                                <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>issuer</code></td><td><code>Address</code></td><td>Authorized issuer address (requires auth)</td></tr>
+                                    <tr><td><code>project</code></td><td><code>String</code></td><td>Project name (e.g., "Amazon Reforestation")</td></tr>
+                                    <tr><td><code>amount</code></td><td><code>i128</code></td><td>Number of credits to issue (must be &gt; 0)</td></tr>
+                                    <tr><td><code>vintage</code></td><td><code>u32</code></td><td>Vintage year</td></tr>
+                                    <tr><td><code>method</code></td><td><code>String</code></td><td>Methodology standard (e.g., "VCS")</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Returns:</strong> <code>Result&lt;u64, RegistryError&gt;</code> — The new credit_id</p>
+                        <p><strong>Errors:</strong> <code>BadAmount</code>, <code>NotIssuer</code>, <code>NotInit</code></p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">transfer(from, to, credit_id, amount)</code>
+                        <span class="badge badge-green">Credit Owner</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Transfer credits from one address to another.</p>
+                        <div class="params-table">
+                            <table>
+                                <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>from</code></td><td><code>Address</code></td><td>Sender address (requires auth)</td></tr>
+                                    <tr><td><code>to</code></td><td><code>Address</code></td><td>Recipient address</td></tr>
+                                    <tr><td><code>credit_id</code></td><td><code>u64</code></td><td>Credit batch ID</td></tr>
+                                    <tr><td><code>amount</code></td><td><code>i128</code></td><td>Amount to transfer (must be &gt; 0)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Returns:</strong> <code>Result&lt;(), RegistryError&gt;</code></p>
+                        <p><strong>Errors:</strong> <code>BadAmount</code>, <code>BadCredit</code>, <code>LowBal</code>, <code>Overflow</code></p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">retire(owner, credit_id, amount)</code>
+                        <span class="badge badge-green">Credit Owner</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Retire credits permanently. Burns from owner's balance and records via cross-contract call to RetirementManager.</p>
+                        <div class="params-table">
+                            <table>
+                                <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+                                <tbody>
+                                    <tr><td><code>owner</code></td><td><code>Address</code></td><td>Credit owner (requires auth)</td></tr>
+                                    <tr><td><code>credit_id</code></td><td><code>u64</code></td><td>Credit batch ID</td></tr>
+                                    <tr><td><code>amount</code></td><td><code>i128</code></td><td>Amount to retire (must be &gt; 0)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Returns:</strong> <code>Result&lt;u64, RegistryError&gt;</code> — The retirement_id</p>
+                        <p><strong>Errors:</strong> <code>BadAmount</code>, <code>BadCredit</code>, <code>LowBal</code>, <code>Overflow</code></p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">get_credit(credit_id)</code>
+                        <span class="badge badge-gray">Public</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Get credit batch info by ID.</p>
+                        <p><strong>Returns:</strong> <code>Result&lt;CreditInfo, RegistryError&gt;</code></p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">get_balance(owner, credit_id)</code>
+                        <span class="badge badge-gray">Public</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Get the balance of a specific credit for an owner.</p>
+                        <p><strong>Returns:</strong> <code>i128</code></p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">upgrade(new_wasm)</code>
+                        <span class="badge badge-red">Admin Only</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Admin-only WASM upgrade. Updates the contract bytecode.</p>
+                        <p><strong>Parameter:</strong> <code>new_wasm: BytesN&lt;32&gt;</code> — New WASM hash</p>
+                    </div>
+                </div>
+
+                <h2>RetirementManager Functions</h2>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">initialize(admin, registry_ctr)</code>
+                        <span class="badge badge-red">Admin (Once)</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Set admin and link the registry contract address.</p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">record(credit_id, owner, amount, project, vintage)</code>
+                        <span class="badge badge-blue">Registry Only</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Record a retirement. Only callable by the registered registry contract.</p>
+                        <p><strong>Returns:</strong> <code>u64</code> — Retirement record ID</p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">get_record(retirement_id)</code>
+                        <span class="badge badge-gray">Public</span>
+                    </div>
+                    <div class="api-body">
+                        <p>View a specific retirement record by ID.</p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">get_total()</code>
+                        <span class="badge badge-gray">Public</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Get the global total of CO₂ tons retired across all users.</p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">get_by_owner(owner)</code>
+                        <span class="badge badge-gray">Public</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Get all retirement records for a specific address.</p>
+                    </div>
+                </div>
+
+                <div class="api-card">
+                    <div class="api-header">
+                        <code class="api-fn">get_count()</code>
+                        <span class="badge badge-gray">Public</span>
+                    </div>
+                    <div class="api-body">
+                        <p>Get the total number of retirement records.</p>
+                    </div>
+                </div>
+
+                <h2>Error Codes</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead>
+                            <tr><th>Error</th><th>Code</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>AlreadyInit</code></td><td>1</td><td>Contract already initialized</td></tr>
+                            <tr><td><code>NotInit</code></td><td>2</td><td>Contract not yet initialized</td></tr>
+                            <tr><td><code>NotAdmin</code></td><td>3</td><td>Caller is not the admin</td></tr>
+                            <tr><td><code>NotIssuer</code></td><td>4</td><td>Caller is not an authorized issuer</td></tr>
+                            <tr><td><code>BadAmount</code></td><td>5</td><td>Amount must be greater than 0</td></tr>
+                            <tr><td><code>BadCredit</code></td><td>6</td><td>Credit ID does not exist</td></tr>
+                            <tr><td><code>LowBal</code></td><td>7</td><td>Insufficient balance for operation</td></tr>
+                            <tr><td><code>Overflow</code></td><td>8</td><td>Arithmetic overflow detected</td></tr>
+                            <tr><td><code>NotRegistry</code></td><td>9</td><td>Caller is not the registry contract (RetirementManager)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ═══════ SECURITY ═══════ -->
+            <section id="security" class="doc-section">
+                <h1>🔒 Security</h1>
+                <p class="section-intro">Security-first design across smart contracts, frontend, and operations.</p>
+
+                <h2>Smart Contract Security</h2>
+                <div class="security-grid">
+                    <div class="security-card">
+                        <div class="security-icon">🛡️</div>
+                        <h4>Access Control</h4>
+                        <p>All privileged functions gated by <code>Address.require_auth()</code> plus stored admin/issuer checks. Separate admin and issuer roles enforce principle of least privilege.</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">🔐</div>
+                        <h4>Double-Spend Prevention</h4>
+                        <p>Credits are atomically deducted before retirement — balance can never go negative. Checked arithmetic prevents overflow exploits.</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">🔗</div>
+                        <h4>Cross-Contract Trust</h4>
+                        <p>RetirementManager only accepts calls from the registered registry contract address, preventing unauthorized retirement records.</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">✅</div>
+                        <h4>Input Validation</h4>
+                        <p>All amounts must be > 0, credit IDs must exist, addresses must be valid. Comprehensive validation at every entry point.</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">⬆️</div>
+                        <h4>Upgrade Safety</h4>
+                        <p>Only admin can upgrade contracts. WASM hash is validated by the Soroban host environment.</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">📦</div>
+                        <h4>No Unbounded Growth</h4>
+                        <p>Storage keys are structured to prevent DoS via unbounded data. Each key has a defined scope and lifetime.</p>
+                    </div>
+                </div>
+
+                <h2>Frontend Security</h2>
+                <div class="checklist">
+                    <div class="check-item"><span class="check">✅</span> <strong>No Private Keys</strong> — All signing done via Freighter wallet extension</div>
+                    <div class="check-item"><span class="check">✅</span> <strong>Environment Variables</strong> — Sensitive values in <code>.env.local</code>, never committed</div>
+                    <div class="check-item"><span class="check">✅</span> <strong>Input Sanitization</strong> — All user inputs validated before contract calls</div>
+                    <div class="check-item"><span class="check">✅</span> <strong>Error Boundaries</strong> — Graceful error handling prevents information leakage</div>
+                    <div class="check-item"><span class="check">✅</span> <strong>HTTPS Required</strong> — Wallet extensions require secure context</div>
+                </div>
+
+                <h2>Operational Security</h2>
+                <div class="checklist">
+                    <div class="check-item"><span class="check">✅</span> <strong>Immutable Retirement</strong> — Once retired, credits cannot be un-retired</div>
+                    <div class="check-item"><span class="check">✅</span> <strong>Audit Trail</strong> — All state changes emit events, queryable via Soroban RPC</div>
+                    <div class="check-item"><span class="check">✅</span> <strong>Upgrade Mechanism</strong> — Contracts can be patched without redeployment</div>
+                </div>
+            </section>
+
+            <!-- ═══════ FRONTEND ═══════ -->
+            <section id="frontend" class="doc-section">
+                <h1>💻 Frontend Guide</h1>
+                <p class="section-intro">The frontend is built with Next.js 15 using the App Router, TypeScript, and a feature-based module architecture.</p>
+
+                <h2>Architecture Pattern</h2>
+                <div class="callout callout-info">
+                    <strong>Feature-Based Module Architecture:</strong> Each feature (credits, retirement, activity, transactions, analytics) is self-contained with its own components, hooks, and services. No blockchain logic exists directly in UI components — everything goes through the service layer.
+                </div>
+
+                <h2>State Management</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>🔄 Server State (React Query)</strong>
+                        <p>All blockchain data fetching uses TanStack React Query v5 for automatic caching, refetching, and background updates. Credit balances, activity events, and transaction status are all managed this way.</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>📦 Client State (Zustand)</strong>
+                        <p>Local UI state like wallet connection, portfolio data, transaction queue, event feed, settings, toast notifications, and feedback data use Zustand stores with optional localStorage persistence.</p>
+                    </div>
+                </div>
+
+                <h2>Zustand Stores</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead>
+                            <tr><th>Store</th><th>Purpose</th><th>Persistence</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>walletStore</code></td><td>Wallet connection state, public key, network</td><td>No</td></tr>
+                            <tr><td><code>portfolioStore</code></td><td>Credit holdings, balances, allocations</td><td>No</td></tr>
+                            <tr><td><code>transactionStore</code></td><td>Transaction queue, lifecycle status</td><td>No</td></tr>
+                            <tr><td><code>eventStore</code></td><td>Real-time event feed from Soroban RPC</td><td>No</td></tr>
+                            <tr><td><code>settingsStore</code></td><td>User preferences, network config</td><td>localStorage</td></tr>
+                            <tr><td><code>toastStore</code></td><td>Toast notification queue</td><td>No</td></tr>
+                            <tr><td><code>feedbackStore</code></td><td>User feedback and ratings</td><td>localStorage</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Service Layer</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>Service Architecture</span></div>
+                    <pre><code>src/lib/
+├── stellar/           # Soroban RPC client, transaction building
+│   ├── client.ts      # SorobanRpc.Server initialization
+│   ├── credits.ts     # issue_credits, transfer, retire
+│   └── events.ts      # Event polling and parsing
+├── wallet/
+│   ├── freighter.ts   # Freighter API integration
+│   └── provider.tsx   # WalletProvider context
+└── utils/
+    ├── analytics.ts   # Page view, event, error tracking
+    └── format.ts      # Address truncation, number formatting</code></pre>
+                </div>
+
+                <h2>Wallet Integration</h2>
+                <p>CarbonTrack integrates with the <strong>Freighter Wallet</strong> browser extension, plus a built-in <strong>1-Click Demo Mode</strong> for instant previewing without a wallet.</p>
+                <div class="callout callout-info">
+                    <strong>Demo Mode:</strong> Generates a funded Stellar testnet keypair so users can immediately test issuing, transferring, and retiring credits without installing Freighter.
+                </div>
+            </section>
+
+            <!-- ═══════ COMPONENTS ═══════ -->
+            <section id="components" class="doc-section">
+                <h1>🧩 Component Library</h1>
+                <p class="section-intro">Reusable UI components built with shadcn/ui patterns and Tailwind CSS.</p>
+
+                <h2>Layout Components</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead><tr><th>Component</th><th>Location</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>AppShell</code></td><td><code>components/layout/</code></td><td>Main app layout with Header, Sidebar, and MobileBottomNav</td></tr>
+                            <tr><td><code>Header</code></td><td><code>components/layout/</code></td><td>Top bar with mobile hamburger menu trigger</td></tr>
+                            <tr><td><code>Sidebar</code></td><td><code>components/layout/</code></td><td>Navigation sidebar (desktop) / overlay drawer (mobile)</td></tr>
+                            <tr><td><code>MobileBottomNav</code></td><td><code>components/layout/</code></td><td>Fixed bottom navigation bar for mobile devices</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>UI Primitives</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead><tr><th>Component</th><th>Location</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>Button</code></td><td><code>components/ui/</code></td><td>Multi-variant button with CVA styling</td></tr>
+                            <tr><td><code>Card</code></td><td><code>components/ui/</code></td><td>Glassmorphic card container</td></tr>
+                            <tr><td><code>Input</code></td><td><code>components/ui/</code></td><td>Styled form input</td></tr>
+                            <tr><td><code>Skeleton</code></td><td><code>components/ui/</code></td><td>Loading skeleton placeholder</td></tr>
+                            <tr><td><code>Toast</code></td><td><code>components/ui/</code></td><td>Animated notification toasts</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Shared Components</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead><tr><th>Component</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>ErrorBoundary</code></td><td>Global React error boundary with styled fallback UI and retry</td></tr>
+                            <tr><td><code>FeedbackWidget</code></td><td>Floating feedback button with star ratings and comment form</td></tr>
+                            <tr><td><code>ClientProviders</code></td><td>Client-side provider wrapper for toast and feedback widgets</td></tr>
+                            <tr><td><code>StatCard</code></td><td>Reusable statistics display card with icon and trend</td></tr>
+                            <tr><td><code>LoadingSpinner</code></td><td>Animated loading indicator</td></tr>
+                            <tr><td><code>WalletButton</code></td><td>Connect/disconnect wallet modal with demo mode option</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Feature Modules</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead><tr><th>Module</th><th>Path</th><th>Components</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>credits</code></td><td><code>features/credits/</code></td><td>IssueCreditsForm, TransferCreditsForm</td></tr>
+                            <tr><td><code>retirement</code></td><td><code>features/retirement/</code></td><td>RetireCreditsForm, RetirementHistory</td></tr>
+                            <tr><td><code>activity</code></td><td><code>features/activity/</code></td><td>ActivityFeed, EventCard</td></tr>
+                            <tr><td><code>transactions</code></td><td><code>features/transactions/</code></td><td>TransactionCard, TransactionList</td></tr>
+                            <tr><td><code>analytics</code></td><td><code>features/analytics/</code></td><td>IssuanceTrendChart, MethodologyBreakdown</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ═══════ DEPLOYMENT ═══════ -->
+            <section id="deployment" class="doc-section">
+                <h1>📦 Deployment</h1>
+                <p class="section-intro">Complete guide for deploying smart contracts and the frontend application.</p>
+
+                <h2>Smart Contract Deployment (Testnet)</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>One-Command Deployment</span></div>
+                    <pre><code># Generate funded testnet identity
+stellar keys generate deployer --network testnet --fund
+
+# Deploy both contracts + initialize + register issuer
+./scripts/deploy-testnet.sh</code></pre>
+                </div>
+
+                <p>The deployment script performs these steps automatically:</p>
+                <ol>
+                    <li>Build WASM binaries for both contracts</li>
+                    <li>Deploy <code>retirement-manager</code> to testnet</li>
+                    <li>Deploy <code>carbon-credit-registry</code> to testnet</li>
+                    <li>Initialize both contracts with cross-references</li>
+                    <li>Register the deployer as an initial authorized issuer</li>
+                </ol>
+
+                <h2>Contract Upgrade</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>Upgrade Scripts</span></div>
+                    <pre><code>./scripts/upgrade-contracts.sh carbon-credit-registry &lt;CONTRACT_ID&gt;
+./scripts/upgrade-contracts.sh retirement-manager &lt;CONTRACT_ID&gt;</code></pre>
+                </div>
+
+                <h2>Frontend Deployment (Netlify)</h2>
+                <p>The frontend is deployed automatically via Netlify with the following configuration:</p>
+                <div class="code-block">
+                    <div class="code-header"><span>netlify.toml</span></div>
+                    <pre><code>[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <strong>Live URL:</strong> <a href="https://carbon-credit-registry.netlify.app" target="_blank">https://carbon-credit-registry.netlify.app</a>
+                </div>
+
+                <h2>Local Development</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>Docker-based local deployment</span></div>
+                    <pre><code># Requires Docker
+./scripts/deploy-local.sh</code></pre>
+                </div>
+            </section>
+
+            <!-- ═══════ TESTING ═══════ -->
+            <section id="testing" class="doc-section">
+                <h1>🧪 Testing</h1>
+                <p class="section-intro">Comprehensive test suites for both smart contracts and frontend components.</p>
+
+                <h2>Smart Contract Tests</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>Run Contract Tests</span></div>
+                    <pre><code>cd contracts
+cargo test --workspace</code></pre>
+                </div>
+
+                <h3>Test Coverage</h3>
+                <div class="checklist">
+                    <div class="check-item"><span class="check">✅</span> Contract initialization (single-call enforcement)</div>
+                    <div class="check-item"><span class="check">✅</span> Credit issuance + balance verification</div>
+                    <div class="check-item"><span class="check">✅</span> Credit transfer between accounts</div>
+                    <div class="check-item"><span class="check">✅</span> Unauthorized access rejection (admin, issuer roles)</div>
+                    <div class="check-item"><span class="check">✅</span> Retirement recording + global CO₂ counter update</div>
+                    <div class="check-item"><span class="check">✅</span> Cross-contract caller validation</div>
+                    <div class="check-item"><span class="check">✅</span> Insufficient balance rejection</div>
+                    <div class="check-item"><span class="check">✅</span> Invalid amount (zero/negative) rejection</div>
+                </div>
+
+                <h2>Frontend Tests</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>Run Frontend Tests</span></div>
+                    <pre><code>cd frontend
+npm run test           # Watch mode
+npm run test -- --run  # Single run</code></pre>
+                </div>
+
+                <h3>Test Coverage</h3>
+                <div class="checklist">
+                    <div class="check-item"><span class="check">✅</span> Wallet button connect/disconnect rendering</div>
+                    <div class="check-item"><span class="check">✅</span> Credit issuance form validation</div>
+                    <div class="check-item"><span class="check">✅</span> Transaction card status display</div>
+                    <div class="check-item"><span class="check">✅</span> Integration: credit issuance flow</div>
+                </div>
+            </section>
+
+            <!-- ═══════ CI/CD ═══════ -->
+            <section id="cicd" class="doc-section">
+                <h1>🔄 CI/CD Pipeline</h1>
+                <p class="section-intro">Automated testing and deployment via GitHub Actions.</p>
+
+                <h2>PR Checks (<code>ci.yml</code>)</h2>
+                <p>On every pull request, the following checks run automatically:</p>
+
+                <div class="pipeline-flow">
+                    <div class="pipeline-stage">
+                        <h4>🦀 Contracts Pipeline</h4>
+                        <div class="pipeline-steps">
+                            <div class="pipeline-step">cargo fmt --check</div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">cargo clippy</div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">cargo test</div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">WASM build</div>
+                        </div>
+                    </div>
+                    <div class="pipeline-stage">
+                        <h4>💻 Frontend Pipeline</h4>
+                        <div class="pipeline-steps">
+                            <div class="pipeline-step">npm ci</div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">npm run lint</div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">npm run test</div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">npm run build</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Deployment (<code>deploy.yml</code>)</h2>
+                <p>On merge to <code>main</code>:</p>
+                <ol>
+                    <li>Build contract WASMs</li>
+                    <li>Build frontend application</li>
+                    <li>Deploy to Netlify (production)</li>
+                </ol>
+            </section>
+
+            <!-- ═══════ ENV VARS ═══════ -->
+            <section id="env-vars" class="doc-section">
+                <h1>🔐 Configuration</h1>
+                <p class="section-intro">Environment variables and configuration reference.</p>
+
+                <h2>Environment Variables</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead>
+                            <tr><th>Variable</th><th>Description</th><th>Default</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>NEXT_PUBLIC_STELLAR_NETWORK</code></td><td>Network name</td><td><code>testnet</code></td></tr>
+                            <tr><td><code>NEXT_PUBLIC_SOROBAN_RPC_URL</code></td><td>Soroban RPC endpoint</td><td><code>https://soroban-testnet.stellar.org</code></td></tr>
+                            <tr><td><code>NEXT_PUBLIC_NETWORK_PASSPHRASE</code></td><td>Network passphrase</td><td><code>Test SDF Network ; September 2015</code></td></tr>
+                            <tr><td><code>NEXT_PUBLIC_REGISTRY_CONTRACT_ID</code></td><td>Registry contract address</td><td>—</td></tr>
+                            <tr><td><code>NEXT_PUBLIC_RETIREMENT_CONTRACT_ID</code></td><td>Retirement contract address</td><td>—</td></tr>
+                            <tr><td><code>NEXT_PUBLIC_STELLAR_EXPLORER_URL</code></td><td>Block explorer URL</td><td><code>https://stellar.expert/explorer/testnet</code></td></tr>
+                            <tr><td><code>NEXT_PUBLIC_EVENT_POLL_INTERVAL_MS</code></td><td>Event polling interval</td><td><code>5000</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Setup</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>.env.local setup</span></div>
+                    <pre><code># Copy the example template
+cp .env.example frontend/.env.local
+
+# Required: Add your deployed contract addresses
+NEXT_PUBLIC_REGISTRY_CONTRACT_ID=CXXX...
+NEXT_PUBLIC_RETIREMENT_CONTRACT_ID=CXXX...</code></pre>
+                </div>
+
+                <div class="callout callout-warning">
+                    <strong>Never commit <code>.env.local</code> to git.</strong> The <code>.gitignore</code> is pre-configured to exclude it.
+                </div>
+            </section>
+
+            <!-- ═══════ CONTRIBUTING ═══════ -->
+            <section id="contributing" class="doc-section">
+                <h1>🤝 Contributing</h1>
+                <p class="section-intro">We welcome contributions! Here's how to get started.</p>
+
+                <h2>Development Workflow</h2>
+                <div class="flow-diagram">
+                    <div class="flow-step">
+                        <div class="flow-num">1</div>
+                        <div class="flow-content">
+                            <strong>Fork & Clone</strong>
+                            <p>Fork the repository and clone your fork locally</p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">2</div>
+                        <div class="flow-content">
+                            <strong>Create Branch</strong>
+                            <p><code>git checkout -b feature/my-feature</code></p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">3</div>
+                        <div class="flow-content">
+                            <strong>Make Changes</strong>
+                            <p>Implement your feature or fix</p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">4</div>
+                        <div class="flow-content">
+                            <strong>Test</strong>
+                            <p>Run <code>cargo test</code> and <code>npm run test</code></p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">5</div>
+                        <div class="flow-content">
+                            <strong>Commit</strong>
+                            <p><code>git commit -m 'feat: add my feature'</code></p>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-step">
+                        <div class="flow-num">6</div>
+                        <div class="flow-content">
+                            <strong>Open PR</strong>
+                            <p>Push and open a Pull Request against <code>main</code></p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Commit Convention</h2>
+                <div class="code-block">
+                    <div class="code-header"><span>Commit Message Format</span></div>
+                    <pre><code>feat: add new feature
+fix: resolve bug
+docs: update documentation
+test: add test coverage
+chore: maintenance tasks
+refactor: code restructuring</code></pre>
+                </div>
+            </section>
+
+            <!-- ═══════ LINKS ═══════ -->
+            <section id="links" class="doc-section">
+                <h1>🔗 Links & Resources</h1>
+                <p class="section-intro">Quick access to all project deliverables and external resources.</p>
+
+                <h2>Project Links</h2>
+                <div class="links-grid">
+                    <a href="https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry" target="_blank" class="link-card">
+                        <div class="link-icon">📦</div>
+                        <h4>GitHub Repository</h4>
+                        <p>Full source code with smart contracts & Next.js frontend</p>
+                    </a>
+                    <a href="https://carbon-credit-registry.netlify.app" target="_blank" class="link-card">
+                        <div class="link-icon">🌐</div>
+                        <h4>Live Application</h4>
+                        <p>Deployed Next.js application on Netlify</p>
+                    </a>
+                    <a href="https://youtu.be/tyFBRt-QJQs" target="_blank" class="link-card">
+                        <div class="link-icon">📹</div>
+                        <h4>Demo Video</h4>
+                        <p>1–2 minute project walkthrough on YouTube</p>
+                    </a>
+                    <a href="https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/blob/main/CarbonTrack_Presentation.pptx" target="_blank" class="link-card">
+                        <div class="link-icon">📊</div>
+                        <h4>Pitch Deck (PPT)</h4>
+                        <p>Project presentation & architecture overview</p>
+                    </a>
+                    <a href="https://forms.gle/rF7KsMAaD7SQzQan9" target="_blank" class="link-card">
+                        <div class="link-icon">📝</div>
+                        <h4>Feedback Form</h4>
+                        <p>Community feedback, reviews, and feature requests</p>
+                    </a>
+                    <a href="https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing" target="_blank" class="link-card">
+                        <div class="link-icon">📈</div>
+                        <h4>Survey Responses</h4>
+                        <p>Live spreadsheet with all user responses</p>
+                    </a>
+                </div>
+
+                <h2>External Resources</h2>
+                <div class="links-grid">
+                    <a href="https://stellar.org" target="_blank" class="link-card">
+                        <div class="link-icon">⭐</div>
+                        <h4>Stellar</h4>
+                        <p>Blockchain platform</p>
+                    </a>
+                    <a href="https://soroban.stellar.org" target="_blank" class="link-card">
+                        <div class="link-icon">🔧</div>
+                        <h4>Soroban</h4>
+                        <p>Smart contract runtime</p>
+                    </a>
+                    <a href="https://freighter.app" target="_blank" class="link-card">
+                        <div class="link-icon">🔑</div>
+                        <h4>Freighter Wallet</h4>
+                        <p>Stellar wallet extension</p>
+                    </a>
+                    <a href="https://ui.shadcn.com" target="_blank" class="link-card">
+                        <div class="link-icon">🎨</div>
+                        <h4>shadcn/ui</h4>
+                        <p>UI component library</p>
+                    </a>
+                </div>
+
+                <h2>Contract Addresses (Stellar Testnet)</h2>
+                <div class="feature-table">
+                    <table>
+                        <thead>
+                            <tr><th>Contract</th><th>Contract ID</th><th>Explorer</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CarbonCreditRegistry</strong></td>
+                                <td><code>CC3REGISTRY572KC5W2G...C0</code></td>
+                                <td><a href="https://stellar.expert/explorer/testnet" target="_blank">View on Stellar Expert ↗</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>RetirementManager</strong></td>
+                                <td><code>CB2RETIREMENT572KC5W...C0</code></td>
+                                <td><a href="https://stellar.expert/explorer/testnet" target="_blank">View on Stellar Expert ↗</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="footer-section">
+                    <p>Built with 💚 for a sustainable future on <a href="https://stellar.org" target="_blank">Stellar</a></p>
+                    <p>Licensed under the <a href="https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/blob/main/LICENSE" target="_blank">MIT License</a></p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

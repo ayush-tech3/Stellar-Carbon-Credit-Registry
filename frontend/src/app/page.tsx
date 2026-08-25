@@ -43,6 +43,11 @@ export default function LandingPage() {
                     Launch App <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
+                <Link href="/docs/" target="_blank">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400">
+                    📖 Read Docs
+                  </Button>
+                </Link>
                 <a href="https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry" target="_blank" rel="noreferrer">
                   <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 border-white/20 bg-white/5 hover:bg-white/10">
                     View GitHub
@@ -139,8 +144,22 @@ export default function LandingPage() {
         </section>
       </main>
       
-      <footer className="border-t border-white/10 py-8 text-center text-gray-500 text-sm relative z-10 bg-black/40">
-        <p>© 2026 CarbonTrack. Built for a sustainable future on Stellar.</p>
+      <footer className="border-t border-white/10 py-8 text-center text-gray-400 text-sm relative z-10 bg-black/40">
+        <div className="flex justify-center gap-6 mb-4">
+          <Link href="/docs/" target="_blank" className="hover:text-emerald-400 transition-colors">
+            Documentation
+          </Link>
+          <a href="https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">
+            GitHub
+          </a>
+          <a href="https://youtu.be/tyFBRt-QJQs" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">
+            Demo Video
+          </a>
+          <a href="https://forms.gle/rF7KsMAaD7SQzQan9" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">
+            Feedback Form
+          </a>
+        </div>
+        <p className="text-gray-500">© 2026 CarbonTrack. Built for a sustainable future on Stellar.</p>
       </footer>
     </div>
   );

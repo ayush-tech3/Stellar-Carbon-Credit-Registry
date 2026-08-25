@@ -32,7 +32,15 @@ export function Header() {
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/docs/"
+              target="_blank"
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all flex items-center gap-1.5"
+            >
+              <span>📖</span>
+              <span>Docs</span>
+            </Link>
             <WalletButton />
           </div>
         </div>

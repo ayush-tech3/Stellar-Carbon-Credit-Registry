@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Activity, History, BarChart3, Settings, Monitor } from "lucide-react";
+import { LayoutDashboard, Activity, History, BarChart3, Settings, Monitor, BookOpen } from "lucide-react";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -14,6 +14,7 @@ export function Sidebar() {
     { name: 'Analytics', href: '/analytics', icon: BarChart3 },
     { name: 'Monitoring', href: '/monitoring', icon: Monitor },
     { name: 'Settings', href: '/settings', icon: Settings },
+    { name: 'Documentation', href: '/docs/', icon: BookOpen, isExternal: true },
   ];
 
   return (
@@ -27,6 +28,7 @@ export function Sidebar() {
             <Link 
               key={link.name} 
               href={link.href}
+              target={link.isExternal ? "_blank" : undefined}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                 isActive 
                   ? 'bg-emerald-500/10 text-emerald-400 border-l-2 border-emerald-500' 
@@ -60,6 +62,7 @@ export function MobileSidebar({ isOpen, onClose }: { isOpen: boolean; onClose: (
     { name: 'Analytics', href: '/analytics', icon: BarChart3 },
     { name: 'Monitoring', href: '/monitoring', icon: Monitor },
     { name: 'Settings', href: '/settings', icon: Settings },
+    { name: 'Documentation', href: '/docs/', icon: BookOpen, isExternal: true },
   ];
 
   if (!isOpen) return null;
@@ -87,6 +90,7 @@ export function MobileSidebar({ isOpen, onClose }: { isOpen: boolean; onClose: (
               <Link 
                 key={link.name} 
                 href={link.href}
+                target={link.isExternal ? "_blank" : undefined}
                 onClick={onClose}
                 className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-all ${
                   isActive 

@@ -40,6 +40,7 @@ declare module 'lucide-react' {
   export const LineChart: any;
   export const MoreHorizontal: any;
   export const FileText: any;
+  export const BookOpen: any;
   export const ArrowRight: any;
   export const ShieldCheck: any;
   export const Globe: any;
