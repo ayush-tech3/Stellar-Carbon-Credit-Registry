@@ -54,10 +54,10 @@ const IconActivity = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
 );
 
+type DocTab = "overview" | "features" | "usage" | "setup" | "implementation" | "contracts" | "api" | "security";
+
 export default function DocsPage() {
-  const [activeTab, setActiveTab] = useState<
-    "overview" | "features" | "usage" | "setup" | "implementation" | "contracts" | "api" | "security"
-  >("overview");
+  const [activeTab, setActiveTab] = useState<DocTab>("overview");
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const copyToClipboard = (text: string, id: string) => {
@@ -66,7 +66,7 @@ export default function DocsPage() {
     setTimeout(() => setCopiedCode(null), 2000);
   };
 
-  const navItems = [
+  const navItems: { id: DocTab; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: "overview", label: "Overview & Problem", icon: IconBook },
     { id: "features", label: "Key Features", icon: IconSparkles },
     { id: "usage", label: "User & Usage Guide", icon: IconPlay },
@@ -95,7 +95,7 @@ export default function DocsPage() {
               return (
                 <button
                   key={item.id}
-                  onClick={() => setActiveTab(item.id as any)}
+                  onClick={() => setActiveTab(item.id)}
                   className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all text-left ${
                     isActive
                       ? "bg-emerald-500 text-black font-semibold shadow-lg shadow-emerald-500/20"

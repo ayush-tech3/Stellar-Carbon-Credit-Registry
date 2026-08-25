@@ -10,6 +10,7 @@ export default defineConfig({
     setupFiles: ['./src/__tests__/setup.ts'],
     alias: {
       '@': path.resolve(__dirname, './src')
-    }
+    },
+    pool: 'threads',
   }
 })
