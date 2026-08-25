@@ -5,3 +5,19 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Serve the documentation site as static files
+[[redirects]]
+  from = "/docs"
+  to = "/docs/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/docs/"
+  to = "/docs/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/docs/*"
+  to = "/docs/:splat"
+  status = 200
