@@ -88,7 +88,7 @@ export function RetireForm() {
         hash: txHash,
         status: "confirmed",
         method: "retire",
-        contractId: NETWORK_CONFIG.registryContractId || "CB2RETIREMENT572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        contractId: NETWORK_CONFIG.retirementContractId || "CBDL7CHTWLZDJ6GXPAXX5FL53WY2VL342XY622OIQ3NTVPU7HCSWHAMA",
         timestamp: Date.now(),
         retryCount: 0,
       });
@@ -99,7 +99,7 @@ export function RetireForm() {
         ledger: 5289200 + Math.floor(Math.random() * 500),
         timestamp: Math.floor(Date.now() / 1000),
         data: { creditId, amount: numAmount.toString(), beneficiary },
-        contractId: NETWORK_CONFIG.registryContractId || "CB2RETIREMENT572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        contractId: NETWORK_CONFIG.retirementContractId || "CBDL7CHTWLZDJ6GXPAXX5FL53WY2VL342XY622OIQ3NTVPU7HCSWHAMA",
         txHash,
       });
 

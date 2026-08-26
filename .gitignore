@@ -63,6 +63,8 @@ frontend/coverage/
 .nyc_output/
 
 # =========================
-# Vercel
+# Binaries & Downloads
 # =========================
-.vercel/
+*.exe
+*.tar.gz
+

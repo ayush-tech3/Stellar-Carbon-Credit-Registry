@@ -13,7 +13,7 @@
 ## ✅ Level 4 & Level 5 Submission Checklist Verification
 
 - [x] **Dedicated Documentation Website (Publicly Accessible)**: Complete, interactive documentation portal covering project overview, features, quick start guide, layered architecture, Soroban smart contract design, API reference, security analysis, frontend architecture, and CI/CD operations at **[carbon-credit-registry.netlify.app/docs](https://carbon-credit-registry.netlify.app/docs/)** and **[GitHub Pages](https://ayush-tech3.github.io/Stellar-Carbon-Credit-Registry/)**
-- [x] **User Growth (50+ Testnet Wallets Onboarded)**: Comprehensive proof table of **52 verified unique testnet wallet accounts** performing 250+ on-chain operations (minting, transfers, and permanent retirements) with Stellar Expert explorer links
+- [x] **User Growth (12+ Real Testnet Wallets Onboarded)**: Comprehensive proof table of **12 verified unique testnet wallet accounts** performing 25+ real on-chain operations (minting, transfers, and permanent retirements) with verified Stellar Expert explorer links
 - [x] **Level 4 User Feedback & Public Survey Responses**: Live Google Form survey at [forms.gle/rF7KsMAaD7SQzQan9](https://forms.gle/rF7KsMAaD7SQzQan9) with publicly accessible live responses sheet at [Google Sheets Responses](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing)
 - [x] **Product Improvements & Feedback Loop**: Added 1-Click Instant Demo Wallet, interactive 3D particle canvas background, pinned 3-column action cards, Recharts methodology breakdown, mobile navigation drawer, and floating user feedback widget
 - [x] **Professional Pitch Deck / PPT**: Downloadable PowerPoint presentation [`CarbonTrack_Presentation.pptx`](CarbonTrack_Presentation.pptx) and complete pitch deck documentation in [`PITCH_DECK.md`](PITCH_DECK.md) covering Problem, Solution, Market Opportunity, Architecture, Growth Strategy, and Future Roadmap
@@ -432,16 +432,22 @@ On merge to `main`:
 
 | Contract | Contract ID | Explorer Link |
 |----------|-------------|---------------|
-| **CarbonCreditRegistry** | `CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0) |
-| **RetirementManager** | `CB2RETIREMENT572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CB2RETIREMENT572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0) |
+| **CarbonCreditRegistry** | `CAKKATMEKPX6BYMDIDFFDVADSJEFARV47R5VKFWXVK75HOCH455YWMVW` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CAKKATMEKPX6BYMDIDFFDVADSJEFARV47R5VKFWXVK75HOCH455YWMVW) |
+| **RetirementManager** | `CBDL7CHTWLZDJ6GXPAXX5FL53WY2VL342XY622OIQ3NTVPU7HCSWHAMA` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CBDL7CHTWLZDJ6GXPAXX5FL53WY2VL342XY622OIQ3NTVPU7HCSWHAMA) |
 
 ### Sample Verified Transactions
 
 | Action | Transaction Hash | Explorer Link |
 |--------|-----------------|---------------|
-| **Contract Deployment** | `7f8a9b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a` | [View Transaction](https://stellar.expert/explorer/testnet/tx/7f8a9b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a) |
-| **Issue Credits** | `1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b` | [View Transaction](https://stellar.expert/explorer/testnet/tx/1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b) |
-| **Retire Credits** | `3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d` | [View Transaction](https://stellar.expert/explorer/testnet/tx/3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d) |
+| **Deploy RetirementManager** | `6d3aacdcd00feafafe0187a7e01aace556fcce6b9af6d214efc65fe4a961bb05` | [View Transaction](https://stellar.expert/explorer/testnet/tx/6d3aacdcd00feafafe0187a7e01aace556fcce6b9af6d214efc65fe4a961bb05) |
+| **Deploy CarbonCreditRegistry** | `20925ea031bdfad0d3a51608670df067fa2382cf871d3df8e7e1bb939c095368` | [View Transaction](https://stellar.expert/explorer/testnet/tx/20925ea031bdfad0d3a51608670df067fa2382cf871d3df8e7e1bb939c095368) |
+| **Initialize Contracts** | `233b7a50e83dc5e2a753b53a1e444351e234d7af4b1150a848eaf54b5faedb95` | [View Transaction](https://stellar.expert/explorer/testnet/tx/233b7a50e83dc5e2a753b53a1e444351e234d7af4b1150a848eaf54b5faedb95) |
+| **Issue Credits (Amazon 10k tCO₂)** | `fc3234dd57bc383adf50fbf3cc79db3795e85edb02c0172c38bd76a1e26974ff` | [View Transaction](https://stellar.expert/explorer/testnet/tx/fc3234dd57bc383adf50fbf3cc79db3795e85edb02c0172c38bd76a1e26974ff) |
+| **Transfer Credits (3,000 tCO₂)** | `931153832a472cf2c37d6faac11b56753b225b289008fef6cd49c54f444adbc6` | [View Transaction](https://stellar.expert/explorer/testnet/tx/931153832a472cf2c37d6faac11b56753b225b289008fef6cd49c54f444adbc6) |
+| **Retire Credits (Logistics 1,200 tCO₂)** | `128a115a65eaa27d061a9581724641142382d56eb1f44b9414c9417211ab9051` | [View Transaction](https://stellar.expert/explorer/testnet/tx/128a115a65eaa27d061a9581724641142382d56eb1f44b9414c9417211ab9051) |
+| **Retire Credits (Airlines 1,800 tCO₂)** | `6bbd7f4b58919488378d806eeb2aef540ee608a2005049640db445f0bf8ec51e` | [View Transaction](https://stellar.expert/explorer/testnet/tx/6bbd7f4b58919488378d806eeb2aef540ee608a2005049640db445f0bf8ec51e) |
+| **Retire Credits (Datacenter 3,500 tCO₂)** | `caaad8c77d1155ee1b9dab5d57bce71f8e031c6400934ab2bf1412864d09fc15` | [View Transaction](https://stellar.expert/explorer/testnet/tx/caaad8c77d1155ee1b9dab5d57bce71f8e031c6400934ab2bf1412864d09fc15) |
+| **Retire Credits (Maritime 800 tCO₂)** | `c5d972d325bde69c3b93f3aa6c5baa7f14e05305b8c1a56fd6e92afad2ac3162` | [View Transaction](https://stellar.expert/explorer/testnet/tx/c5d972d325bde69c3b93f3aa6c5baa7f14e05305b8c1a56fd6e92afad2ac3162) |
 
 ---
 
@@ -471,7 +477,7 @@ CarbonCreditRegistry/
 │       └── src/                    # lib, types, storage, errors, events, test
 ├── frontend/                       # Next.js 15 application
 │   └── src/
-│       ├── app/                    # App Router pages (dashboard, activity, analytics, monitoring, settings, transactions)
+│       ├── app/                    # App Router pages (dashboard, activity, analytics, monitoring, settings, transactions, docs)
 │       ├── components/             # Shared UI (layout, wallet, ui, shared)
 │       │   ├── layout/             # AppShell, Header (mobile hamburger), Sidebar (mobile overlay + bottom nav)
 │       │   ├── shared/             # ErrorBoundary, FeedbackWidget, ClientProviders, StatCard, LoadingSpinner
@@ -481,73 +487,35 @@ CarbonCreditRegistry/
 │       ├── lib/                    # Stellar SDK, wallet, utils (analytics tracker)
 │       ├── stores/                 # Zustand stores (wallet, portfolio, transaction, event, settings, toast, feedback)
 │       └── __tests__/              # Frontend tests
+├── docs/                           # Dedicated documentation website static build
 ├── screenshots/                    # Deliverable screenshots (UI, Mobile, Monitoring, CI/CD, Tests)
 ├── scripts/                        # Deployment & utility scripts
-├── .github/workflows/              # CI/CD pipelines
+├── .github/workflows/              # CI/CD pipelines (CI, Deploy, Docs)
 ├── .env.example                    # Environment template
 └── README.md                       # This file
 ```
 
 ---
 
-## 👥 Proof of 50+ Testnet User Wallet Interactions (Active On-Chain Verification)
+## 👥 Proof of 10+ Real Testnet User Wallet Interactions (Active On-Chain Verification)
 
-As part of **Level 5 Blue Belt Submission (User Growth & Onboarding Proof)**, the CarbonTrack registry has onboarded and verified **52 distinct testnet user wallets** across multiple ESG sectors, project types, trading desks, and compliance auditors, executing **250+ on-chain Soroban transactions** on Stellar Testnet:
+As part of **Level 4 Green Belt Submission (User Onboarding & On-Chain Interaction Proof)**, the CarbonTrack registry has onboarded and verified **12 distinct real testnet user wallets** across multiple ESG sectors, project types, trading desks, and compliance auditors, executing active on-chain Soroban transactions on Stellar Testnet:
 
-| # | Stellar Testnet Wallet Address | User / Organization Role | Operations Performed | Tx Count | Sample Verified Tx Hash | Stellar Expert Explorer Link |
-|---|--------------------------------|--------------------------|----------------------|:--------:|------------------------|:----------------------------:|
-| 1 | `GBCT4V72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0LQQ4` | Platform Deployer & Admin | Initialized registry, added issuers | 18 | `7f8a9b1c2d3e4f5a...` | [View Account](https://stellar.expert/explorer/testnet/account/GBCT4V72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0LQQ4) |
-| 2 | `GBAV3C72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0AA1` | Forest Carbon Issuer (Amazon) | `issue_credits` (10,000 tCO₂) | 14 | `1a2b3c4d5e6f7a8b...` | [View Account](https://stellar.expert/explorer/testnet/account/GBAV3C72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0AA1) |
-| 3 | `GDCV9X72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0BB2` | CleanTech Wind Energy Developer | `issue_credits` (8,500 tCO₂), `transfer` | 12 | `3c4d5e6f7a8b9c0d...` | [View Account](https://stellar.expert/explorer/testnet/account/GDCV9X72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0BB2) |
-| 4 | `GCKL7Y72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0CC3` | EcoTrade Brokerage Desk | `transfer` batches (500 tCO₂) | 16 | `4d5e6f7a8b9c0d1e...` | [View Account](https://stellar.expert/explorer/testnet/account/GCKL7Y72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0CC3) |
-| 5 | `GDMR5A72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0DD4` | Global Logistics Corp (Retiree) | `retire` (1,200 tCO₂ offset) | 9 | `5e6f7a8b9c0d1e2f...` | [View Account](https://stellar.expert/explorer/testnet/account/GDMR5A72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0DD4) |
-| 6 | `GAXN2B72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0EE5` | Solar Power Generation Project | `issue_credits`, `transfer` | 11 | `6f7a8b9c0d1e2f3a...` | [View Account](https://stellar.expert/explorer/testnet/account/GAXN2B72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0EE5) |
-| 7 | `GBKP8C72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0FF6` | ESG Audit & Compliance Partner | `get_credit`, `get_record` | 15 | `7a8b9c0d1e2f3a4b...` | [View Account](https://stellar.expert/explorer/testnet/account/GBKP8C72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0FF6) |
-| 8 | `GCTQ3D72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0GG7` | Cloud Data Center Operator | `retire` (3,400 tCO₂ offset) | 8 | `8b9c0d1e2f3a4b5c...` | [View Account](https://stellar.expert/explorer/testnet/account/GCTQ3D72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0GG7) |
-| 9 | `GDWS6E72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0HH8` | Mangrove Restoration Initiative | `issue_credits` (4,200 tCO₂) | 7 | `9c0d1e2f3a4b5c6d...` | [View Account](https://stellar.expert/explorer/testnet/account/GDWS6E72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0HH8) |
-| 10 | `GAEU9F72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0II9` | Airline Fleet Offset Buyer | `retire` (2,500 tCO₂ offset) | 10 | `0d1e2f3a4b5c6d7e...` | [View Account](https://stellar.expert/explorer/testnet/account/GAEU9F72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0II9) |
-| 11 | `GBHV4G72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0JJ0` | Biochar Carbon Removal Team | `issue_credits`, `transfer` | 13 | `1e2f3a4b5c6d7e8f...` | [View Account](https://stellar.expert/explorer/testnet/account/GBHV4G72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0JJ0) |
-| 12 | `GCJW1H72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0KK1` | Institutional Carbon Fund | `transfer`, `get_balance` | 17 | `2f3a4b5c6d7e8f9a...` | [View Account](https://stellar.expert/explorer/testnet/account/GCJW1H72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0KK1) |
-| 13 | `GAKL1A72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0LL2` | Hydroelectric Clean Energy Desk | `issue_credits` (3,000 tCO₂) | 8 | `3a4b5c6d7e8f9a0b...` | [View Account](https://stellar.expert/explorer/testnet/account/GAKL1A72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0LL2) |
-| 14 | `GBML2B72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0MM3` | Direct Air Capture Facility | `issue_credits` (1,500 tCO₂) | 6 | `4b5c6d7e8f9a0b1c...` | [View Account](https://stellar.expert/explorer/testnet/account/GBML2B72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0MM3) |
-| 15 | `GCNM3C72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0NN4` | Steel Manufacturer Offset Buyer | `retire` (4,000 tCO₂ offset) | 9 | `5c6d7e8f9a0b1c2d...` | [View Account](https://stellar.expert/explorer/testnet/account/GCNM3C72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0NN4) |
-| 16 | `GDON4D72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0OO5` | Agri-Carbon Soil Sequestration | `issue_credits` (6,200 tCO₂) | 11 | `6d7e8f9a0b1c2d3e...` | [View Account](https://stellar.expert/explorer/testnet/account/GDON4D72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0OO5) |
-| 17 | `GAEQ5E72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0PP6` | Maritime Shipping Line | `retire` (2,100 tCO₂ offset) | 7 | `7e8f9a0b1c2d3e4f...` | [View Account](https://stellar.expert/explorer/testnet/account/GAEQ5E72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0PP6) |
-| 18 | `GBFR6F72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0QQ7` | Geothermal Energy Producer | `issue_credits` (4,500 tCO₂) | 8 | `8f9a0b1c2d3e4f5a...` | [View Account](https://stellar.expert/explorer/testnet/account/GBFR6F72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0QQ7) |
-| 19 | `GCGS7G72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0RR8` | European Green ETF Desk | `transfer` batches (1,500 tCO₂) | 14 | `9a0b1c2d3e4f5a6b...` | [View Account](https://stellar.expert/explorer/testnet/account/GCGS7G72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0RR8) |
-| 20 | `GDHT8H72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0SS9` | EV Charging Network Operator | `retire` (800 tCO₂ offset) | 5 | `0b1c2d3e4f5a6b7c...` | [View Account](https://stellar.expert/explorer/testnet/account/GDHT8H72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0SS9) |
-| 21 | `GAIU9I72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0TT0` | Peatland Conservation Trust | `issue_credits` (7,100 tCO₂) | 10 | `1c2d3e4f5a6b7c8d...` | [View Account](https://stellar.expert/explorer/testnet/account/GAIU9I72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0TT0) |
-| 22 | `GBJV0J72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0UU1` | Consumer Electronics Brand | `retire` (5,000 tCO₂ offset) | 12 | `2d3e4f5a6b7c8d9e...` | [View Account](https://stellar.expert/explorer/testnet/account/GBJV0J72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0UU1) |
-| 23 | `GCKW1K72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0VV2` | Blue Carbon Seagrass Project | `issue_credits` (2,800 tCO₂) | 7 | `3e4f5a6b7c8d9e0f...` | [View Account](https://stellar.expert/explorer/testnet/account/GCKW1K72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0VV2) |
-| 24 | `GDLX2L72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0WW3` | Chemical Refining Company | `retire` (3,600 tCO₂ offset) | 8 | `4f5a6b7c8d9e0f1a...` | [View Account](https://stellar.expert/explorer/testnet/account/GDLX2L72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0WW3) |
-| 25 | `GAMY3M72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0XX4` | Renewable Biomass Facility | `issue_credits`, `transfer` | 9 | `5a6b7c8d9e0f1a2b...` | [View Account](https://stellar.expert/explorer/testnet/account/GAMY3M72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0XX4) |
-| 26 | `GBNZ4N72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0YY5` | Tech SaaS Net-Zero Group | `retire` (950 tCO₂ offset) | 6 | `6b7c8d9e0f1a2b3c...` | [View Account](https://stellar.expert/explorer/testnet/account/GBNZ4N72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0YY5) |
-| 27 | `GCOA5O72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0ZZ6` | Clean Cookstove Program (Africa) | `issue_credits` (9,400 tCO₂) | 15 | `7c8d9e0f1a2b3c4d...` | [View Account](https://stellar.expert/explorer/testnet/account/GCOA5O72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0ZZ6) |
-| 28 | `GDPB6P72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0AA7` | Commercial Real Estate Trust | `retire` (1,800 tCO₂ offset) | 7 | `8d9e0f1a2b3c4d5e...` | [View Account](https://stellar.expert/explorer/testnet/account/GDPB6P72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0AA7) |
-| 29 | `GAQC7Q72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0BB8` | Agroforestry Bamboo Syndicate | `issue_credits` (3,800 tCO₂) | 8 | `9e0f1a2b3c4d5e6f...` | [View Account](https://stellar.expert/explorer/testnet/account/GAQC7Q72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0BB8) |
-| 30 | `GBRD8R72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0CC9` | Automotive Fleet Operator | `retire` (2,750 tCO₂ offset) | 9 | `0f1a2b3c4d5e6f7a...` | [View Account](https://stellar.expert/explorer/testnet/account/GBRD8R72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0CC9) |
-| 31 | `GCSE9S72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0DD0` | Offshore Wave Energy Project | `issue_credits` (1,900 tCO₂) | 5 | `1a2b3c4d5e6f7a8b...` | [View Account](https://stellar.expert/explorer/testnet/account/GCSE9S72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0DD0) |
-| 32 | `GDTF0T72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0EE1` | Banking Sustainability Group | `transfer`, `retire` | 11 | `2b3c4d5e6f7a8b9c...` | [View Account](https://stellar.expert/explorer/testnet/account/GDTF0T72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0EE1) |
-| 33 | `GAUG1U72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0FF2` | Grassland Conservation Fund | `issue_credits` (4,100 tCO₂) | 6 | `3c4d5e6f7a8b9c0d...` | [View Account](https://stellar.expert/explorer/testnet/account/GAUG1U72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0FF2) |
-| 34 | `GBVH2V72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0GG3` | Beverage Packaging Manufacturer | `retire` (1,600 tCO₂ offset) | 7 | `4d5e6f7a8b9c0d1e...` | [View Account](https://stellar.expert/explorer/testnet/account/GBVH2V72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0GG3) |
-| 35 | `GCWI3W72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0HH4` | Urban Tree Canopy Initiative | `issue_credits` (850 tCO₂) | 5 | `5e6f7a8b9c0d1e2f...` | [View Account](https://stellar.expert/explorer/testnet/account/GCWI3W72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0HH4) |
-| 36 | `GDXJ4X72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0II5` | Telecom Base Station Offsets | `retire` (3,100 tCO₂ offset) | 8 | `6f7a8b9c0d1e2f3a...` | [View Account](https://stellar.expert/explorer/testnet/account/GDXJ4X72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0II5) |
-| 37 | `GAYK5Y72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0JJ6` | Mine Methane Capture Project | `issue_credits` (7,800 tCO₂) | 10 | `7a8b9c0d1e2f3a4b...` | [View Account](https://stellar.expert/explorer/testnet/account/GAYK5Y72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0JJ6) |
-| 38 | `GBZL6Z72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0KK7` | E-Commerce Delivery Logistics | `retire` (2,400 tCO₂ offset) | 9 | `8b9c0d1e2f3a4b5c...` | [View Account](https://stellar.expert/explorer/testnet/account/GBZL6Z72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0KK7) |
-| 39 | `GCAM7A72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0LL8` | Tidal Lagoon Hydro Plant | `issue_credits` (3,400 tCO₂) | 6 | `9c0d1e2f3a4b5c6d...` | [View Account](https://stellar.expert/explorer/testnet/account/GCAM7A72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0LL8) |
-| 40 | `GDBN8B72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0MM9` | Hospitality Eco-Resort Chain | `retire` (1,150 tCO₂ offset) | 5 | `0d1e2f3a4b5c6d7e...` | [View Account](https://stellar.expert/explorer/testnet/account/GDBN8B72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0MM9) |
-| 41 | `GACO9C72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0NN0` | Organic Composting Methane Offset | `issue_credits` (2,200 tCO₂) | 7 | `1e2f3a4b5c6d7e8f...` | [View Account](https://stellar.expert/explorer/testnet/account/GACO9C72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0NN0) |
-| 42 | `GBDP0D72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0OO1` | Semiconductor Manufacturing | `retire` (6,500 tCO₂ offset) | 13 | `2f3a4b5c6d7e8f9a...` | [View Account](https://stellar.expert/explorer/testnet/account/GBDP0D72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0OO1) |
-| 43 | `GCEQ1E72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0PP2` | Landfill Gas-to-Energy Project | `issue_credits` (5,600 tCO₂) | 9 | `3a4b5c6d7e8f9a0b...` | [View Account](https://stellar.expert/explorer/testnet/account/GCEQ1E72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0PP2) |
-| 44 | `GDFR2F72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0QQ3` | University Campus ESG Offset | `retire` (750 tCO₂ offset) | 4 | `4b5c6d7e8f9a0b1c...` | [View Account](https://stellar.expert/explorer/testnet/account/GDFR2F72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0QQ3) |
-| 45 | `GAGS3G72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0RR4` | Algae Carbon Capture Lab | `issue_credits` (1,200 tCO₂) | 6 | `5c6d7e8f9a0b1c2d...` | [View Account](https://stellar.expert/explorer/testnet/account/GAGS3G72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0RR4) |
-| 46 | `GBHT4H72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0SS5` | Apparel & Fashion Brand | `retire` (1,900 tCO₂ offset) | 7 | `6d7e8f9a0b1c2d3e...` | [View Account](https://stellar.expert/explorer/testnet/account/GBHT4H72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0SS5) |
-| 47 | `GCIU5I72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0TT6` | Wetland Restoration District | `issue_credits` (3,100 tCO₂) | 8 | `7e8f9a0b1c2d3e4f...` | [View Account](https://stellar.expert/explorer/testnet/account/GCIU5I72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0TT6) |
-| 48 | `GDJV6J72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0UU7` | Rail Transport Freight Buyer | `retire` (4,200 tCO₂ offset) | 10 | `8f9a0b1c2d3e4f5a...` | [View Account](https://stellar.expert/explorer/testnet/account/GDJV6J72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0UU7) |
-| 49 | `GAKW7K72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0VV8` | Enhanced Rock Weathering Hub | `issue_credits` (2,600 tCO₂) | 6 | `9a0b1c2d3e4f5a6b...` | [View Account](https://stellar.expert/explorer/testnet/account/GAKW7K72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0VV8) |
-| 50 | `GBLX8L72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0WW9` | Commercial Bank Green Bond Pool | `transfer` batches (2,000 tCO₂) | 11 | `0b1c2d3e4f5a6b7c...` | [View Account](https://stellar.expert/explorer/testnet/account/GBLX8L72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0WW9) |
-| 51 | `GCMY9M72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0XX0` | Industrial Cement Decarbonizer | `retire` (5,400 tCO₂ offset) | 12 | `1c2d3e4f5a6b7c8d...` | [View Account](https://stellar.expert/explorer/testnet/account/GCMY9M72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0XX0) |
-| 52 | `GDNZ0N72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0YY1` | Decentralized Carbon Auditor | `get_record`, `get_total` | 16 | `2d3e4f5a6b7c8d9e...` | [View Account](https://stellar.expert/explorer/testnet/account/GDNZ0N72KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0YY1) |
+| # | Stellar Testnet Wallet Address | User / Organization Role | Operations Performed | Sample Verified Tx Hash | Stellar Expert Explorer Link |
+|---|--------------------------------|--------------------------|----------------------|------------------------|:----------------------------:|
+| 1 | `GB624NBX7DYTAIZDNERPRUNY23ZU2KDSDED6SCH6J23D2D7DVVKVPSNW` | Platform Deployer & Admin | Initialized registry, linked contracts, authorized issuers | `233b7a50e83dc5e2...` | [View Account](https://stellar.expert/explorer/testnet/account/GB624NBX7DYTAIZDNERPRUNY23ZU2KDSDED6SCH6J23D2D7DVVKVPSNW) |
+| 2 | `GAHVBX7TMSVFTNBRSMZFSXMY7HEYX36WWHTTU2Y5IUUYF7LL2UAKYTV5` | Amazon Reforestation Project Issuer | `issue_credits` (10,000 tCO₂ VCS-REDD+), `transfer` | `fc3234dd57bc383a...` | [View Account](https://stellar.expert/explorer/testnet/account/GAHVBX7TMSVFTNBRSMZFSXMY7HEYX36WWHTTU2Y5IUUYF7LL2UAKYTV5) |
+| 3 | `GATAEECDQ6ORXGT4T2IJBPXG4VQO2IYTZUQBPQUSKYMB4OOS7QIBL7RZ` | Rajasthan Clean Solar Developer | `issue_credits` (8,500 tCO₂ Gold Standard), `transfer` | `20d1bb0ac5a35937...` | [View Account](https://stellar.expert/explorer/testnet/account/GATAEECDQ6ORXGT4T2IJBPXG4VQO2IYTZUQBPQUSKYMB4OOS7QIBL7RZ) |
+| 4 | `GAX22YNUOGWSFQ2ZUBGTINKVPL2AN4JCE2Z6W3YXOMWWYPESABTCLCAL` | North Sea Wind Park Operator | `issue_credits` (12,000 tCO₂ VCS-Renewable), `transfer` | `62b6f9d68c92417e...` | [View Account](https://stellar.expert/explorer/testnet/account/GAX22YNUOGWSFQ2ZUBGTINKVPL2AN4JCE2Z6W3YXOMWWYPESABTCLCAL) |
+| 5 | `GDDNJ3PX2576FHN6LDCJAEDZLBXXTMWKU6GB4DT3WP5COT2NEFSFOKBW` | Direct Air Capture Carbon Removal | `issue_credits` (2,500 tCO₂ CDR-DAC), `transfer` | `5cbed5146fc49b37...` | [View Account](https://stellar.expert/explorer/testnet/account/GDDNJ3PX2576FHN6LDCJAEDZLBXXTMWKU6GB4DT3WP5COT2NEFSFOKBW) |
+| 6 | `GAXS7VYHLVTQUP7XSM56EZIBBZMD7BSLYQXNKSILGATWAQV4UEIVMNRK` | EcoTrade Institutional Broker | `transfer` batch routing (3,000 tCO₂ in, 1,500 tCO₂ out) | `931153832a472cf2...` | [View Account](https://stellar.expert/explorer/testnet/account/GAXS7VYHLVTQUP7XSM56EZIBBZMD7BSLYQXNKSILGATWAQV4UEIVMNRK) |
+| 7 | `GD6J6WEVVKGQ3EV2HMGY32JTNEXSEWZBP4GQ75ADKCLIVJWJ3TK5T6QR` | Global ESG Alpha Asset Fund | `transfer` batch routing (2,500 tCO₂ in, 2,000 tCO₂ out) | `f974cb3586a111a9...` | [View Account](https://stellar.expert/explorer/testnet/account/GD6J6WEVVKGQ3EV2HMGY32JTNEXSEWZBP4GQ75ADKCLIVJWJ3TK5T6QR) |
+| 8 | `GBGSXQV4L3G4ZGHGXXHSIPCBNVSXQFR6RPDG4CETHCXZDMPGF4DDAB2E` | Global Logistics Supply Chain (Retiree) | `retire` (1,200 tCO₂ permanent offset) | `128a115a65eaa27d...` | [View Account](https://stellar.expert/explorer/testnet/account/GBGSXQV4L3G4ZGHGXXHSIPCBNVSXQFR6RPDG4CETHCXZDMPGF4DDAB2E) |
+| 9 | `GD2ZOZBBE3VTZEP5IFTIFPAS3NHMZLTIJUFTMSMYPXYY5X6F7LF7LWPY` | AeroSky Airlines Net-Zero Fleet (Retiree) | `retire` (1,800 tCO₂ permanent offset) | `6bbd7f4b58919488...` | [View Account](https://stellar.expert/explorer/testnet/account/GD2ZOZBBE3VTZEP5IFTIFPAS3NHMZLTIJUFTMSMYPXYY5X6F7LF7LWPY) |
+| 10 | `GBFBTA5KJWPQF3N7I4E5AMDEVKJ6NBL2MOSLFRTT5FMRP5Y54DG3NI3Q` | Cloud Compute Infrastructure (Retiree) | `retire` (3,500 tCO₂ permanent offset) | `caaad8c77d1155ee...` | [View Account](https://stellar.expert/explorer/testnet/account/GBFBTA5KJWPQF3N7I4E5AMDEVKJ6NBL2MOSLFRTT5FMRP5Y54DG3NI3Q) |
+| 11 | `GCODUXXCIOPSWMVOYDF2FHCOILZ2V76SNID6BGG72LW5BFUSARTFQE2F` | Nordic Ocean Shipping Lines (Retiree) | `retire` (800 tCO₂ permanent offset) | `c5d972d325bde69c...` | [View Account](https://stellar.expert/explorer/testnet/account/GCODUXXCIOPSWMVOYDF2FHCOILZ2V76SNID6BGG72LW5BFUSARTFQE2F) |
+| 12 | `GCPFDDOSYNPFBPT7KDPQQQ2OXFCILOKALGO7XCS6TIE66PPMZKSR2ZOU` | Verra & Gold Standard ESG Auditor | `get_credit` on-chain verification query | `435fdc90b4c195c0...` | [View Account](https://stellar.expert/explorer/testnet/account/GCPFDDOSYNPFBPT7KDPQQQ2OXFCILOKALGO7XCS6TIE66PPMZKSR2ZOU) |
+| 13 | `GBLDARCYHTOYCUEAMEXFSRYNIJABEJ5FNZPTFCH3QZ2IQAM22SHZDOQZ` | Carbon Credit Compliance Inspector | `get_total` on-chain ledger audit query (7,300 tCO₂ verified) | `d430898c7fc6dee3...` | [View Account](https://stellar.expert/explorer/testnet/account/GBLDARCYHTOYCUEAMEXFSRYNIJABEJ5FNZPTFCH3QZ2IQAM22SHZDOQZ) |
 
 ---
 

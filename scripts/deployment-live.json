@@ -1,0 +1,87 @@
+{
+  "deployedAt": "2026-08-26T18:26:17.140Z",
+  "network": "testnet",
+  "deployer": {
+    "alias": "test-deployer",
+    "address": "GB624NBX7DYTAIZDNERPRUNY23ZU2KDSDED6SCH6J23D2D7DVVKVPSNW"
+  },
+  "contracts": {
+    "carbonCreditRegistry": "CAKKATMEKPX6BYMDIDFFDVADSJEFARV47R5VKFWXVK75HOCH455YWMVW",
+    "retirementManager": "CBDL7CHTWLZDJ6GXPAXX5FL53WY2VL342XY622OIQ3NTVPU7HCSWHAMA"
+  },
+  "wallets": [
+    {
+      "name": "wallet-amazon-conservation",
+      "role": "Amazon Reforestation Project Issuer",
+      "isIssuer": true,
+      "address": "GAHVBX7TMSVFTNBRSMZFSXMY7HEYX36WWHTTU2Y5IUUYF7LL2UAKYTV5"
+    },
+    {
+      "name": "wallet-rajasthan-solar",
+      "role": "Rajasthan Clean Solar Developer",
+      "isIssuer": true,
+      "address": "GATAEECDQ6ORXGT4T2IJBPXG4VQO2IYTZUQBPQUSKYMB4OOS7QIBL7RZ"
+    },
+    {
+      "name": "wallet-northsea-wind",
+      "role": "North Sea Wind Park Operator",
+      "isIssuer": true,
+      "address": "GAX22YNUOGWSFQ2ZUBGTINKVPL2AN4JCE2Z6W3YXOMWWYPESABTCLCAL"
+    },
+    {
+      "name": "wallet-iceland-dac",
+      "role": "Direct Air Capture Carbon Removal",
+      "isIssuer": true,
+      "address": "GDDNJ3PX2576FHN6LDCJAEDZLBXXTMWKU6GB4DT3WP5COT2NEFSFOKBW"
+    },
+    {
+      "name": "wallet-ecotrade-broker",
+      "role": "EcoTrade Institutional Broker",
+      "isIssuer": false,
+      "address": "GAXS7VYHLVTQUP7XSM56EZIBBZMD7BSLYQXNKSILGATWAQV4UEIVMNRK"
+    },
+    {
+      "name": "wallet-green-fund-mgmt",
+      "role": "Global ESG Alpha Asset Fund",
+      "isIssuer": false,
+      "address": "GD6J6WEVVKGQ3EV2HMGY32JTNEXSEWZBP4GQ75ADKCLIVJWJ3TK5T6QR"
+    },
+    {
+      "name": "wallet-logistics-corp",
+      "role": "Global Logistics Supply Chain (Retiree)",
+      "isIssuer": false,
+      "address": "GBGSXQV4L3G4ZGHGXXHSIPCBNVSXQFR6RPDG4CETHCXZDMPGF4DDAB2E"
+    },
+    {
+      "name": "wallet-airline-offsets",
+      "role": "AeroSky Airlines Net-Zero Fleet (Retiree)",
+      "isIssuer": false,
+      "address": "GD2ZOZBBE3VTZEP5IFTIFPAS3NHMZLTIJUFTMSMYPXYY5X6F7LF7LWPY"
+    },
+    {
+      "name": "wallet-tech-cloud-datacenter",
+      "role": "Cloud Compute Infrastructure (Retiree)",
+      "isIssuer": false,
+      "address": "GBFBTA5KJWPQF3N7I4E5AMDEVKJ6NBL2MOSLFRTT5FMRP5Y54DG3NI3Q"
+    },
+    {
+      "name": "wallet-maritime-carrier",
+      "role": "Nordic Ocean Shipping Lines (Retiree)",
+      "isIssuer": false,
+      "address": "GCODUXXCIOPSWMVOYDF2FHCOILZ2V76SNID6BGG72LW5BFUSARTFQE2F"
+    },
+    {
+      "name": "wallet-esg-audit-verifier",
+      "role": "Verra & Gold Standard ESG Auditor",
+      "isIssuer": false,
+      "address": "GCPFDDOSYNPFBPT7KDPQQQ2OXFCILOKALGO7XCS6TIE66PPMZKSR2ZOU"
+    },
+    {
+      "name": "wallet-compliance-inspector",
+      "role": "Carbon Credit Compliance Inspector",
+      "isIssuer": false,
+      "address": "GBLDARCYHTOYCUEAMEXFSRYNIJABEJ5FNZPTFCH3QZ2IQAM22SHZDOQZ"
+    }
+  ],
+  "totalRetiredTons": "\"7300\""
+}

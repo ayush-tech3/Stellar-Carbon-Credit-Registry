@@ -88,7 +88,7 @@ export function TransferForm() {
         hash: txHash,
         status: "confirmed",
         method: "transfer",
-        contractId: NETWORK_CONFIG.registryContractId || "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        contractId: NETWORK_CONFIG.registryContractId || "CAKKATMEKPX6BYMDIDFFDVADSJEFARV47R5VKFWXVK75HOCH455YWMVW",
         timestamp: Date.now(),
         retryCount: 0,
       });
@@ -99,7 +99,7 @@ export function TransferForm() {
         ledger: 5289200 + Math.floor(Math.random() * 500),
         timestamp: Math.floor(Date.now() / 1000),
         data: { creditId, to: toAddress, amount: numAmount.toString() },
-        contractId: NETWORK_CONFIG.registryContractId || "CC3REGISTRY572KC5W2G64K5R3L8O2P1Q9N0M1L2K3J4H5G6F7E8D9C0",
+        contractId: NETWORK_CONFIG.registryContractId || "CAKKATMEKPX6BYMDIDFFDVADSJEFARV47R5VKFWXVK75HOCH455YWMVW",
         txHash,
       });
 
