@@ -10,17 +10,36 @@
 
 ---
 
-## ✅ Level 4 & Level 5 Submission Checklist Verification
+## 🏆 Level 4 — Green Belt Official Submission Deliverables
 
-- [x] **Dedicated Documentation Website (Publicly Accessible)**: Complete, interactive documentation portal covering project overview, features, quick start guide, layered architecture, Soroban smart contract design, API reference, security analysis, frontend architecture, and CI/CD operations at **[carbon-credit-registry.netlify.app/docs](https://carbon-credit-registry.netlify.app/docs/)**
-- [x] **User Growth (12+ Real Testnet Wallets Onboarded)**: Comprehensive proof table of **12 verified unique testnet wallet accounts** performing 25+ real on-chain operations (minting, transfers, and permanent retirements) with verified Stellar Expert explorer links
-- [x] **Level 4 User Feedback & Public Survey Responses**: Live Google Form survey at [forms.gle/rF7KsMAaD7SQzQan9](https://forms.gle/rF7KsMAaD7SQzQan9) with publicly accessible live responses sheet at [Google Sheets Responses](https://docs.google.com/spreadsheets/d/1mKnmxuc9a4YKgHesZjv9jU-2HPNfopE4hsUmRv3Csp4/edit?usp=sharing)
-- [x] **Product Improvements & Feedback Loop**: Added 1-Click Instant Demo Wallet, interactive 3D particle canvas background, pinned 3-column action cards, Recharts methodology breakdown, mobile navigation drawer, and floating user feedback widget
-- [x] **Professional Pitch Deck / PPT**: Downloadable PowerPoint presentation [`CarbonTrack_Presentation.pptx`](CarbonTrack_Presentation.pptx) and complete pitch deck documentation in [`PITCH_DECK.md`](PITCH_DECK.md) covering Problem, Solution, Market Opportunity, Architecture, Growth Strategy, and Future Roadmap
-- [x] **Product Walkthrough & Demo**: Step-by-step user flow walkthrough in [`DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md) and live video demonstration on [YouTube](https://youtu.be/tyFBRt-QJQs)
-- [x] **Live Deployed Web Application**: Fully interactive on Netlify at [carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app)
-- [x] **Smart Contracts Deployed**: `CarbonCreditRegistry` and `RetirementManager` on Stellar Testnet
-- [x] **CI/CD Pipeline & Automated Testing**: 100% passing GitHub Actions automated workflow and Vitest unit/integration test suites
+| Rise In Required Item | Direct Verified Link / Value | Status |
+|---|---|:---:|
+| **1. Public GitHub Repository** | [github.com/ayush-tech3/Stellar-Carbon-Credit-Registry](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry) | ✅ Active & Public |
+| **2. Dedicated Documentation Website** | **[carbon-credit-registry.netlify.app/docs](https://carbon-credit-registry.netlify.app/docs/)** | ✅ Live & Complete |
+| **3. Minimum 15+ Meaningful Commits** | [68+ Commits on `main`](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/commits/main) | ✅ 68 Commits |
+| **4. Live Deployed Web App (MVP)** | **[carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app)** | ✅ Live on Netlify |
+| **5. Smart Contract Deployment Addresses** | **Registry**: [`CAKKATM...WMVW`](https://stellar.expert/explorer/testnet/contract/CAKKATMEKPX6BYMDIDFFDVADSJEFARV47R5VKFWXVK75HOCH455YWMVW)<br>**Retirement**: [`CBDL7CH...HAMA`](https://stellar.expert/explorer/testnet/contract/CBDL7CHTWLZDJ6GXPAXX5FL53WY2VL342XY622OIQ3NTVPU7HCSWHAMA) | ✅ Deployed on Testnet |
+| **6. Screenshots (UI, Mobile, Monitoring)** | [Jump to Embedded Screenshots Section ⬇️](#-deliverable-screenshots) | ✅ Embedded Below |
+| **7. Demo Walkthrough Video** | [Watch 1080p Demo on YouTube](https://youtu.be/tyFBRt-QJQs) | ✅ Full Walkthrough |
+| **8. Proof of 10+ Real Wallet Interactions** | [Jump to 13 Verified Wallets Table ⬇️](#-proof-of-10-real-testnet-user-wallet-interactions-active-on-chain-verification) | ✅ 13 Wallets / 25+ Txs |
+| **9. Basic User Feedback Summary** | [Jump to Feedback & Responses ⬇️](#-level-4-requirement-user-feedback-collection--live-responses) | ✅ Live Form + Sheet |
+| **10. Pitch Deck & Presentation** | [`CarbonTrack_Presentation.pptx`](CarbonTrack_Presentation.pptx) / [`PITCH_DECK.md`](PITCH_DECK.md) | ✅ Complete |
+
+---
+
+## 📸 Deliverable Screenshots
+
+### 1. 🖥️ Product UI (Production MVP Dashboard)
+![Product UI](screenshots/product-ui.png)
+
+### 2. 📱 Mobile Responsive Design (Drawer & Bottom Nav)
+![Mobile Responsive Dashboard](screenshots/mobile-responsive-ui.png)
+
+### 3. 📊 Analytics & Monitoring Setup
+![Monitoring & Analytics](screenshots/monitoring-setup.png)
+
+### 4. ⚙️ CI/CD Pipeline (GitHub Actions - 100% Passing)
+![CI/CD Pipeline Passing](screenshots/cicd-pipeline.png)
 
 ---
 
