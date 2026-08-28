@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/actions/workflows/ci.yml/badge.svg)](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/actions/workflows/ci.yml)
 [![Deploy](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/actions/workflows/deploy.yml/badge.svg)](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/actions/workflows/deploy.yml)
-[![Docs](https://img.shields.io/badge/Docs-Public%20Website-brightgreen?logo=markdown)](https://carbon-credit-registry.netlify.app/docs/)
+[![Docs](https://img.shields.io/badge/📖_Documentation-Public%20Website-brightgreen?logo=github&logoColor=white)](https://ayush-tech3.github.io/Stellar-Carbon-Credit-Registry/)
 [![Stellar](https://img.shields.io/badge/Stellar-Soroban-blue?logo=stellar)](https://stellar.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -15,7 +15,7 @@
 | Rise In Required Item | Direct Verified Link / Value | Status |
 |---|---|:---:|
 | **1. Public GitHub Repository** | [github.com/ayush-tech3/Stellar-Carbon-Credit-Registry](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry) | ✅ Active & Public |
-| **2. Dedicated Documentation Website** | **[carbon-credit-registry.netlify.app/docs](https://carbon-credit-registry.netlify.app/docs/)** | ✅ Live & Complete |
+| **2. Dedicated Documentation Website** | **[ayush-tech3.github.io/Stellar-Carbon-Credit-Registry](https://ayush-tech3.github.io/Stellar-Carbon-Credit-Registry/)** — [Mirror](https://carbon-credit-registry.netlify.app/docs/) | ✅ Live & Complete |
 | **3. Minimum 15+ Meaningful Commits** | [68+ Commits on `main`](https://github.com/ayush-tech3/Stellar-Carbon-Credit-Registry/commits/main) | ✅ 68 Commits |
 | **4. Live Deployed Web App (MVP)** | **[carbon-credit-registry.netlify.app](https://carbon-credit-registry.netlify.app)** | ✅ Live on Netlify |
 | **5. Smart Contract Deployment Addresses** | **Registry**: [`CAKKATM...WMVW`](https://stellar.expert/explorer/testnet/contract/CAKKATMEKPX6BYMDIDFFDVADSJEFARV47R5VKFWXVK75HOCH455YWMVW)<br>**Retirement**: [`CBDL7CH...HAMA`](https://stellar.expert/explorer/testnet/contract/CBDL7CHTWLZDJ6GXPAXX5FL53WY2VL342XY622OIQ3NTVPU7HCSWHAMA) | ✅ Deployed on Testnet |
