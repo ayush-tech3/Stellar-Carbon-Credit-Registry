@@ -84,7 +84,6 @@ create_webhook.js
 format.js
 format-libs.js
 checks.json
-netlify.toml
 
 # =========================
 # Presentation / Docs artifacts
