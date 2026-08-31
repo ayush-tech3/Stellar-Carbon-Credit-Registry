@@ -68,3 +68,26 @@ frontend/coverage/
 *.exe
 *.tar.gz
 
+# =========================
+# Temp / Scratch
+# =========================
+temp-scrape/
+node_modules/
+scratch_*.js
+fetch-check*.js
+fetch-log.js
+fetch-steps.js
+fetch-zip.js
+fetch_logs.js
+fetch_webhook.js
+create_webhook.js
+format.js
+format-libs.js
+checks.json
+netlify.toml
+
+# =========================
+# Presentation / Docs artifacts
+# =========================
+*.pptx
+
